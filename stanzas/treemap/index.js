@@ -8,7 +8,7 @@ import {
   appendCustomCss,
 } from "@/lib/metastanza_utils.js";
 
-export default class Tree extends Stanza {
+export default class Treemap extends Stanza {
   menu() {
     return [
       downloadSvgMenuItem(this, "tree"),
@@ -27,14 +27,14 @@ export default class Tree extends Stanza {
     const padding = 2.5;
 
     //data
-    const labelVariable = this.params["label"]; //"name"
-    const parentVariable = this.params["parent-node"]; //"parent"
-    const idVariable = this.params["node"]; //"id-variable"
+    // const labelVariable = this.params["label"]; //"name"
+    // const parentVariable = this.params["parent-node"]; //"parent"
+    // const idVariable = this.params["node"]; //"id-variable"
 
-    const values = await loadData(
-      this.params["data-url"],
-      this.params["data-type"]
-    );
+    // const values = await loadData(
+    //   this.params["data-url"],
+    //   this.params["data-type"]
+    // );
 
     const signals = [
       {
@@ -59,7 +59,7 @@ export default class Tree extends Stanza {
     const data = [
       {
         name: "tree",
-        url: "data/flare.json",
+        url: "https://vega.github.io/vega/data/flare.json",
         transform: [
           {
             type: "stratify",
