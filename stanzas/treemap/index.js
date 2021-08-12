@@ -22,19 +22,22 @@ export default class Treemap extends Stanza {
     const css = (key) => getComputedStyle(this.element).getPropertyValue(key);
 
     //width,height,padding
-    const width = 960;
-    const height = 500;
-    const padding = 2.5;
+    const width = this.params["width"];
+    const height = this.params["height"];
+    const padding = this.params["padding"];
+    // const width = 960;
+    // const height = 500;
+    // const padding = 2.5;
 
     //data
-    // const labelVariable = this.params["label"]; //"name"
-    // const parentVariable = this.params["parent-node"]; //"parent"
-    // const idVariable = this.params["node"]; //"id-variable"
+    const labelVariable = this.params["label"]; //"name"
+    const parentVariable = this.params["parent-node"]; //"parent"
+    const idVariable = this.params["node"]; //"id-variable"
 
-    // const values = await loadData(
-    //   this.params["data-url"],
-    //   this.params["data-type"]
-    // );
+    const values = await loadData(
+      this.params["data-url"],
+      this.params["data-type"]
+    );
 
     const signals = [
       {
@@ -59,12 +62,15 @@ export default class Treemap extends Stanza {
     const data = [
       {
         name: "tree",
-        url: "https://vega.github.io/vega/data/flare.json",
+        values,
+        // url: "https://vega.github.io/vega/data/flare.json",
         transform: [
           {
             type: "stratify",
-            key: "id",
-            parentKey: "parent",
+            // key: "id",
+            key: idVariable,
+            // parentKey: "parent",
+            parentKey: parentVariable,
           },
           {
             type: "treemap",
@@ -106,11 +112,19 @@ export default class Treemap extends Stanza {
         type: "ordinal",
         domain: { data: "nodes", field: "name" },
         range: [
-          "#3182bd", "#6baed6", "#9ecae1", "#c6dbef", "#e6550d",
-          "#fd8d3c", "#fdae6b", "#fdd0a2", "#31a354", "#74c476",
-          "#a1d99b", "#c7e9c0", "#756bb1", "#9e9ac8", "#bcbddc",
-          "#dadaeb", "#636363", "#969696", "#bdbdbd", "#d9d9d9"
+          css("--togostanza-series-0-color"),
+          css("--togostanza-series-1-color"),
+          css("--togostanza-series-2-color"),
+          css("--togostanza-series-3-color"),
+          css("--togostanza-series-4-color"),
+          css("--togostanza-series-5-color"),
         ],
+        // range: [
+        //   "#3182bd", "#6baed6", "#9ecae1", "#c6dbef", "#e6550d",
+        //   "#fd8d3c", "#fdae6b", "#fdd0a2", "#31a354", "#74c476",
+        //   "#a1d99b", "#c7e9c0", "#756bb1", "#9e9ac8", "#bcbddc",
+        //   "#dadaeb", "#636363", "#969696", "#bdbdbd", "#d9d9d9"
+        // ],
       },
       {
         name: "size",
@@ -149,7 +163,8 @@ export default class Treemap extends Stanza {
         from: { data: "leaves" },
         encode: {
           enter: {
-            stroke: { value: "#fff" },
+            stroke: { value: "var(--togostanza-edge-color)"},
+            // stroke: { value: "#fff" },
           },
           update: {
             x: { field: "x0" },
@@ -169,11 +184,18 @@ export default class Treemap extends Stanza {
         interactive: false,
         encode: {
           enter: {
-            font: { value: "Helvetica Neue, Arial" },
+            font: { value: css("--togostanza-font-family") },
+            // font: { value: "Helvetica Neue, Arial" },
             align: { value: "center"},
             baseline: { value: "middle"},
-            fill: { value: "#000"},
-            text: { field: "name"},
+            fill: { value: "var(--togostanza-label-font-color)"},
+            // fill: { value: "#000"},
+            text: { field:
+              this.params["label"] === ""
+                ? this.params["node"]
+                : labelVariable,},
+            // text: { field: "name"},
+            // fontSize: { scale: "var(--togostanza-label-font-size)", field: "depth"},
             fontSize: { scale: "size", field: "depth"},
             fillOpacity: {scale: "opacity", field: "depth"},
           },
