@@ -1,0 +1,266 @@
+#interactive {
+  position: relative;
+}
+
+.venntooltip {
+  top: 50%;
+  left: 25%;
+  position: absolute;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.venn-diagram:hover {
+  cursor: pointer;
+}
+
+#fixed {
+  position: relative;
+}
+#fixed .fixed-tooltip {
+  position: absolute;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+path[data-highlight=default], text[data-highlight=default] {
+  opacity: 1;
+}
+path[data-highlight=selected], text[data-highlight=selected] {
+  opacity: 1;
+}
+path[data-highlight=unselected], text[data-highlight=unselected] {
+  opacity: 0.2;
+}
+
+path[data-highlight=default] {
+  stroke-width: 0px;
+}
+path[data-highlight=selected] {
+  stroke: #333;
+  stroke-width: 2px;
+}
+path[data-highlight=unselected] {
+  stroke-width: 0px;
+}
+
+#venn-shape-set1-0 {
+  fill: #96938d;
+}
+
+#venn-shape-set2-0 {
+  fill: #804040;
+}
+
+#venn-shape-set2-1 {
+  fill: #408080;
+}
+
+#venn-shape-set3-0 {
+  fill: #804040;
+}
+
+#venn-shape-set3-1 {
+  fill: #408040;
+}
+
+#venn-shape-set3-2 {
+  fill: #404080;
+}
+
+#venn-shape-set3-0_1 {
+  fill: #aaaa68;
+}
+
+#venn-shape-set3-0_2 {
+  fill: #aa68aa;
+}
+
+#venn-shape-set3-1_2 {
+  fill: #68aaaa;
+}
+
+#venn-shape-set4-0 {
+  fill: #807040;
+}
+
+#venn-shape-set4-1 {
+  fill: #408050;
+}
+
+#venn-shape-set4-2 {
+  fill: #405080;
+}
+
+#venn-shape-set4-3 {
+  fill: #804070;
+}
+
+#venn-shape-set4-0_1 {
+  fill: #aac67a;
+}
+
+#venn-shape-set4-0_2 {
+  fill: #aaa6aa;
+}
+
+#venn-shape-set4-0_3 {
+  fill: #ce9b9b;
+}
+
+#venn-shape-set4-1_2 {
+  fill: #68b4b4;
+}
+
+#venn-shape-set4-1_3 {
+  fill: #aaaaa6;
+}
+
+#venn-shape-set4-2_3 {
+  fill: #aa7ac6;
+}
+
+#venn-shape-set4-0_1_2 {
+  fill: #d1e6d7;
+}
+
+#venn-shape-set4-0_1_3 {
+  fill: #e7e3cf;
+}
+
+#venn-shape-set4-0_2_3 {
+  fill: #e7cfe3;
+}
+
+#venn-shape-set4-1_2_3 {
+  fill: #d1d7e6;
+}
+
+#venn-shape-set5-0 {
+  fill: #804040;
+}
+
+#venn-shape-set5-1 {
+  fill: #738040;
+}
+
+#venn-shape-set5-2 {
+  fill: #40805a;
+}
+
+#venn-shape-set5-3 {
+  fill: #405a80;
+}
+
+#venn-shape-set5-4 {
+  fill: #734080;
+}
+
+#venn-shape-set5-0_1 {
+  fill: #c6aa61;
+}
+
+#venn-shape-set5-0_2 {
+  fill: #acac81;
+}
+
+#venn-shape-set5-0_3 {
+  fill: #ac85ac;
+}
+
+#venn-shape-set5-0_4 {
+  fill: #c869a8;
+}
+
+#venn-shape-set5-1_2 {
+  fill: #9ecd88;
+}
+
+#venn-shape-set5-1_3 {
+  fill: #9cbaa9;
+}
+
+#venn-shape-set5-1_4 {
+  fill: #c1a9aa;
+}
+
+#venn-shape-set5-2_3 {
+  fill: #6fbab2;
+}
+
+#venn-shape-set5-2_4 {
+  fill: #a0aab7;
+}
+
+#venn-shape-set5-3_4 {
+  fill: #9f85cb;
+}
+
+#venn-shape-set5-0_1_2 {
+  fill: #e3e6b5;
+}
+
+#venn-shape-set5-0_1_3 {
+  fill: #e3dad1;
+}
+
+#venn-shape-set5-0_1_4 {
+  fill: #eed1d1;
+}
+
+#venn-shape-set5-0_2_3 {
+  fill: #d1dadb;
+}
+
+#venn-shape-set5-0_2_4 {
+  fill: #e3d1db;
+}
+
+#venn-shape-set5-0_3_4 {
+  fill: #e3b7e7;
+}
+
+#venn-shape-set5-1_2_3 {
+  fill: #c8ecdb;
+}
+
+#venn-shape-set5-1_2_4 {
+  fill: #dee7db;
+}
+
+#venn-shape-set5-1_3_4 {
+  fill: #dedae7;
+}
+
+#venn-shape-set5-2_3_4 {
+  fill: #c8daec;
+}
+
+#venn-shape-set5-0_1_2_3 {
+  fill: #f3f6ef;
+}
+
+#venn-shape-set5-0_1_2_4 {
+  fill: #f6f4ef;
+}
+
+#venn-shape-set5-0_1_3_4 {
+  fill: #f6eff4;
+}
+
+#venn-shape-set5-0_2_3_4 {
+  fill: #f3eff6;
+}
+
+#venn-shape-set5-1_2_3_4 {
+  fill: #f0f6f6;
+}
+
+#venn-shape-set2-0_1,
+#venn-shape-set3-0_1_2,
+#venn-shape-set4-0_1_2_3,
+#venn-shape-set5-0_1_2_3_4 {
+  fill: #fff;
+}

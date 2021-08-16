@@ -1,29 +1,7 @@
-import { B as select, A as dispatch, S as Stanza, d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, c as defineStanzaElement } from './metastanza_utils-58b370c7.js';
-
-function sourceEvent(event) {
-  let sourceEvent;
-  while (sourceEvent = event.sourceEvent) event = sourceEvent;
-  return event;
-}
-
-function pointer(event, node) {
-  event = sourceEvent(event);
-  if (node === undefined) node = event.currentTarget;
-  if (node) {
-    var svg = node.ownerSVGElement || node;
-    if (svg.createSVGPoint) {
-      var point = svg.createSVGPoint();
-      point.x = event.clientX, point.y = event.clientY;
-      point = point.matrixTransform(node.getScreenCTM().inverse());
-      return [point.x, point.y];
-    }
-    if (node.getBoundingClientRect) {
-      var rect = node.getBoundingClientRect();
-      return [event.clientX - rect.left - node.clientLeft, event.clientY - rect.top - node.clientTop];
-    }
-  }
-  return [event.pageX, event.pageY];
-}
+import { d as defineStanzaElement } from './stanza-element-2f86f47e.js';
+import { w as dispatch, S as Stanza } from './timer-7a40e981.js';
+import { s as select, d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './metastanza_utils-248e43f7.js';
+import { p as pointer } from './pointer-be8dd836.js';
 
 // These are typically used in conjunction with noevent to ensure that we can
 // preventDefault on the event.
