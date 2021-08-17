@@ -1,16 +1,3 @@
-#interactive {
-  position: relative;
-}
-
-.venntooltip {
-  top: 50%;
-  left: 25%;
-  position: absolute;
-  background-color: #fff;
-  padding: 5px 10px;
-  border-radius: 2px;
-}
-
 .venn-diagram:hover {
   cursor: pointer;
 }
@@ -44,18 +31,6 @@ path[data-highlight=selected] {
 }
 path[data-highlight=unselected] {
   stroke-width: 0px;
-}
-
-#venn-shape-set1-0 {
-  fill: #96938d;
-}
-
-#venn-shape-set2-0 {
-  fill: #804040;
-}
-
-#venn-shape-set2-1 {
-  fill: #408080;
 }
 
 #venn-shape-set2-0_1,
