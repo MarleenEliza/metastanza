@@ -1,0 +1,154 @@
+{
+  "@context": {
+    "stanza": "http://togostanza.org/resource/stanza#"
+  },
+  "@id": "heatmap",
+  "stanza:label": "Heatmap",
+  "stanza:definition": "",
+  "stanza:type": "Stanza",
+  "stanza:display": "Chart",
+  "stanza:provider": "",
+  "stanza:license": "MIT",
+  "stanza:author": "teraomoyu",
+  "stanza:address": "",
+  "stanza:contributor": [],
+  "stanza:created": "2021-08-26",
+  "stanza:updated": "2021-08-26",
+  "stanza:parameter": [
+    {
+      "stanza:key": "data-type",
+      "stanza:type": "single-choice",
+      "stanza:choice": ["json", "tsv", "csv", "sparql-results-json"],
+      "stanza:example": "json",
+      "stanza:description": "Data type",
+      "stanza:required": true
+    },
+    {
+      "stanza:key": "top",
+      "stanza:type": "number",
+      "stanza:example": 30,
+      "stanza:description": "top"
+    },
+    {
+      "stanza:key": "right",
+      "stanza:type": "number",
+      "stanza:example": 30,
+      "stanza:description": "right"
+    },
+    {
+      "stanza:key": "left",
+      "stanza:type": "number",
+      "stanza:example": 30,
+      "stanza:description": "left"
+    },
+    {
+      "stanza:key": "bottom",
+      "stanza:type": "number",
+      "stanza:example": 30,
+      "stanza:description": "bottom"
+    },
+    {
+      "stanza:key": "width",
+      "stanza:type": "number",
+      "stanza:example": 450,
+      "stanza:description": "Width"
+    },
+    {
+      "stanza:key": "height",
+      "stanza:type": "number",
+      "stanza:example": 450,
+      "stanza:description": "Height"
+    },
+    {
+      "stanza:key": "label1",
+      "stanza:example": "A",
+      "stanza:description": "x label_1"
+    },
+    {
+      "stanza:key": "label2",
+      "stanza:example": "B",
+      "stanza:description": "x label_2"
+    },
+    {
+      "stanza:key": "label3",
+      "stanza:example": "C",
+      "stanza:description": "x label_3"
+    },
+    {
+      "stanza:key": "label4",
+      "stanza:example": "D",
+      "stanza:description": "x label_4"
+    },
+    {
+      "stanza:key": "label5",
+      "stanza:example": "E",
+      "stanza:description": "x label_5"
+    },
+    {
+      "stanza:key": "label6",
+      "stanza:example": "F",
+      "stanza:description": "x label_6"
+    },
+    {
+      "stanza:key": "label7",
+      "stanza:example": "G",
+      "stanza:description": "x label_7"
+    },
+    {
+      "stanza:key": "label8",
+      "stanza:example": "H",
+      "stanza:description": "x label_8"
+    },
+    {
+      "stanza:key": "label9",
+      "stanza:example": "I",
+      "stanza:description": "x label_9"
+    },
+    {
+      "stanza:key": "label10",
+      "stanza:example": "J",
+      "stanza:description": "x label_10"
+    },
+    {
+      "stanza:key": "metastanza-menu-placement",
+      "stanza:type": "single-choice",
+      "stanza:choice": [
+        "top-left",
+        "top-right",
+        "bottom-left",
+        "bottom-right",
+        "none"
+      ],
+      "stanza:example": "top-right",
+      "stanza:description": "Menu button placement"
+    }
+  ],
+  "stanza:menu-placement": "bottom-right",
+  "stanza:style": [
+    {
+      "stanza:key": "--togostanza-series-0-color",
+      "stanza:type": "color",
+      "stanza:default": "#ffffff",
+      "stanza:description": "Depth color 1"
+    },
+    {
+      "stanza:key": "--togostanza-series-1-color",
+      "stanza:type": "color",
+      "stanza:default": "#6590E6",
+      "stanza:description": "Depth color 2"
+    },
+    {
+      "stanza:key": "--greeting-align",
+      "stanza:type": "single-choice",
+      "stanza:choice": [
+        "left",
+        "center",
+        "right"
+      ],
+      "stanza:default": "center",
+      "stanza:description": "text align of greeting"
+    }
+  ],
+  "stanza:incomingEvent": [],
+  "stanza:outgoingEvent": []
+}
