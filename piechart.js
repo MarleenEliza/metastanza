@@ -1,9 +1,10 @@
 import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
 import { S as Stanza } from './timer-a4127ebb.js';
 import { e as embed } from './vega-embed.module-4cb5482e.js';
-import { l as loadData } from './load-data-22873c13.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './metastanza_utils-23320c62.js';
+import { l as loadData } from './load-data-e98484f6.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './metastanza_utils-9423e0b1.js';
 import './dsv-cd3740c6.js';
+import './index-3f693ff8.js';
 
 class PieChart extends Stanza {
   menu() {

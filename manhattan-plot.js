@@ -1,6 +1,7 @@
 import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
 import { w as dispatch, S as Stanza } from './timer-a4127ebb.js';
-import { s as select, d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './metastanza_utils-23320c62.js';
+import './index-3f693ff8.js';
+import { s as select, d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './metastanza_utils-9423e0b1.js';
 
 function sourceEvent(event) {
   let sourceEvent;

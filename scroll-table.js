@@ -1,8 +1,9 @@
 import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
 import { S as Stanza } from './timer-a4127ebb.js';
-import { b as appendCustomCss } from './metastanza_utils-23320c62.js';
+import { b as appendCustomCss } from './metastanza_utils-9423e0b1.js';
 import { e as defineComponent, p as reactive, o as onMounted, b as createBlock, g as createVNode, F as Fragment, i as renderList, l as createCommentVNode, d as openBlock, k as toDisplayString, y as createApp } from './runtime-dom.esm-bundler-179c1bdc.js';
-import { l as loadData } from './load-data-22873c13.js';
+import { l as loadData } from './load-data-e98484f6.js';
+import './index-3f693ff8.js';
 import './dsv-cd3740c6.js';
 
 var metadata = {

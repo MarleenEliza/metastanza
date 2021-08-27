@@ -1,4 +1,4 @@
-import './metastanza_utils-23320c62.js';
+import './index-3f693ff8.js';
 import { d as dsvFormat } from './dsv-cd3740c6.js';
 
 var csv$1 = dsvFormat(",");
@@ -133,4 +133,4 @@ function sparql2table(json) {
 }
 
 export { loadData as l };
-//# sourceMappingURL=load-data-22873c13.js.map
+//# sourceMappingURL=load-data-e98484f6.js.map

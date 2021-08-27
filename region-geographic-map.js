@@ -1,42 +1,61 @@
 import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
 import { S as Stanza } from './timer-a4127ebb.js';
 import { e as embed } from './vega-embed.module-4cb5482e.js';
+import { l as loadData } from './load-data-e98484f6.js';
 import './dsv-cd3740c6.js';
+import './index-3f693ff8.js';
 
-class regionGeographicMap extends Stanza {
-
-  async render() {
-    const vegaJson = await fetch(
-      "https://vega.github.io/vega/examples/county-unemployment.vg.json"
-    ).then((res) => res.json());
-
-    const data = [
-      {
-        name: "unemp",
-        url: "https://vega.github.io/vega/data/unemployment.tsv",
-        format: { type: "tsv", parse: "auto" },
+const areas = new Map([
+  [
+    "us",
+    {
+      name: "map",
+      url: "https://vega.github.io/vega/data/us-10m.json",
+      format: { type: "topojson", feature: "counties" },
+    },
+  ],
+  [
+    "world",
+    {
+      name: "map",
+      url: "https://vega.github.io/vega/data/world-110m.json",
+      format: {
+        type: "topojson",
+        feature: "countries",
       },
+    },
+  ],
+]);
+class regionGeographicMap extends Stanza {
+  async render() {
+    const values = await loadData(
+      this.params["data-url"],
+      this.params["data-type"]
+    );
+
+    const valObj = {
+      name: "userData",
+      values,
+    };
+
+    const transform = [
       {
-        name: "counties",
-        url: "https://vega.github.io/vega/data/us-10m.json",
-        format: { type: "topojson", feature: "counties" },
-        transform: [
-          {
-            type: "lookup",
-            from: "unemp",
-            key: "id",
-            fields: ["id"],
-            values: ["rate"],
-          },
-          { type: "filter", expr: "datum.rate != null" },
-        ],
+        type: "lookup",
+        from: "userData",
+        key: "id",
+        fields: ["id"],
+        values: [this.params["value-key"]],
       },
     ];
+
+    const obj = areas.get(this.params["area"]);
+    obj.transform = transform;
+    const data = [valObj, obj];
 
     const projections = [
       {
         name: "projection",
-        type: "albersUsa",
+        type: this.params["area"] === "us" ? "albersUsa" : "mercator",
       },
     ];
 
@@ -51,15 +70,17 @@ class regionGeographicMap extends Stanza {
       "var(--togostanza-series-7-color)",
     ];
 
-    const colorRange =
-      colorRangeMax.slice(0, Number(this.params["group-amount"]));
+    const colorRange = colorRangeMax.slice(
+      0,
+      Number(this.params["group-amount"])
+    );
 
     const scales = [
       {
         name: "userColor",
         type: "quantize",
         domain: [0, 0.15],
-        range: colorRange
+        range: colorRange,
       },
     ];
 
@@ -78,14 +99,14 @@ class regionGeographicMap extends Stanza {
     const marks = [
       {
         type: "shape",
-        from: { data: "counties" },
+        from: { data: "map" },
         encode: {
-          enter: { tooltip: { signal: "format(datum.rate, '0.1%')" } },
+          enter: { tooltip: { signal: `datum.${this.params["value-key"]}` } },
           hover: {
             fill: { value: "var(--togostanza-hover-color)" },
           },
           update: {
-            fill: { scale: "userColor", field: "rate" },
+            fill: { scale: "userColor", field: this.params["value-key"] },
             stroke: this.params["border"]
               ? { value: "var(--togostanza-region-border-color)" }
               : "",
@@ -99,7 +120,6 @@ class regionGeographicMap extends Stanza {
       $schema: "https://vega.github.io/schema/vega/v5.json",
       width: 1000,
       height: 500,
-      signals: vegaJson.signals,
       data,
       projections,
       scales,
@@ -136,8 +156,44 @@ var metadata = {
 	"stanza:contributor": [
 ],
 	"stanza:created": "2021-04-23",
-	"stanza:updated": "2021-04-27",
+	"stanza:updated": "2021-08-25",
 	"stanza:parameter": [
+	{
+		"stanza:key": "data-url",
+		"stanza:example": "http://localhost:8080/assets/named_map_world_test.tsv",
+		"stanza:description": "Data source URL",
+		"stanza:required": true
+	},
+	{
+		"stanza:key": "data-type",
+		"stanza:type": "single-choice",
+		"stanza:choice": [
+			"json",
+			"tsv",
+			"csv",
+			"sparql-results-json"
+		],
+		"stanza:example": "tsv",
+		"stanza:description": "Data type",
+		"stanza:required": true
+	},
+	{
+		"stanza:key": "value-key",
+		"stanza:example": "rate",
+		"stanza:description": "Value key of data",
+		"stanza:required": true
+	},
+	{
+		"stanza:key": "area",
+		"stanza:type": "single-choice",
+		"stanza:choice": [
+			"us",
+			"world"
+		],
+		"stanza:example": "world",
+		"stanza:description": "Area of map",
+		"stanza:required": true
+	},
 	{
 		"stanza:key": "border",
 		"stanza:type": "boolean",
@@ -197,7 +253,7 @@ var metadata = {
 	{
 		"stanza:key": "--togostanza-region-border-color",
 		"stanza:type": "color",
-		"stanza:default": "#FFFAFA",
+		"stanza:default": "black",
 		"stanza:description": "Border color"
 	},
 	{
