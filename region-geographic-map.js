@@ -101,7 +101,13 @@ class regionGeographicMap extends Stanza {
         type: "shape",
         from: { data: "map" },
         encode: {
-          enter: { tooltip: { signal: this.params["percentage"] ? `format(datum.${this.params["value-key"]}, '0.1%')` : `datum.${this.params["value-key"]}` } },
+          enter: {
+            tooltip: {
+              signal: this.params["percentage"]
+                ? `format(datum.${this.params["value-key"]}, '0.1%')`
+                : `datum.${this.params["value-key"]}`,
+            },
+          },
           hover: {
             fill: { value: "var(--togostanza-hover-color)" },
           },
@@ -355,8 +361,8 @@ var templates = [
     };
 
   return "<p class=\"greeting\">"
-    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"greeting") || (depth0 != null ? lookupProperty(depth0,"greeting") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"greeting","hash":{},"data":data,"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":34}}}) : helper)))
-    + "</p>\n";
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"greeting") || (depth0 != null ? lookupProperty(depth0,"greeting") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"greeting","hash":{},"data":data,"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":32}}}) : helper)))
+    + "</p>";
 },"useData":true}]
 ];
 

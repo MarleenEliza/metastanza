@@ -12,13 +12,16 @@
   border-radius: 2px;
 }
 
-path[data-highlight=default], text[data-highlight=default] {
+path[data-highlight=default],
+text[data-highlight=default] {
   opacity: 1;
 }
-path[data-highlight=selected], text[data-highlight=selected] {
+path[data-highlight=selected],
+text[data-highlight=selected] {
   opacity: 1;
 }
-path[data-highlight=unselected], text[data-highlight=unselected] {
+path[data-highlight=unselected],
+text[data-highlight=unselected] {
   opacity: 0.2;
 }
 

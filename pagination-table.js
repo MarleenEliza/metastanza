@@ -1914,9 +1914,9 @@ var script$1 = defineComponent({
         canvas.value.width = paginationWrapper.value.clientWidth;
         canvas.value.height = 50;
 
-        const sliderY = paginationWrapper.value.getElementsByClassName(
-          "pageSlider"
-        )[0].offsetTop;
+        const sliderY =
+          paginationWrapper.value.getElementsByClassName("pageSlider")[0]
+            .offsetTop;
         const tablePaginationOrder =
           paginationNumList.value.offsetTop < sliderY
             ? "column"
@@ -1925,9 +1925,8 @@ var script$1 = defineComponent({
         const paginationNumListX = paginationNumList.value.offsetLeft;
         const paginationNumListY = tablePaginationOrder === "column" ? 0 : 50;
 
-        const knob = paginationWrapper.value.getElementsByClassName(
-          "slider-origin"
-        )[0];
+        const knob =
+          paginationWrapper.value.getElementsByClassName("slider-origin")[0];
         const knobTranslate = knob.style.transform
           .match(/translate\((.+)%,(.+)\)/)[1]
           .split(",")[0];
@@ -6388,10 +6387,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                               }, toDisplayString(cell.value), 9 /* TEXT, PROPS */, ["href"])
                             ]))
                           : (cell.column.unescape)
-                            ? (openBlock(), createBlock("span", {
-                                key: 1,
-                                innerHTML: cell.value
-                              }, null, 8 /* PROPS */, ["innerHTML"]))
+                            ? (openBlock(), createBlock(Fragment, { key: 1 }, [
+                                createCommentVNode(" eslint-disable-next-line vue/no-v-html "),
+                                createVNode("span", {
+                                  innerHTML: cell.value
+                                }, null, 8 /* PROPS */, ["innerHTML"])
+                              ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                             : (openBlock(), createBlock("span", _hoisted_22, toDisplayString(cell.value), 1 /* TEXT */))
                       ], 10 /* CLASS, PROPS */, ["rowspan"]))
                     }), 128 /* KEYED_FRAGMENT */))

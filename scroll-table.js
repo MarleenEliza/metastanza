@@ -292,10 +292,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                           }, toDisplayString(cell.value), 9 /* TEXT, PROPS */, ["href"])
                         ]))
                       : (cell.unescape)
-                        ? (openBlock(), createBlock("span", {
-                            key: 1,
-                            innerHTML: cell.value
-                          }, null, 8 /* PROPS */, ["innerHTML"]))
+                        ? (openBlock(), createBlock(Fragment, { key: 1 }, [
+                            createCommentVNode(" eslint-disable-next-line vue/no-v-html "),
+                            createVNode("span", {
+                              innerHTML: cell.value
+                            }, null, 8 /* PROPS */, ["innerHTML"])
+                          ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                         : (openBlock(), createBlock("span", _hoisted_3, toDisplayString(cell.value), 1 /* TEXT */))
                   ]))
                 }), 128 /* KEYED_FRAGMENT */))
