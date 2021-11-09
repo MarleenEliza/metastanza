@@ -1,9 +1,10 @@
-import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
-import { S as Stanza } from './timer-a4127ebb.js';
-import { l as loadData } from './load-data-e98484f6.js';
-import { b as appendCustomCss } from './metastanza_utils-9423e0b1.js';
-import './index-3f693ff8.js';
+import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
+import { S as Stanza } from './timer-c0f0909e.js';
+import { l as loadData } from './load-data-8e209b6d.js';
+import { b as appendCustomCss } from './index-0b8d8270.js';
+import './index-49bb1ecc.js';
 import './dsv-cd3740c6.js';
+import './select-9137152e.js';
 
 class HashTable extends Stanza {
   async render() {
@@ -64,12 +65,8 @@ var metadata = {
 	"@id": "hash-table",
 	"stanza:label": "Hash table",
 	"stanza:definition": "Hash table MetaStanza",
-	"stanza:type": "Stanza",
-	"stanza:display": "Table",
-	"stanza:provider": "",
 	"stanza:license": "MIT",
-	"stanza:author": "reika0717",
-	"stanza:address": "hirahara@penqe.com",
+	"stanza:author": "DBCLS",
 	"stanza:contributor": [
 ],
 	"stanza:created": "2021-03-18",

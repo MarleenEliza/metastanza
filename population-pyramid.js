@@ -1,6 +1,6 @@
-import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
-import { e as embed } from './vega-embed.module-4cb5482e.js';
-import { S as Stanza } from './timer-a4127ebb.js';
+import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
+import { e as embed } from './vega-embed.module-ac3ca56d.js';
+import { S as Stanza } from './timer-c0f0909e.js';
 import './dsv-cd3740c6.js';
 
 class populationPyramid extends Stanza {
@@ -192,7 +192,7 @@ var metadata = {
 	"stanza:provider": "TogoStanza",
 	"stanza:license": "MIT",
 	"stanza:author": "MarleenEliza",
-	"stanza:address": "https://github.com/MarleenEliza",
+	"stanza:address": "62828450+MarleenEliza@users.noreply.github.com",
 	"stanza:contributor": [
 ],
 	"stanza:created": "2021-04-27",

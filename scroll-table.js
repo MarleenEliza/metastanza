@@ -1,10 +1,145 @@
-import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
-import { S as Stanza } from './timer-a4127ebb.js';
-import { b as appendCustomCss } from './metastanza_utils-9423e0b1.js';
-import { e as defineComponent, p as reactive, o as onMounted, b as createBlock, g as createVNode, F as Fragment, i as renderList, l as createCommentVNode, d as openBlock, k as toDisplayString, y as createApp } from './runtime-dom.esm-bundler-179c1bdc.js';
-import { l as loadData } from './load-data-e98484f6.js';
-import './index-3f693ff8.js';
+import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
+import { S as Stanza } from './timer-c0f0909e.js';
+import { b as appendCustomCss } from './index-0b8d8270.js';
+import { e as defineComponent, g as createElementBlock, i as createBaseVNode, u as normalizeStyle, p as toDisplayString, F as Fragment, d as openBlock, j as createVNode, q as createCommentVNode, b as createBlock, l as createTextVNode, s as resolveComponent, v as reactive, o as onMounted, r as ref, x as onRenderTriggered, k as renderList, n as normalizeClass, D as createApp } from './runtime-dom.esm-bundler-d5cfd3a5.js';
+import { l as loadData } from './load-data-8e209b6d.js';
+import './index-49bb1ecc.js';
+import './select-9137152e.js';
 import './dsv-cd3740c6.js';
+
+var script$2 = defineComponent({
+  props: {
+    id: {
+      type: String,
+      default: null,
+    },
+    unescape: {
+      type: Boolean,
+      default: false,
+    },
+    lineClamp: {
+      type: Number,
+      default: null,
+    },
+    value: {
+      type: String,
+      default: null,
+    },
+  },
+});
+
+const _hoisted_1$2 = ["id", "name"];
+const _hoisted_2$2 = ["for", "innerHTML"];
+const _hoisted_3$2 = ["for"];
+
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock(Fragment, null, [
+    createBaseVNode("input", {
+      id: _ctx.id,
+      type: "checkbox",
+      name: _ctx.id
+    }, null, 8 /* PROPS */, _hoisted_1$2),
+    (_ctx.unescape)
+      ? (openBlock(), createElementBlock("label", {
+          key: 0,
+          for: _ctx.id,
+          style: normalizeStyle(`-webkit-line-clamp: ${_ctx.lineClamp}`),
+          innerHTML: _ctx.value
+        }, null, 12 /* STYLE, PROPS */, _hoisted_2$2))
+      : (openBlock(), createElementBlock("label", {
+          key: 1,
+          for: _ctx.id,
+          style: normalizeStyle(`-webkit-line-clamp: ${_ctx.lineClamp}`)
+        }, toDisplayString(_ctx.value), 13 /* TEXT, STYLE, PROPS */, _hoisted_3$2))
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+script$2.render = render$2;
+script$2.__file = "stanzas/scroll-table/LineClampCell.vue";
+
+var script$1 = defineComponent({
+  components: {
+    LineClampCell: script$2,
+  },
+  props: {
+    id: {
+      type: String,
+      default: null,
+    },
+    href: {
+      type: String,
+      default: null,
+    },
+    value: {
+      type: String,
+      default: null,
+    },
+    target: {
+      type: String,
+      default: "_blank",
+    },
+    unescape: {
+      type: Boolean,
+      default: false,
+    },
+    lineClamp: {
+      type: Number,
+      default: null,
+    },
+  },
+});
+
+const _hoisted_1$1 = ["href", "target"];
+const _hoisted_2$1 = ["href", "target", "innerHTML"];
+const _hoisted_3$1 = ["href", "target"];
+
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_LineClampCell = resolveComponent("LineClampCell");
+
+  return (openBlock(), createElementBlock(Fragment, null, [
+    (_ctx.unescape && _ctx.lineClamp)
+      ? (openBlock(), createElementBlock("a", {
+          key: 0,
+          href: _ctx.href,
+          target: _ctx.target
+        }, [
+          createVNode(_component_LineClampCell, {
+            id: _ctx.id,
+            "line-clamp": _ctx.lineClamp,
+            unescape: _ctx.unescape,
+            value: _ctx.value
+          }, null, 8 /* PROPS */, ["id", "line-clamp", "unescape", "value"])
+        ], 8 /* PROPS */, _hoisted_1$1))
+      : createCommentVNode("v-if", true),
+    createCommentVNode(" eslint-disable-next-line vue/no-v-html "),
+    (_ctx.unescape && !_ctx.lineClamp)
+      ? (openBlock(), createElementBlock("a", {
+          key: 1,
+          href: _ctx.href,
+          target: _ctx.target,
+          innerHTML: _ctx.value
+        }, null, 8 /* PROPS */, _hoisted_2$1))
+      : (openBlock(), createElementBlock("a", {
+          key: 2,
+          href: _ctx.href,
+          target: _ctx.target
+        }, [
+          (_ctx.lineClamp)
+            ? (openBlock(), createBlock(_component_LineClampCell, {
+                key: 0,
+                id: _ctx.id,
+                "line-clamp": _ctx.lineClamp,
+                value: _ctx.value
+              }, null, 8 /* PROPS */, ["id", "line-clamp", "value"]))
+            : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                createTextVNode(toDisplayString(_ctx.value), 1 /* TEXT */)
+              ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
+        ], 8 /* PROPS */, _hoisted_3$1))
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+script$1.render = render$1;
+script$1.__file = "stanzas/scroll-table/AnchorCell.vue";
 
 var metadata = {
 	"@context": {
@@ -13,12 +148,8 @@ var metadata = {
 	"@id": "scroll-table",
 	"stanza:label": "Scroll table",
 	"stanza:definition": "Scroll table MetaStanza",
-	"stanza:type": "Stanza",
-	"stanza:display": "Table",
-	"stanza:provider": "Togostanza",
 	"stanza:license": "MIT",
-	"stanza:author": "c-nakashima",
-	"stanza:address": "nakashima@penqe.com",
+	"stanza:author": "DBCLS",
 	"stanza:contributor": [
 ],
 	"stanza:created": "2020-12-09",
@@ -26,7 +157,7 @@ var metadata = {
 	"stanza:parameter": [
 	{
 		"stanza:key": "data-url",
-		"stanza:example": "https://sparql-support.dbcls.jp/sparqlist/api/metastanza_table_body?taxonomy=9606",
+		"stanza:example": "https://togovar-dev.biosciencedbc.jp/sparqlist/api/gene_gwas?ep=https%3A%2F%2Ftogovar-dev.biosciencedbc.jp%2Fsparql&hgnc_id=404",
 		"stanza:description": "Data source URL",
 		"stanza:required": true
 	},
@@ -50,11 +181,23 @@ var metadata = {
 		"stanza:required": false
 	},
 	{
+		"stanza:key": "width",
+		"stanza:type": "number",
+		"stanza:description": "Width"
+	},
+	{
 		"stanza:key": "height",
 		"stanza:type": "number",
 		"stanza:example": 400,
 		"stanza:description": "Height",
 		"stanza:required": true
+	},
+	{
+		"stanza:key": "fixed-columns",
+		"stanza:type": "number",
+		"stanza:example": 1,
+		"stanza:description": "amount of fixed columns",
+		"stanza:required": false
 	},
 	{
 		"stanza:key": "padding",
@@ -72,7 +215,7 @@ var metadata = {
 	},
 	{
 		"stanza:key": "columns",
-		"stanza:example": "[{\"id\":\"id\",\"label\":\"Accession\",\"link\":\"uniprot\"},{\"id\":\"mnemonic\",\"label\":\"Mnemonic\"},{\"id\":\"name\",\"label\":\"Proteinname\",\"escape\": false},{\"id\":\"mass\",\"label\":\"Mass\"},{\"id\":\"location_name\",\"label\":\"Subcellularlocation\",\"link\":\"location_uniprot\"}]",
+		"stanza:example": "[{\"id\":\"variant_and_risk_allele\",\"label\":\"rs# and risk allele\"},{\"id\":\"raf\",\"label\":\"RAF\"},{\"id\":\"p_value\",\"label\":\"P-Value\",\"type\":\"number\"},{\"id\":\"odds_ratio\",\"label\":\"OR\"},{\"id\":\"ci_text\",\"label\":\"CI\"},{\"id\":\"beta\",\"label\":\"Beta\"},{\"id\":\"mapped_trait\",\"label\":\"Trait(s)\",\"escape\":false},{\"id\":\"pubmed_id\",\"label\":\"PubMed ID\",\"link\":\"pubmed_uri\"},{\"id\":\"study_detail\",\"label\":\"Study details\",\"link\":\"study\"},{\"id\":\"initial_sample_size\",\"label\":\"Discovery sample description\"},{\"id\":\"replication_sample_size\",\"label\":\"Replication sample description\",\"line-clamp\": 3}]",
 		"stanza:description": "Columns' options"
 	}
 ],
@@ -111,7 +254,7 @@ var metadata = {
 	{
 		"stanza:key": "--togostanza-thead-font-color",
 		"stanza:type": "color",
-		"stanza:default": "#256D80",
+		"stanza:default": "#ffffff",
 		"stanza:description": "Font color of table header"
 	},
 	{
@@ -123,7 +266,7 @@ var metadata = {
 	{
 		"stanza:key": "--togostanza-thead-background-color",
 		"stanza:type": "color",
-		"stanza:default": "rgba(255,255,255,0)",
+		"stanza:default": "#256D80",
 		"stanza:description": "Background color of table header"
 	},
 	{
@@ -165,15 +308,18 @@ var metadata = {
 	{
 		"stanza:key": "--togostanza-background-color",
 		"stanza:type": "color",
-		"stanza:default": "rgba(255,255,255,0)",
+		"stanza:default": "#F8F9FA",
 		"stanza:description": "Background color"
 	}
 ]
 };
 
 var script = defineComponent({
+  components: {
+    AnchorCell: script$1,
+    LineClampCell: script$2,
+  },
   props: metadata["stanza:parameter"].map((p) => p["stanza:key"]),
-
   setup(params) {
     const state = reactive({
       columns: [],
@@ -182,6 +328,8 @@ var script = defineComponent({
       offset: 0,
 
       isFetching: false,
+
+      thListWidth: [],
     });
 
     async function fetchData() {
@@ -199,13 +347,17 @@ var script = defineComponent({
       );
 
       if (params.columns) {
-        state.columns = JSON.parse(params.columns);
+        state.columns = JSON.parse(params.columns).map((column, index) => {
+          column.fixed = index < params.fixedColumns;
+          return column;
+        });
       } else if (data.length > 0) {
         const firstRow = data[0];
-        state.columns = Object.keys(firstRow).map((key) => {
+        state.columns = Object.keys(firstRow).map((key, index) => {
           return {
             id: key,
             label: key,
+            fixed: index < params.fixedColumns,
           };
         });
       } else {
@@ -220,11 +372,14 @@ var script = defineComponent({
               value: row[column.id],
               href: column.link ? row[column.link] : null,
               unescape: column.escape === false,
+              align: column.align,
+              class: column.class,
+              target: column.target,
+              lineClamp: column["line-clamp"],
             };
           });
         })
       );
-
       state.isFetching = false;
     }
 
@@ -243,74 +398,123 @@ var script = defineComponent({
       fetchData();
     });
 
+    const thead = ref(null);
+    onRenderTriggered(() => {
+      setTimeout(() => {
+        const thList = thead.value.children[0].children;
+        state.thListWidth = Array.from(thList).map((th) => th.clientWidth);
+      }, 0);
+    });
+
     return {
       state,
       handleScroll,
+      width: params.width,
       height: params.height,
       padding: params.padding,
+      thead,
     };
   },
 });
 
 const _hoisted_1 = { key: 0 };
-const _hoisted_2 = { key: 0 };
-const _hoisted_3 = { key: 2 };
+const _hoisted_2 = { ref: "thead" };
+const _hoisted_3 = ["id"];
 const _hoisted_4 = { key: 0 };
-const _hoisted_5 = /*#__PURE__*/createVNode("div", { class: "dotTyping" }, null, -1 /* HOISTED */);
+const _hoisted_5 = { key: 1 };
+const _hoisted_6 = ["innerHTML"];
+const _hoisted_7 = { key: 3 };
+const _hoisted_8 = { key: 0 };
+const _hoisted_9 = ["colspan"];
+const _hoisted_10 = /*#__PURE__*/createBaseVNode("div", { class: "dotTyping" }, null, -1 /* HOISTED */);
+const _hoisted_11 = [
+  _hoisted_10
+];
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createBlock("div", {
+  const _component_AnchorCell = resolveComponent("AnchorCell");
+  const _component_LineClampCell = resolveComponent("LineClampCell");
+
+  return (openBlock(), createElementBlock("div", {
     class: "tableWrapper",
-    style: `height: ${_ctx.height}px;`,
-    onScroll: _cache[1] || (_cache[1] = (...args) => (_ctx.handleScroll && _ctx.handleScroll(...args)))
+    style: normalizeStyle(`width: ${_ctx.width}px; height: ${_ctx.height}px;`),
+    onScroll: _cache[0] || (_cache[0] = (...args) => (_ctx.handleScroll && _ctx.handleScroll(...args)))
   }, [
     (_ctx.state.allRows)
-      ? (openBlock(), createBlock("table", _hoisted_1, [
-          createVNode("thead", null, [
-            createVNode("tr", null, [
-              (openBlock(true), createBlock(Fragment, null, renderList(_ctx.state.columns, (column) => {
-                return (openBlock(), createBlock("th", {
-                  key: column.id
-                }, toDisplayString(column.label), 1 /* TEXT */))
+      ? (openBlock(), createElementBlock("table", _hoisted_1, [
+          createBaseVNode("thead", _hoisted_2, [
+            createBaseVNode("tr", null, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.state.columns, (column, index) => {
+                return (openBlock(), createElementBlock("th", {
+                  id: column.id,
+                  key: column.id,
+                  class: normalizeClass({ fixed: column.fixed }),
+                  style: normalizeStyle(
+              column.fixed
+                ? `left: ${index === 0 ? 0 : _ctx.state.thListWidth[index - 1]}px;`
+                : null
+            )
+                }, toDisplayString(column.label), 15 /* TEXT, CLASS, STYLE, PROPS */, _hoisted_3))
               }), 128 /* KEYED_FRAGMENT */))
             ])
-          ]),
-          createVNode("tbody", null, [
-            (openBlock(true), createBlock(Fragment, null, renderList(_ctx.state.allRows, (row) => {
-              return (openBlock(), createBlock("tr", {
+          ], 512 /* NEED_PATCH */),
+          createBaseVNode("tbody", null, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.state.allRows, (row, row_index) => {
+              return (openBlock(), createElementBlock("tr", {
                 key: row.id
               }, [
-                (openBlock(true), createBlock(Fragment, null, renderList(row, (cell) => {
-                  return (openBlock(), createBlock("td", {
-                    key: cell.column.id
+                (openBlock(true), createElementBlock(Fragment, null, renderList(row, (cell, index) => {
+                  return (openBlock(), createElementBlock("td", {
+                    key: cell.column.id,
+                    class: normalizeClass([
+              cell.column.align,
+              { fixed: cell.column.fixed },
+              cell.column.class,
+            ]),
+                    style: normalizeStyle(
+              cell.column.fixed
+                ? `left: ${index === 0 ? 0 : _ctx.state.thListWidth[index - 1]}px;`
+                : null
+            )
                   }, [
                     (cell.href)
-                      ? (openBlock(), createBlock("span", _hoisted_2, [
-                          createVNode("a", {
+                      ? (openBlock(), createElementBlock("span", _hoisted_4, [
+                          createVNode(_component_AnchorCell, {
+                            id: `${cell.column.id}_${row_index}`,
                             href: cell.href,
-                            target: "_blank"
-                          }, toDisplayString(cell.value), 9 /* TEXT, PROPS */, ["href"])
+                            value: cell.value,
+                            target: cell.target ? `_${cell.target}` : '_blank',
+                            unescape: cell.unescape,
+                            "line-clamp": cell.lineClamp
+                          }, null, 8 /* PROPS */, ["id", "href", "value", "target", "unescape", "line-clamp"])
                         ]))
-                      : (cell.unescape)
-                        ? (openBlock(), createBlock(Fragment, { key: 1 }, [
-                            createCommentVNode(" eslint-disable-next-line vue/no-v-html "),
-                            createVNode("span", {
-                              innerHTML: cell.value
-                            }, null, 8 /* PROPS */, ["innerHTML"])
-                          ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
-                        : (openBlock(), createBlock("span", _hoisted_3, toDisplayString(cell.value), 1 /* TEXT */))
-                  ]))
+                      : (cell.lineClamp)
+                        ? (openBlock(), createElementBlock("span", _hoisted_5, [
+                            createVNode(_component_LineClampCell, {
+                              id: `${cell.column.id}_${row_index}`,
+                              value: cell.value,
+                              unescape: cell.unescape,
+                              "line-clamp": cell.lineClamp
+                            }, null, 8 /* PROPS */, ["id", "value", "unescape", "line-clamp"])
+                          ]))
+                        : (cell.unescape)
+                          ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+                              createCommentVNode(" eslint-disable-next-line vue/no-v-html "),
+                              createBaseVNode("span", {
+                                innerHTML: cell.value
+                              }, null, 8 /* PROPS */, _hoisted_6)
+                            ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
+                          : (openBlock(), createElementBlock("span", _hoisted_7, toDisplayString(cell.value), 1 /* TEXT */))
+                  ], 6 /* CLASS, STYLE */))
                 }), 128 /* KEYED_FRAGMENT */))
               ]))
             }), 128 /* KEYED_FRAGMENT */)),
             (_ctx.state.isFetching)
-              ? (openBlock(), createBlock("tr", _hoisted_4, [
-                  createVNode("td", {
+              ? (openBlock(), createElementBlock("tr", _hoisted_8, [
+                  createBaseVNode("td", {
                     colspan: _ctx.state.columns.length,
                     class: "loadingWrapper"
-                  }, [
-                    _hoisted_5
-                  ], 8 /* PROPS */, ["colspan"])
+                  }, _hoisted_11, 8 /* PROPS */, _hoisted_9)
                 ]))
               : createCommentVNode("v-if", true)
           ])

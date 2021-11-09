@@ -1,6 +1,6 @@
-import { d as defineStanzaElement } from './stanza-element-6b870fae.js';
-import { S as Stanza } from './timer-a4127ebb.js';
-import { e as embed } from './vega-embed.module-4cb5482e.js';
+import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
+import { S as Stanza } from './timer-c0f0909e.js';
+import { e as embed } from './vega-embed.module-ac3ca56d.js';
 import './dsv-cd3740c6.js';
 
 class heatmapGeographicMap extends Stanza {
