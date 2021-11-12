@@ -1,44 +1,71 @@
-.venn-diagram:hover {
-  cursor: pointer;
+text {
+  font-size: calc(var(--togostanza-label-font-size) * 1px);
+  fill: var(--togostanza-label-font-color);
 }
 
-#fixed {
-  position: relative;
+#drawArea {
+  font-family: var(--togostanza-font-family);
 }
-#fixed .fixed-tooltip {
+
+#venn-diagrams {
+  width: 0;
+  height: 0;
+}
+
+.venn-diagram {
+  display: none;
+}
+.venn-diagram.-current {
+  display: block;
+}
+.venn-diagram.-current > g {
+  transition: opacity 0.2s;
+}
+.venn-diagram.-current > g:hover {
+  opacity: 1;
+}
+
+#euler-diagram .venn-circle > text {
+  fill: var(--togostanza-label-font-color) !important;
+}
+
+#MetaStanzaLegend {
+  padding: 3px 9px;
   position: absolute;
-  background-color: #fff;
-  padding: 5px 10px;
-  border-radius: 2px;
+  font-size: 10px;
+  line-height: 1.5;
+  max-height: 100%;
+  overflow-y: auto;
+  color: var(--togostanza-label-font-color);
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+#MetaStanzaLegend > table > tbody > tr > td > .marker {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin-right: 0.3em;
+}
+#MetaStanzaLegend > table > tbody > tr > td.number {
+  text-align: right;
 }
 
-path[data-highlight=default],
-text[data-highlight=default] {
-  opacity: 1;
+#MetaStanzaLegendLeader {
+  position: absolute;
+  border-left: dotted 1px black;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
 }
-path[data-highlight=selected],
-text[data-highlight=selected] {
-  opacity: 1;
+#MetaStanzaLegendLeader[data-direction=top] {
+  border-top: dotted 1px black;
 }
-path[data-highlight=unselected],
-text[data-highlight=unselected] {
-  opacity: 0.2;
+#MetaStanzaLegendLeader[data-direction=bottom] {
+  border-bottom: dotted 1px black;
 }
-
-path[data-highlight=default] {
-  stroke-width: 0px;
-}
-path[data-highlight=selected] {
-  stroke: #333;
-  stroke-width: 2px;
-}
-path[data-highlight=unselected] {
-  stroke-width: 0px;
-}
-
-#venn-shape-set2-0_1,
-#venn-shape-set3-0_1_2,
-#venn-shape-set4-0_1_2_3,
-#venn-shape-set5-0_1_2_3_4 {
-  fill: #fff;
+#MetaStanzaLegendLeader.-show {
+  opacity: 0.5;
 }

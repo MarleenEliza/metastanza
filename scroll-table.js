@@ -1,10 +1,9 @@
-import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
-import { S as Stanza } from './timer-c0f0909e.js';
-import { b as appendCustomCss } from './index-0b8d8270.js';
+import { d as defineStanzaElement } from './stanza-element-127b261a.js';
+import { S as Stanza } from './timer-55a2463b.js';
+import { b as appendCustomCss } from './index-962b3b53.js';
 import { e as defineComponent, g as createElementBlock, i as createBaseVNode, u as normalizeStyle, p as toDisplayString, F as Fragment, d as openBlock, j as createVNode, q as createCommentVNode, b as createBlock, l as createTextVNode, s as resolveComponent, v as reactive, o as onMounted, r as ref, x as onRenderTriggered, k as renderList, n as normalizeClass, D as createApp } from './runtime-dom.esm-bundler-d5cfd3a5.js';
-import { l as loadData } from './load-data-8e209b6d.js';
-import './index-49bb1ecc.js';
-import './select-9137152e.js';
+import { l as loadData } from './load-data-cd61f169.js';
+import './index-8d573ab7.js';
 import './dsv-cd3740c6.js';
 
 var script$2 = defineComponent({

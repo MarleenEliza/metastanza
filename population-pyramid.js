@@ -1,6 +1,6 @@
-import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
-import { e as embed } from './vega-embed.module-ac3ca56d.js';
-import { S as Stanza } from './timer-c0f0909e.js';
+import { d as defineStanzaElement } from './stanza-element-127b261a.js';
+import { e as embed } from './vega-embed.module-8c43dcd8.js';
+import { S as Stanza } from './timer-55a2463b.js';
 import './dsv-cd3740c6.js';
 
 class populationPyramid extends Stanza {
@@ -273,7 +273,7 @@ var templates = [
 
   return "<p class=\"greeting\">"
     + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"greeting") || (depth0 != null ? lookupProperty(depth0,"greeting") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"greeting","hash":{},"data":data,"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":32}}}) : helper)))
-    + "</p>";
+    + "</p>\n";
 },"useData":true}]
 ];
 

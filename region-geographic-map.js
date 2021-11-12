@@ -1,9 +1,9 @@
-import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
-import { S as Stanza } from './timer-c0f0909e.js';
-import { e as embed } from './vega-embed.module-ac3ca56d.js';
-import { l as loadData } from './load-data-8e209b6d.js';
+import { d as defineStanzaElement } from './stanza-element-127b261a.js';
+import { S as Stanza } from './timer-55a2463b.js';
+import { e as embed } from './vega-embed.module-8c43dcd8.js';
+import { l as loadData } from './load-data-cd61f169.js';
 import './dsv-cd3740c6.js';
-import './index-49bb1ecc.js';
+import './index-8d573ab7.js';
 
 const areas = new Map([
   [
@@ -362,7 +362,7 @@ var templates = [
 
   return "<p class=\"greeting\">"
     + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"greeting") || (depth0 != null ? lookupProperty(depth0,"greeting") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"greeting","hash":{},"data":data,"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":32}}}) : helper)))
-    + "</p>";
+    + "</p>\n";
 },"useData":true}]
 ];
 

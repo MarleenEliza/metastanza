@@ -1,8 +1,9 @@
-import { d as defineStanzaElement } from './stanza-element-fa85fdb1.js';
-import { S as Stanza } from './timer-c0f0909e.js';
-import { e as embed } from './vega-embed.module-ac3ca56d.js';
-import { downloadSvgMenuItem, downloadPngMenuItem, appendCustomCss } from 'togostanza-utils/metastanza_utils.js';
+import { d as defineStanzaElement } from './stanza-element-127b261a.js';
+import { S as Stanza } from './timer-55a2463b.js';
+import { e as embed } from './vega-embed.module-8c43dcd8.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-962b3b53.js';
 import './dsv-cd3740c6.js';
+import './index-8d573ab7.js';
 
 class Treemap extends Stanza {
   //TODO ここのclass名はスタンザ名にする必要があります
