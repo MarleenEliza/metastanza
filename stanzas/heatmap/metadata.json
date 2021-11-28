@@ -60,56 +60,6 @@
       "stanza:description": "Height"
     },
     {
-      "stanza:key": "label1",
-      "stanza:example": "A",
-      "stanza:description": "x label_1"
-    },
-    {
-      "stanza:key": "label2",
-      "stanza:example": "B",
-      "stanza:description": "x label_2"
-    },
-    {
-      "stanza:key": "label3",
-      "stanza:example": "C",
-      "stanza:description": "x label_3"
-    },
-    {
-      "stanza:key": "label4",
-      "stanza:example": "D",
-      "stanza:description": "x label_4"
-    },
-    {
-      "stanza:key": "label5",
-      "stanza:example": "E",
-      "stanza:description": "x label_5"
-    },
-    {
-      "stanza:key": "label6",
-      "stanza:example": "F",
-      "stanza:description": "x label_6"
-    },
-    {
-      "stanza:key": "label7",
-      "stanza:example": "G",
-      "stanza:description": "x label_7"
-    },
-    {
-      "stanza:key": "label8",
-      "stanza:example": "H",
-      "stanza:description": "x label_8"
-    },
-    {
-      "stanza:key": "label9",
-      "stanza:example": "I",
-      "stanza:description": "x label_9"
-    },
-    {
-      "stanza:key": "label10",
-      "stanza:example": "J",
-      "stanza:description": "x label_10"
-    },
-    {
       "stanza:key": "metastanza-menu-placement",
       "stanza:type": "single-choice",
       "stanza:choice": [
@@ -136,17 +86,6 @@
       "stanza:type": "color",
       "stanza:default": "#6590E6",
       "stanza:description": "Depth color 2"
-    },
-    {
-      "stanza:key": "--greeting-align",
-      "stanza:type": "single-choice",
-      "stanza:choice": [
-        "left",
-        "center",
-        "right"
-      ],
-      "stanza:default": "center",
-      "stanza:description": "text align of greeting"
     }
   ],
   "stanza:incomingEvent": [],
