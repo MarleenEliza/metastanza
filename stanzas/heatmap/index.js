@@ -110,17 +110,17 @@ async function draw(stanza, params) {
       });
   });
 
-  reRender(dataset);
+  reRender();
 
-  function reRender(data) {
+  function reRender() {
 
-    myColor = d3
-    .scaleLinear()
-    .range([
-      css("--togostanza-series-0-color"),
-      css("--togostanza-series-1-color"),
-    ])
-    .domain([1, 100]);
+    const myColor = d3
+      .scaleLinear()
+      .range([
+        css("--togostanza-series-0-color"),
+        css("--togostanza-series-1-color"),
+      ])
+      .domain([1, 100]);
 
     dataset.then(function (data) {
       svg
