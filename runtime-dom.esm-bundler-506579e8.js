@@ -4769,6 +4769,11 @@ function flushJobs(seen) {
         }
     }
 }
+
+// Simple effect.
+function watchEffect(effect, options) {
+    return doWatch(effect, null, options);
+}
 // initial value for watchers to trigger on undefined initial values
 const INITIAL_WATCHER_VALUE = {};
 // implementation
@@ -5941,5 +5946,5 @@ function normalizeContainer(container) {
     return container;
 }
 
-export { vModelSelect as A, withCtx as B, vModelCheckbox as C, createApp as D, Fragment as F, Transition as T, onUnmounted as a, createBlock as b, computed as c, openBlock as d, defineComponent as e, onUpdated as f, createElementBlock as g, h, createBaseVNode as i, createVNode as j, renderList as k, createTextVNode as l, mergeProps as m, normalizeClass as n, onMounted as o, toDisplayString as p, createCommentVNode as q, ref as r, resolveComponent as s, toRefs as t, normalizeStyle as u, reactive as v, watch as w, onRenderTriggered as x, withDirectives as y, vModelText as z };
-//# sourceMappingURL=runtime-dom.esm-bundler-d5cfd3a5.js.map
+export { withDirectives as A, vModelText as B, vModelSelect as C, withCtx as D, vModelCheckbox as E, Fragment as F, Transition as T, renderList as a, resolveComponent as b, createElementBlock as c, defineComponent as d, createBaseVNode as e, createBlock as f, createCommentVNode as g, toRefs as h, ref as i, createApp as j, computed as k, h as l, watch as m, normalizeClass as n, openBlock as o, onMounted as p, onUnmounted as q, reactive as r, mergeProps as s, toDisplayString as t, onUpdated as u, createVNode as v, watchEffect as w, createTextVNode as x, normalizeStyle as y, onRenderTriggered as z };
+//# sourceMappingURL=runtime-dom.esm-bundler-506579e8.js.map
