@@ -1,9 +1,8 @@
 import { d as defineStanzaElement } from './stanza-element-127b261a.js';
-import { S as Stanza } from './timer-55a2463b.js';
-import { e as embed } from './vega-embed.module-8c43dcd8.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-962b3b53.js';
-import './dsv-cd3740c6.js';
-import './index-8d573ab7.js';
+import { S as Stanza } from './stanza-dbdc7fa3.js';
+import { e as embed } from './vega-embed.module-83e6e0b7.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-1a193a0d.js';
+import './index-57ff628c.js';
 
 class Treemap extends Stanza {
   //TODO ここのclass名はスタンザ名にする必要があります
@@ -228,50 +227,116 @@ var metadata = {
 },
 	"@id": "treemap",
 	"stanza:label": "Treemap",
-	"stanza:definition": "Treemap MetaStanza ",
+	"stanza:definition": "Treemap MetaStanza",
 	"stanza:type": "Stanza",
 	"stanza:display": "Tree",
 	"stanza:provider": "TogoStanza",
 	"stanza:license": "MIT",
-	"stanza:author": "teraomoyu",
-	"stanza:address": "",
+	"stanza:author": "anton",
+	"stanza:address": "anton@penqe.com",
 	"stanza:contributor": [
 ],
-	"stanza:created": "2021-08-05",
-	"stanza:updated": "2021-08-05",
+	"stanza:created": "2021-10-25",
+	"stanza:updated": "2021-10-25",
 	"stanza:parameter": [
 	{
-		"stanza:key": "say-to",
-		"stanza:type": "string",
-		"stanza:example": "world",
-		"stanza:description": "who to say hello to",
+		"stanza:key": "data-url",
+		"stanza:example": "https://raw.githubusercontent.com/togostanza/togostanza-data/main/samples/json/tree-data.json",
+		"stanza:description": "Data source URL",
+		"stanza:required": true
+	},
+	{
+		"stanza:key": "data-type",
+		"stanza:type": "single-choice",
+		"stanza:choice": [
+			"json",
+			"tsv",
+			"csv",
+			"sparql-results-json"
+		],
+		"stanza:example": "json",
+		"stanza:description": "Data type",
+		"stanza:required": true
+	},
+	{
+		"stanza:key": "custom-css-url",
+		"stanza:example": "",
+		"stanza:description": "Stylesheet(css file) URL to override current style",
 		"stanza:required": false
 	},
 	{
 		"stanza:key": "width",
 		"stanza:type": "number",
-		"stanza:example": 960,
+		"stanza:example": 400,
 		"stanza:description": "Width"
+	},
+	{
+		"stanza:key": "height",
+		"stanza:type": "number",
+		"stanza:example": 300,
+		"stanza:description": "Height"
+	},
+	{
+		"stanza:key": "color-scale",
+		"stanza:type": "single-choice",
+		"stanza:choice": [
+			"schemeCategory10",
+			"schemeAccent",
+			"schemeDark2",
+			"schemePastel2",
+			"schemeSet2",
+			"schemeSet1",
+			"schemePastel1",
+			"schemeSet3",
+			"schemePaired"
+		],
+		"stanza:example": "schemePastel1",
+		"stanza:description": "Color scale to display"
 	}
 ],
 	"stanza:menu-placement": "bottom-right",
 	"stanza:style": [
 	{
-		"stanza:key": "--greeting-color",
-		"stanza:type": "color",
-		"stanza:default": "#eb7900",
-		"stanza:description": "text color of greeting"
+		"stanza:key": "--togostanza-font-family",
+		"stanza:type": "text",
+		"stanza:default": "Helvetica Neue",
+		"stanza:description": "Font family"
 	},
 	{
-		"stanza:key": "--greeting-align",
-		"stanza:type": "single-choice",
-		"stanza:choice": [
-			"left",
-			"center",
-			"right"
-		],
-		"stanza:default": "center",
-		"stanza:description": "text align of greeting"
+		"stanza:key": "--togostanza-label-font-color",
+		"stanza:type": "color",
+		"stanza:default": "#333333",
+		"stanza:description": "Label font color"
+	},
+	{
+		"stanza:key": "--togostanza-label-font-size",
+		"stanza:type": "number",
+		"stanza:default": 11,
+		"stanza:description": "Label font size"
+	},
+	{
+		"stanza:key": "--togostanza-border-color",
+		"stanza:type": "color",
+		"stanza:default": "#4E5059",
+		"stanza:description": "Border color"
+	},
+	{
+		"stanza:key": "--togostanza-border-width",
+		"stanza:type": "number",
+		"stanza:default": 0.5,
+		"stanza:description": "Border width"
+	},
+	{
+		"stanza:key": "--togostanza-edge-color",
+		"stanza:type": "color",
+		"stanza:default": "#AEB3BF",
+		"stanza:description": "Edge color"
+	},
+	{
+		"stanza:key": "--togostanza-background-color",
+		"stanza:type": "color",
+		"stanza:default": "rgba(255,255,255,0)",
+		"stanza:description": "Background color"
 	}
 ],
 	"stanza:incomingEvent": [
@@ -282,16 +347,7 @@ var metadata = {
 
 var templates = [
   ["stanza.html.hbs", {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return "<p class=\"greeting\">"
-    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"greeting") || (depth0 != null ? lookupProperty(depth0,"greeting") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"greeting","hash":{},"data":data,"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":32}}}) : helper)))
-    + "</p>";
+    return "<div id=\"treemap\"></div>";
 },"useData":true}]
 ];
 

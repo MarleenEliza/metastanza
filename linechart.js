@@ -1,10 +1,9 @@
 import { d as defineStanzaElement } from './stanza-element-127b261a.js';
-import { S as Stanza } from './timer-55a2463b.js';
-import { e as embed } from './vega-embed.module-8c43dcd8.js';
-import { l as loadData } from './load-data-cd61f169.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-962b3b53.js';
-import './dsv-cd3740c6.js';
-import './index-8d573ab7.js';
+import { S as Stanza } from './stanza-dbdc7fa3.js';
+import { e as embed } from './vega-embed.module-83e6e0b7.js';
+import { l as loadData } from './load-data-2c1caadf.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-1a193a0d.js';
+import './index-57ff628c.js';
 
 class Linechart extends Stanza {
   menu() {
