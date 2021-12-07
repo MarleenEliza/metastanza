@@ -2,7 +2,7 @@ import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
 import { S as Stanza } from './timer-cdfd05f6.js';
 import './index-ea477f03.js';
 import { l as loadData } from './load-data-801b6dc8.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, s as select } from './index-f2c9ac31.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, s as select } from './index-85b0bb75.js';
 import { t as treemapDice, r as roundNode, s as stratify, f as format, o as ordinal, i as interpolate, h as hierarchy, a as sum } from './ordinal-30d936dd.js';
 import './dsv-cd3740c6.js';
 

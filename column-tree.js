@@ -3,7 +3,7 @@ import { S as Stanza } from './timer-cdfd05f6.js';
 import { d as defineComponent, r as reactive, c as createElementBlock, F as Fragment, a as renderList, b as resolveComponent, o as openBlock, n as normalizeClass, e as createBaseVNode, t as toDisplayString, f as createBlock, g as createCommentVNode, h as toRefs, i as ref, w as watchEffect, j as createApp } from './runtime-dom.esm-bundler-506579e8.js';
 import { l as loadData } from './load-data-801b6dc8.js';
 import { l as library, f as faChevronRight, F as FontAwesomeIcon } from './index.es-9dcb5845.js';
-import { b as appendCustomCss } from './index-f2c9ac31.js';
+import { b as appendCustomCss } from './index-85b0bb75.js';
 import './index-ea477f03.js';
 import './dsv-cd3740c6.js';
 

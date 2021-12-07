@@ -126,6 +126,58 @@ function downloadPngMenuItem(stanza, filename) {
   };
 }
 
+function json2csv(json) {
+  var header = Object.keys(json[0]).join(",") + "\n";
+
+  var body = json
+    .map(function (d) {
+      return Object.keys(d)
+        .map(function (key) {
+          return d[key];
+        })
+        .join(",");
+    })
+    .join("\n");
+
+  return header + body;
+}
+
+const downloadBlob = (blob, fileName) => {
+  const link = document.createElement("a");
+  link.download = fileName;
+  link.href = URL.createObjectURL(blob);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
+};
+
+function downloadJSONMenuItem(stanza, filename, data) {
+  return {
+    type: "item",
+    label: "Download JSON",
+    handler: () => {
+      const blob = new Blob([JSON.stringify(data, null, "  ")], {
+        type: "application/json",
+      });
+      downloadBlob(blob, filename);
+    },
+  };
+}
+
+function downloadCSVMenuItem(stanza, filename, data) {
+  return {
+    type: "item",
+    label: "Download CSV",
+    handler: () => {
+      const csv = json2csv(data);
+      const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
+      const blob = new Blob([bom, csv], { type: "text/csv" });
+      downloadBlob(blob, filename);
+    },
+  };
+}
+
 function appendCustomCss(stanza, customCssUrl) {
   const links = stanza.root.querySelectorAll(
     "link[data-togostanza-custom-css]"
@@ -144,5 +196,5 @@ function appendCustomCss(stanza, customCssUrl) {
   }
 }
 
-export { downloadPngMenuItem as a, appendCustomCss as b, downloadSvgMenuItem as d, select as s };
-//# sourceMappingURL=index-f2c9ac31.js.map
+export { downloadPngMenuItem as a, appendCustomCss as b, downloadJSONMenuItem as c, downloadSvgMenuItem as d, downloadCSVMenuItem as e, select as s };
+//# sourceMappingURL=index-85b0bb75.js.map
