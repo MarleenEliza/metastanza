@@ -1,7 +1,7 @@
 import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
 import { S as Stanza } from './timer-cdfd05f6.js';
 import { l as loadData } from './load-data-801b6dc8.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-85b0bb75.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-9c37cc6c.js';
 import './index-ea477f03.js';
 import './dsv-cd3740c6.js';
 

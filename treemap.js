@@ -2,7 +2,7 @@ import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
 import { S as Stanza } from './timer-cdfd05f6.js';
 import './index-ea477f03.js';
 import { l as loadData } from './load-data-801b6dc8.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, s as select } from './index-85b0bb75.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, s as select } from './index-9c37cc6c.js';
 import { e as exponent, t as treemapDice, b as required, r as roundNode, c as interpolateNumber, i as interpolate, d as formatSpecifier, g as formatPrefix, f as format, j as initRange, s as stratify, o as ordinal, h as hierarchy, a as sum } from './ordinal-30d936dd.js';
 import './dsv-cd3740c6.js';
 
@@ -667,7 +667,6 @@ class TreeMapStanza extends Stanza {
       colorScale.push(css(`--togostanza-series-${i}-color`));
     }
 
-
     const data = await loadData(
       this.params["data-url"],
       this.params["data-type"]
@@ -723,7 +722,6 @@ function transformValue(logScale, value) {
 function draw(el, dataset, opts) {
   const { width, height, logScale, colorScale, borderWidth } = opts;
 
-
   const nested = stratify()
     .id(function (d) {
       return d.id;
@@ -744,7 +742,6 @@ function draw(el, dataset, opts) {
 
   const x = linear().rangeRound([0, width]);
   const y = linear().rangeRound([0, adjustedHeight]);
-
 
   // make path-like string for node
   const name = (d) => {
@@ -772,7 +769,6 @@ function draw(el, dataset, opts) {
       child.x1 = x0 + (child.x1 / width) * (x1 - x0);
       child.y0 = y0 + (child.y0 / adjustedHeight) * (y1 - y0);
       child.y1 = y0 + (child.y1 / adjustedHeight) * (y1 - y0);
-
     }
   }
 
@@ -804,7 +800,6 @@ function draw(el, dataset, opts) {
       .attr("width", `${width}px`)
       .attr("height", `${height}px`)
       .attr("style", "fill: var(--togostanza-background-color)");
-
 
     const node = group
       .selectAll("g")
@@ -863,7 +858,6 @@ function draw(el, dataset, opts) {
       .attr("id", (d) => (d.clipUid = uid("clip")).id)
       .append("use")
       .attr("href", (d) => d.leafUid.href);
-
 
     //add clip paths to nodes to trim text
     node
@@ -1051,7 +1045,6 @@ function draw(el, dataset, opts) {
         }
       })
       .each(wrap.bind(this, root, isFirstRender, zoomInOut));
-
   }
 
   // When zooming in, draw the new nodes on top, and fade them in.
@@ -1077,7 +1070,6 @@ function draw(el, dataset, opts) {
           .attrTween("opacity", () => interpolate(0, 1))
           .call(position, d, false)
       );
-
   }
 
   // When zooming out, draw the old nodes on top, and fade them out.
@@ -1086,7 +1078,6 @@ function draw(el, dataset, opts) {
     const group1 = (group = svg
       .insert("g", "*")
       .call(render, d.parent, "zoomout"));
-
 
     x.domain([d.parent.x0, d.parent.x1]);
     y.domain([d.parent.y0, d.parent.y1]);
@@ -1302,7 +1293,7 @@ var metadata = {
 
 var templates = [
   ["stanza.html.hbs", {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div id=\"treemap\"></div>\n";
+    return "<div id=\"treemap\"></div>";
 },"useData":true}]
 ];
 
