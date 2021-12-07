@@ -141,7 +141,6 @@ var metadata = {
 };
 
 library.add(faChevronRight);
-
 var script$1 = defineComponent({
   components: {
     FontAwesomeIcon,
@@ -165,7 +164,6 @@ var script$1 = defineComponent({
     },
   },
   emits: ["setParent", "setCheckedNode"],
-
   setup(props, context) {
     const state = reactive({
       highlightedNode: null,
@@ -245,12 +243,10 @@ script$1.__file = "stanzas/column-tree/NodeColumn.vue";
 function isRootNode(parent) {
   return !parent || isNaN(parent);
 }
-
 var script = defineComponent({
   components: { NodeColumn: script$1 },
   props: metadata["stanza:parameter"].map((p) => p["stanza:key"]),
   emits: ["resetHighlightedNode"],
-
   setup(params) {
     params = toRefs(params);
     const layerRefs = ref([]);
@@ -259,7 +255,6 @@ var script = defineComponent({
       columnData: [],
       checkedNodes: new Map(),
     });
-
     watchEffect(
       async () => {
         state.responseJSON = null;
@@ -271,12 +266,10 @@ var script = defineComponent({
       },
       { immediate: true }
     );
-
     watchEffect(() => {
       const data = state.responseJSON || [];
       state.columnData.push(data.filter((obj) => isRootNode(obj.parent)));
     });
-
     function updateCheckedNodes(node) {
       const { id, ...obj } = node;
       state.checkedNodes.has(id)
@@ -285,7 +278,6 @@ var script = defineComponent({
       // TODO: add event handler
       // console.log([...state.checkedNodes.values()]);
     }
-
     function resetHighlightedNodes() {
       for (const [index, layer] of layerRefs.value.entries()) {
         if (layer && index >= state.columnData.length - 1) {
@@ -293,19 +285,15 @@ var script = defineComponent({
         }
       }
     }
-
     function getChildNodes([layer, parentId]) {
       const children = state.responseJSON.filter(
         (node) => node.parent === parentId
       );
       const indexesToRemove = state.columnData.length - layer;
       state.columnData.splice(layer, indexesToRemove, children);
-
       resetHighlightedNodes();
-
       return children;
     }
-
     return {
       state,
       layerRefs,
