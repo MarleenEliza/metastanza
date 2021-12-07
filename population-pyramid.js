@@ -1,7 +1,6 @@
 import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
-import { e as embed } from './vega-embed.module-1fc17e8e.js';
-import { S as Stanza } from './timer-4a7721ea.js';
-import './cubehelix-5f04aade.js';
+import { e as embed } from './vega-embed.module-399f6c2b.js';
+import { S as Stanza } from './timer-cdfd05f6.js';
 import './dsv-cd3740c6.js';
 
 class populationPyramid extends Stanza {
