@@ -89,11 +89,11 @@ function Path() {
   this._ = "";
 }
 
-function path() {
+function path$1() {
   return new Path;
 }
 
-Path.prototype = path.prototype = {
+Path.prototype = path$1.prototype = {
   constructor: Path,
   moveTo: function(x, y) {
     this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y);
@@ -326,7 +326,7 @@ function arc() {
         da = abs(a1 - a0),
         cw = a1 > a0;
 
-    if (!context) context = buffer = path();
+    if (!context) context = buffer = path$1();
 
     // Ensure that the outer radius is always larger than the inner radius.
     if (r1 < r0) r = r1, r1 = r0, r0 = r;
@@ -492,6 +492,9 @@ function arc() {
   return arc;
 }
 
+let currentDataId = 0;
+let path;
+
 class Sunburst extends Stanza {
   menu() {
     return [
@@ -500,7 +503,23 @@ class Sunburst extends Stanza {
     ];
   }
 
+  handleEvent(event) {
+    event.stopPropagation();
+    if (event.target !== this.element) {
+      currentDataId = event.detail.id;
+      const clickEvent = new MouseEvent("click");
+      if (path) {
+        path
+          .filter((d) => d.data.data.id === currentDataId)
+          .node()
+          .dispatchEvent(clickEvent);
+      }
+    }
+  }
+
   async render() {
+    const dispatcher = this.element;
+
     appendCustomCss(this, this.params["custom-css-url"]);
     // get value of css vars
     const css = (key) => getComputedStyle(this.element).getPropertyValue(key);
@@ -521,7 +540,7 @@ class Sunburst extends Stanza {
       this.params["data-type"]
     );
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i <= 5; i++) {
       colorScale.push(`--togostanza-series-${i}-color`);
     }
 
@@ -563,11 +582,11 @@ class Sunburst extends Stanza {
       scalingMethod,
     };
 
-    draw(sunburstElement, filteredData, opts);
+    draw(sunburstElement, filteredData, opts, dispatcher);
   }
 }
 
-function draw(el, dataset, opts) {
+function draw(el, dataset, opts, dispatcher = null) {
   let { depthLim } = opts;
 
   const {
@@ -660,9 +679,9 @@ function draw(el, dataset, opts) {
       r = Math.max(0, (d.y1 - (d.y1 - d.y0) / 5) * radius);
     }
 
-    const path$1 = path();
-    path$1.arc(0, 0, r, angles[0], angles[1], invertDirection);
-    return path$1.toString();
+    const path = path$1();
+    path.arc(0, 0, r, angles[0], angles[1], invertDirection);
+    return path.toString();
   };
 
   const middleArcNumberLine = (d) => {
@@ -682,9 +701,9 @@ function draw(el, dataset, opts) {
       r = Math.max(0, (d.y1 - (d.y1 - d.y0) / 2.5) * radius);
     }
 
-    const path$1 = path();
-    path$1.arc(0, 0, r, angles[0], angles[1], invertDirection);
-    return path$1.toString();
+    const path = path$1();
+    path.arc(0, 0, r, angles[0], angles[1], invertDirection);
+    return path.toString();
   };
 
   function textFits(d, charWidth, text) {
@@ -712,15 +731,19 @@ function draw(el, dataset, opts) {
 
   const g = svg.append("g");
 
-  const path$1 = g
+  path = g
     .append("g")
     .selectAll("path")
-    .data(root.descendants().slice(1))
+    .data(root.descendants())
     .join("path")
     .attr("fill", (d) => {
       while (d.depth > 1) {
         d = d.parent;
       }
+      if (d.data.data.id === -1) {
+        return "none";
+      }
+
       return css(color(d.data.data.label));
     })
     .attr("fill-opacity", (d) =>
@@ -728,19 +751,18 @@ function draw(el, dataset, opts) {
     )
     .attr("d", (d) => arc$1(d.current));
 
-  path$1
+  path
     .filter((d) => d.children)
     .style("cursor", "pointer")
     .on("click", clicked);
 
-  path$1.append("title").text(
-    (d) =>
-      `${d
-        .ancestors()
-        .map((d) => d.data.data.label)
-        .reverse()
-        .join("/")}\n${formatNumber(d.value2)}`
-  );
+  path.append("title").text((d) => {
+    return `${d
+      .ancestors()
+      .map((d) => d.data.data.label)
+      .reverse()
+      .join("/")}\n${formatNumber(d.value2)}`;
+  });
 
   //add hidden arcs for text
   const textArcs = g
@@ -814,6 +836,12 @@ function draw(el, dataset, opts) {
       return;
     }
 
+    dispatcher.dispatchEvent(
+      new CustomEvent("selectedDatumChanged", {
+        detail: { id: p.data?.data.id },
+      })
+    );
+
     parent.datum(p.parent || root);
 
     parent.attr("cursor", (d) => (d === root ? "auto" : "pointer"));
@@ -839,7 +867,7 @@ function draw(el, dataset, opts) {
     // Transition the data on all arcs, even the ones that aren’t visible,
     // so that if this transition is interrupted, entering arcs will start
     // the next transition from the desired position.
-    path$1
+    path
       .transition(t)
       .tween("data", (d) => {
         const i = interpolate(d.current, d.target);
@@ -1123,8 +1151,16 @@ var metadata = {
 	}
 ],
 	"stanza:incomingEvent": [
+	{
+		"stanza:key": "selectedDatumChanged",
+		"stanza:description": "Event, wich dispatches when user selects some node in other stanza"
+	}
 ],
 	"stanza:outgoingEvent": [
+	{
+		"stanza:key": "selectedDatumChanged",
+		"stanza:description": "Event, wich dispatches when user selects some node"
+	}
 ]
 };
 
