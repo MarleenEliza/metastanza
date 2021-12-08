@@ -3,7 +3,8 @@ import { S as Stanza } from './timer-cdfd05f6.js';
 import './index-ea477f03.js';
 import { l as loadData } from './load-data-801b6dc8.js';
 import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, s as select } from './index-9c37cc6c.js';
-import { t as treemapDice, r as roundNode, s as stratify, f as format, o as ordinal, i as interpolate, h as hierarchy, a as sum } from './ordinal-30d936dd.js';
+import { t as treemapDice, r as roundNode, f as format, o as ordinal, i as interpolate, s as sum } from './ordinal-153cc3a5.js';
+import { s as stratify, h as hierarchy } from './stratify-edf59490.js';
 import './dsv-cd3740c6.js';
 
 function max$1(values, valueof) {

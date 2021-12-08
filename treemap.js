@@ -3,7 +3,8 @@ import { S as Stanza } from './timer-cdfd05f6.js';
 import './index-ea477f03.js';
 import { l as loadData } from './load-data-801b6dc8.js';
 import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, s as select } from './index-9c37cc6c.js';
-import { e as exponent, t as treemapDice, b as required, r as roundNode, c as interpolateNumber, i as interpolate, d as formatSpecifier, g as formatPrefix, f as format, j as initRange, s as stratify, o as ordinal, h as hierarchy, a as sum } from './ordinal-30d936dd.js';
+import { e as exponent, t as treemapDice, r as roundNode, a as interpolateNumber, i as interpolate, b as formatSpecifier, c as formatPrefix, f as format, d as initRange, o as ordinal, s as sum } from './ordinal-153cc3a5.js';
+import { r as required, s as stratify, h as hierarchy } from './stratify-edf59490.js';
 import './dsv-cd3740c6.js';
 
 function ascending(a, b) {
