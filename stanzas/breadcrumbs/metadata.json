@@ -29,11 +29,20 @@
       "stanza:required": true
     },
     {
-      "stanza:key": "initinal-data-id",
+      "stanza:key": "initial-data-id",
+      "stanza:example": 6,
       "stanza:type": "number",
       "stanza:description": "Initial node id",
       "stanza:required": false
     },
+    {
+      "stanza:key": "root-node-display",
+      "stanza:type": "string",
+      "stanza:example": "home-icon",
+      "stanza:description": "What to display as root node name",
+      "stanza:required": true
+    },
+
     {
       "stanza:key": "custom-css-url",
       "stanza:example": "",

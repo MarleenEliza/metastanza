@@ -59,7 +59,7 @@ main {
   align-items: center;
   background-color: var(--togostanza-background-color);
   padding: 0 0.3em 0 0.3em;
-  height: 1.45em;
+  height: 100%;
 
   &:last-child {
     margin-right: 0;
@@ -71,7 +71,7 @@ main {
     justify-content: center;
 
     width: 1.45em;
-    height: 1.45em;
+    height: 100%;
     transition: all 200ms ease;
     cursor: pointer;
 
@@ -117,6 +117,10 @@ main {
     color: var(--togostanza-label-font-color-hover);
   }
 
+  &:first-child {
+    margin-right: 0.4em;
+  }
+
   img {
     height: 1em;
     vertical-align: middle;
@@ -125,6 +129,7 @@ main {
 
 .node-dropdown-menu {
   position: fixed;
+  z-index: top;
 
   display: block;
   width: 7em;
