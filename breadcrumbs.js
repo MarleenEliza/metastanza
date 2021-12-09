@@ -50,6 +50,7 @@ class Breadcrumbs extends Stanza {
 
   handleEvent(event) {
     event.stopPropagation();
+
     if (event.target !== this.element) {
       currentDataId = event.detail.id;
       this.render();
@@ -72,7 +73,7 @@ class Breadcrumbs extends Stanza {
       this.params["data-type"]
     );
 
-    if (!currentDataId) {
+    if (!currentDataId && this.props["initinal-data-id"]) {
       currentDataId = this.params["initinal-data-id"];
     }
 
@@ -184,15 +185,11 @@ function renderElement(el, data, opts, dispatcher = null) {
     contextMenu.style("display", "none");
   });
 
-  console.log(nestedData);
-
   const hierarchyData = hierarchy(nestedData);
 
   const getCurrentData = (id) => {
-    console.log(typeof id);
     return hierarchyData
       .find((item) => {
-        console.log(typeof item.data.data.id);
         return item.data.data.id === id;
       })
       .ancestors()
@@ -331,6 +328,10 @@ function renderElement(el, data, opts, dispatcher = null) {
       .text((d) => d.data.data.label);
   }
 
+  if (!currentDataId) {
+    currentDataId = hierarchyData.find((data) => data.depth === 0).data.data.id;
+  }
+
   update(getCurrentData(currentDataId));
 }
 
@@ -378,9 +379,8 @@ var metadata = {
 	{
 		"stanza:key": "initinal-data-id",
 		"stanza:type": "number",
-		"stanza:example": 6,
 		"stanza:description": "Initial node id",
-		"stanza:required": true
+		"stanza:required": false
 	},
 	{
 		"stanza:key": "custom-css-url",
