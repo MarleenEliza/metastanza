@@ -17,8 +17,8 @@ let currentDropdownMenu;
 export default class Breadcrumbs extends Stanza {
   menu() {
     return [
-      downloadSvgMenuItem(this, "tree"),
-      downloadPngMenuItem(this, "tree"),
+      downloadSvgMenuItem(this, "breadcrumbs"),
+      downloadPngMenuItem(this, "breadcrumbs"),
     ];
   }
 
@@ -42,13 +42,15 @@ export default class Breadcrumbs extends Stanza {
     const width = this.params["width"];
     const height = this.params["height"];
     const showDropdown = this.params["show-dropdown"];
+    const rootNodeDisplay = this.params["root-node-display"];
+
     const data = await loadData(
       this.params["data-url"],
       this.params["data-type"]
     );
 
-    if (!currentDataId && this.props["initinal-data-id"]) {
-      currentDataId = this.params["initinal-data-id"];
+    if (!currentDataId && this.params["initial-data-id"]) {
+      currentDataId = this.params["initial-data-id"];
     }
 
     this.renderTemplate({
@@ -87,6 +89,7 @@ export default class Breadcrumbs extends Stanza {
       width,
       height,
       showDropdown,
+      rootNodeDisplay,
     };
     renderElement(el, filteredData, opts, dispatcher, currentDataId);
   }
@@ -125,6 +128,14 @@ function renderElement(el, data, opts, dispatcher = null) {
     e.stopPropagation();
     subDiv.style("display", "none");
     contextMenu.style("display", "none");
+  });
+
+  container.on("scroll", function () {
+    console.log("scrolling");
+    if (currentDropdownMenu) {
+      d3.select(currentDropdownMenu).remove();
+      currentDropdownMenu = null;
+    }
   });
 
   container.on("contextmenu", function (e) {
@@ -262,10 +273,18 @@ function renderElement(el, data, opts, dispatcher = null) {
 
     label.filter((d) => d.parent).text((d) => d.data.data.label);
 
-    label
-      .filter((d) => !d.parent)
-      .append("img")
-      .attr("src", homeIcon);
+    if (
+      opts.rootNodeDisplay === "home-icon" ||
+      opts.rootNodeDisplay === "" ||
+      !opts.rootNodeDisplay
+    ) {
+      label
+        .filter((d) => !d.parent)
+        .append("img")
+        .attr("src", homeIcon);
+    } else {
+      label.filter((d) => !d.parent).text(opts.rootNodeDisplay);
+    }
 
     if (opts.showDropdown) {
       // node dropdown icon
@@ -288,9 +307,11 @@ function renderElement(el, data, opts, dispatcher = null) {
     breadcrumbNode
       .append("div")
       .classed("node-forward", true)
-      .attr("style", (d) =>
+      .attr("style", (d, i) =>
         d.children
           ? opts.showDropdown
+            ? null
+            : i > 0
             ? null
             : "margin-left:0.4em"
           : "display:none"
