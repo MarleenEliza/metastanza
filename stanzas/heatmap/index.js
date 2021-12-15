@@ -3,11 +3,10 @@ import Stanza from "togostanza/stanza";
 import * as d3 from "d3";
 // import { render } from "@vue/runtime-dom";
 
-
 export default class Heatmap extends Stanza {
   async render() {
     // if (typeof variants === "object") {
-      draw(this, this.params);
+    draw(this, this.params);
     // }
   }
 }
@@ -51,18 +50,7 @@ async function draw(stanza, params) {
   // Labels of row and columns
 
   const myGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-  const myVars = [
-    "v1",
-    "v2",
-    "v3",
-    "v4",
-    "v5",
-    "v6",
-    "v7",
-    "v8",
-    "v9",
-    "v10",
-  ];
+  const myVars = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10"];
 
   // plotGroup
   //   .call(d3.axisBottom(x));
@@ -89,7 +77,7 @@ async function draw(stanza, params) {
   //Read the data
   const dataset = d3.csv(
     "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv"
-  )
+  );
   dataset.then(function (data) {
     svg
       .selectAll()
@@ -113,7 +101,6 @@ async function draw(stanza, params) {
   reRender();
 
   function reRender() {
-
     const myColor = d3
       .scaleLinear()
       .range([
