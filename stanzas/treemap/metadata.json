@@ -4,20 +4,20 @@
   },
   "@id": "treemap",
   "stanza:label": "Treemap",
-  "stanza:definition": "Treemap MetaStanza ",
+  "stanza:definition": "Treemap MetaStanza",
   "stanza:type": "Stanza",
   "stanza:display": "Tree",
   "stanza:provider": "TogoStanza",
   "stanza:license": "MIT",
-  "stanza:author": "teraomoyu",
-  "stanza:address": "",
+  "stanza:author": "anton",
+  "stanza:address": "anton@penqe.com",
   "stanza:contributor": [],
-  "stanza:created": "2021-08-05",
-  "stanza:updated": "2021-08-05",
+  "stanza:created": "2021-10-25",
+  "stanza:updated": "2021-10-25",
   "stanza:parameter": [
     {
       "stanza:key": "data-url",
-      "stanza:example": "https://vega.github.io/vega/data/flare.json",
+      "stanza:example": "https://raw.githubusercontent.com/togostanza/togostanza-data/main/samples/json/tree-data.json",
       "stanza:description": "Data source URL",
       "stanza:required": true
     },
@@ -30,22 +30,11 @@
       "stanza:required": true
     },
     {
-      "stanza:key": "parent-node",
-      "stanza:example": "parent",
-      "stanza:description": "Variable to be assigned as parent node",
+      "stanza:key": "log-scale",
+      "stanza:type": "boolean",
+      "stanza:example": true,
+      "stanza:description": "Log scale for values",
       "stanza:required": true
-    },
-    {
-      "stanza:key": "node",
-      "stanza:example": "id",
-      "stanza:description": "Variable to be assigned as node",
-      "stanza:required": true
-    },
-    {
-      "stanza:key": "label",
-      "stanza:example": "name",
-      "stanza:description": "Variable to be assigned as category",
-      "stanza:required": false
     },
     {
       "stanza:key": "custom-css-url",
@@ -56,103 +45,114 @@
     {
       "stanza:key": "width",
       "stanza:type": "number",
-      "stanza:example": 960,
+      "stanza:example": 400,
       "stanza:description": "Width"
     },
     {
       "stanza:key": "height",
       "stanza:type": "number",
-      "stanza:example": 500,
+      "stanza:example": 300,
       "stanza:description": "Height"
     },
     {
-      "stanza:key": "padding",
+      "stanza:key": "gap-width",
       "stanza:type": "number",
-      "stanza:example": 2.5,
-      "stanza:description": "Padding"
-    },
-    {
-      "stanza:key": "metastanza-menu-placement",
-      "stanza:type": "single-choice",
-      "stanza:choice": [
-        "top-left",
-        "top-right",
-        "bottom-left",
-        "bottom-right",
-        "none"
-      ],
-      "stanza:example": "top-right",
-      "stanza:description": "Menu button placement"
-    },
-    {
-      "stanza:key": "say-to",
-      "stanza:type": "string",
-      "stanza:example": "world",
-      "stanza:description": "who to say hello to",
-      "stanza:required": false
+      "stanza:example": 2,
+      "stanza:description": "Gap width"
     }
   ],
   "stanza:menu-placement": "bottom-right",
   "stanza:style": [
     {
+      "stanza:key": "--togostanza-background-color",
+      "stanza:type": "color",
+      "stanza:default": "#eeeeee",
+      "stanza:description": "Background color"
+    },
+    {
+      "stanza:key": "--togostanza-label-font-family",
+      "stanza:type": "text",
+      "stanza:default": "Helvetica Neue",
+      "stanza:description": "Label font family"
+    },
+    {
+      "stanza:key": "--togostanza-label-font-color",
+      "stanza:type": "color",
+      "stanza:default": "#4E5059",
+
+      "stanza:description": "Label font color"
+    },
+    {
+      "stanza:key": "--togostanza-label-font-size",
+      "stanza:type": "string",
+      "stanza:default": "11px",
+      "stanza:description": "Label font size"
+    },
+    {
+      "stanza:key": "--togostanza-label-font-weight",
+      "stanza:type": "string",
+      "stanza:default": "normal",
+      "stanza:description": "Label font weight"
+    },
+    {
+      "stanza:key": "--togostanza-number-label-font-family",
+      "stanza:type": "text",
+      "stanza:default": "Helvetica Neue",
+      "stanza:description": "Number label font family"
+    },
+    {
+      "stanza:key": "--togostanza-number-label-font-color",
+      "stanza:type": "color",
+      "stanza:default": "#4E5059",
+      "stanza:description": "Number label font color"
+    },
+    {
+      "stanza:key": "--togostanza-number-label-font-size",
+      "stanza:type": "string",
+      "stanza:default": "7px",
+      "stanza:description": "Number label font size"
+    },
+    {
+      "stanza:key": "--togostanza-number-label-font-weight",
+      "stanza:type": "string",
+      "stanza:default": "normal",
+      "stanza:description": "Number label font weight"
+    },
+    {
       "stanza:key": "--togostanza-series-0-color",
       "stanza:type": "color",
-      "stanza:default": "#6590E6",
-      "stanza:description": "Depth color 1"
+      "stanza:default": "#6590e6",
+      "stanza:description": "Color 1"
     },
     {
       "stanza:key": "--togostanza-series-1-color",
       "stanza:type": "color",
-      "stanza:default": "#3AC9B6",
-      "stanza:description": "Depth color 2"
+      "stanza:default": "#3ac9b6",
+      "stanza:description": "Color 2"
     },
     {
       "stanza:key": "--togostanza-series-2-color",
       "stanza:type": "color",
-      "stanza:default": "#9EDE2F",
-      "stanza:description": "Depth color 3"
+      "stanza:default": "#9ede2f",
+      "stanza:description": "Color 3"
     },
     {
       "stanza:key": "--togostanza-series-3-color",
       "stanza:type": "color",
       "stanza:default": "#F5DA64",
-      "stanza:description": "Depth color 4"
+      "stanza:description": "Color 4"
     },
     {
       "stanza:key": "--togostanza-series-4-color",
       "stanza:type": "color",
       "stanza:default": "#F57F5B",
-      "stanza:description": "Depth color 5"
+      "stanza:description": "Color 5"
     },
     {
       "stanza:key": "--togostanza-series-5-color",
       "stanza:type": "color",
       "stanza:default": "#F75976",
-      "stanza:description": "Depth color 6"
-    },
-    {
-      "stanza:key": "--togostanza-font-family",
-      "stanza:type": "text",
-      "stanza:default": "Helvetica Neue, Arial",
-      "stanza:description": "Font family"
-    },
-    {
-      "stanza:key": "--togostanza-label-font-color",
-      "stanza:type": "color",
-      "stanza:default": "#333333",
-      "stanza:description": "Label font color"
-    },
-    {
-      "stanza:key": "--togostanza-label-font-size",
-      "stanza:type": "number",
-      "stanza:default": 11,
-      "stanza:description": "Label font size"
-    },
-    {
-      "stanza:key": "--togostanza-edge-color",
-      "stanza:type": "color",
-      "stanza:default": "#fff",
-      "stanza:description": "Edge color"
+      "stanza:description": "Color 6"
     }
   ],
   "stanza:incomingEvent": [],
