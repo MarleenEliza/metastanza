@@ -1,9 +1,9 @@
-import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
-import { S as Stanza } from './timer-cdfd05f6.js';
-import { b as appendCustomCss } from './index-9c37cc6c.js';
-import { d as defineComponent, c as createElementBlock, e as createBaseVNode, y as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, v as createVNode, g as createCommentVNode, f as createBlock, x as createTextVNode, b as resolveComponent, r as reactive, p as onMounted, i as ref, z as onRenderTriggered, a as renderList, n as normalizeClass, j as createApp } from './runtime-dom.esm-bundler-506579e8.js';
-import { l as loadData } from './load-data-801b6dc8.js';
-import './index-ea477f03.js';
+import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
+import { S as Stanza } from './timer-18f52222.js';
+import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f2ea087c.js';
+import { d as defineComponent, c as createElementBlock, e as createBaseVNode, y as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, v as createVNode, g as createCommentVNode, f as createBlock, x as createTextVNode, b as resolveComponent, r as reactive, p as onMounted, i as ref, z as onRenderTriggered, a as renderList, n as normalizeClass, j as createApp } from './runtime-dom.esm-bundler-437b7ee9.js';
+import { l as loadData } from './load-data-2218b62c.js';
+import './index-4aa3de88.js';
 import './dsv-cd3740c6.js';
 
 var script$2 = defineComponent({
@@ -526,6 +526,10 @@ script.render = render;
 script.__file = "stanzas/scroll-table/app.vue";
 
 class ScrollTable extends Stanza {
+  menu() {
+    return [copyHTMLSnippetToClipboardMenuItem(this)];
+  }
+
   async render() {
     appendCustomCss(this, this.params["custom-css-url"]);
 

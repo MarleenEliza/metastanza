@@ -1,19 +1,27 @@
-import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
-import { S as Stanza } from './timer-cdfd05f6.js';
-import { l as loadData } from './load-data-801b6dc8.js';
-import { b as appendCustomCss } from './index-9c37cc6c.js';
-import './index-ea477f03.js';
+import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
+import { S as Stanza } from './timer-18f52222.js';
+import { l as loadData } from './load-data-2218b62c.js';
+import { b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f2ea087c.js';
+import './index-4aa3de88.js';
 import './dsv-cd3740c6.js';
 
 class HashTable extends Stanza {
+  menu() {
+    return [
+      downloadJSONMenuItem(this, "hashtable", this._data),
+      downloadCSVMenuItem(this, "hashtable", this._data),
+      downloadTSVMenuItem(this, "hashtable", this._data),
+      copyHTMLSnippetToClipboardMenuItem(this),
+    ];
+  }
+
   async render() {
     appendCustomCss(this, this.params["custom-css-url"]);
 
-    let dataset = await loadData(
-      this.params["data-url"],
-      this.params["data-type"]
-    );
-    dataset = dataset[0];
+    const dataset = (
+      await loadData(this.params["data-url"], this.params["data-type"])
+    )[0];
+    this._data = [dataset];
 
     const columns = this.params.columns
       ? JSON.parse(this.params.columns)

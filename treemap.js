@@ -1,8 +1,8 @@
-import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
-import { S as Stanza } from './timer-cdfd05f6.js';
-import './index-ea477f03.js';
-import { l as loadData } from './load-data-801b6dc8.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss, s as select } from './index-9c37cc6c.js';
+import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
+import { S as Stanza } from './timer-18f52222.js';
+import './index-4aa3de88.js';
+import { l as loadData } from './load-data-2218b62c.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss, s as select } from './index-f2ea087c.js';
 import { e as exponent, t as treemapDice, r as roundNode, a as interpolateNumber, i as interpolate, b as formatSpecifier, c as formatPrefix, f as format, d as initRange, o as ordinal, s as sum } from './ordinal-153cc3a5.js';
 import { r as required, s as stratify, h as hierarchy } from './stratify-edf59490.js';
 import './dsv-cd3740c6.js';
@@ -16,7 +16,7 @@ function bisector(f) {
   let compare1 = f;
   let compare2 = f;
 
-  if (f.length !== 2) {
+  if (f.length === 1) {
     delta = (d, x) => f(d) - x;
     compare1 = ascending;
     compare2 = (d, x) => ascending(f(d), x);

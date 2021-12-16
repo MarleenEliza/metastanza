@@ -1,6 +1,6 @@
-import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
-import { S as Stanza } from './timer-cdfd05f6.js';
-import { e as embed } from './vega-embed.module-399f6c2b.js';
+import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
+import { S as Stanza } from './timer-18f52222.js';
+import { e as embed } from './vega-embed.module-ee10f59c.js';
 import './dsv-cd3740c6.js';
 
 class quantileDotPlot extends Stanza {

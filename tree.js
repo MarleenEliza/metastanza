@@ -1,16 +1,20 @@
-import { d as defineStanzaElement } from './stanza-element-ac887ac3.js';
-import { S as Stanza } from './timer-cdfd05f6.js';
-import { e as embed } from './vega-embed.module-399f6c2b.js';
-import { l as loadData } from './load-data-801b6dc8.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as appendCustomCss } from './index-9c37cc6c.js';
+import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
+import { S as Stanza } from './timer-18f52222.js';
+import { e as embed } from './vega-embed.module-ee10f59c.js';
+import { l as loadData } from './load-data-2218b62c.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f2ea087c.js';
 import './dsv-cd3740c6.js';
-import './index-ea477f03.js';
+import './index-4aa3de88.js';
 
 class Tree extends Stanza {
   menu() {
     return [
       downloadSvgMenuItem(this, "tree"),
       downloadPngMenuItem(this, "tree"),
+      downloadJSONMenuItem(this, "tree", this._data),
+      downloadCSVMenuItem(this, "tree", this._data),
+      downloadTSVMenuItem(this, "tree", this._data),
+      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -33,6 +37,7 @@ class Tree extends Stanza {
       this.params["data-url"],
       this.params["data-type"]
     );
+    this._data = values;
 
     const signals = [
       {
