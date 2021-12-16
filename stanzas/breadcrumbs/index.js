@@ -221,7 +221,7 @@ function renderElement(el, data, opts, dispatcher = null) {
       .classed("node-dropdown-menu-item", true);
 
     row
-      .filter((d) => d.children)
+      //.filter((d) => d.children)
       .on("click", (e, d) => {
         container.selectAll(".node-dropdown-menu").remove();
         showingD = null;
@@ -281,7 +281,9 @@ function renderElement(el, data, opts, dispatcher = null) {
       label
         .filter((d) => !d.parent)
         .append("img")
-        .attr("src", homeIcon);
+        .attr("src", homeIcon)
+        .style("margin-right", "0.4em")
+        .style("margin-left", "0.4em");
     } else {
       label.filter((d) => !d.parent).text(opts.rootNodeDisplay);
     }
@@ -306,16 +308,12 @@ function renderElement(el, data, opts, dispatcher = null) {
     // node forward icon
     breadcrumbNode
       .append("div")
+      .classed("node-forward-container", true)
+      .attr("style", (d) => (d.children ? "margin-left:0.4em" : "display:none"))
+      .append("div")
       .classed("node-forward", true)
-      .attr("style", (d, i) =>
-        d.children
-          ? opts.showDropdown
-            ? null
-            : i > 0
-            ? null
-            : "margin-left:0.4em"
-          : "display:none"
-      );
+      .append("div")
+      .classed("inner", true);
 
     // UPDATE
 

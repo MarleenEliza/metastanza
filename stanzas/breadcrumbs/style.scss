@@ -11,6 +11,7 @@ main {
   overflow-x: auto;
   overflow-y: visible;
 }
+
 .container {
   white-space: nowrap;
   font-size: calc(var(--togostanza-label-font-size) * 1px);
@@ -58,7 +59,7 @@ main {
   vertical-align: top !important;
   align-items: center;
   background-color: var(--togostanza-background-color);
-  padding: 0 0.3em 0 0.3em;
+  padding: 0;
   height: 100%;
 
   &:last-child {
@@ -69,8 +70,7 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    width: 1.45em;
+    width: 1.6em;
     height: 100%;
     transition: all 200ms ease;
     cursor: pointer;
@@ -91,15 +91,44 @@ main {
     }
   }
 
-  .node-forward {
-    display: inline-block;
-    vertical-align: top;
-    width: 0;
-    height: 0;
-    border-top: 0.55em solid transparent;
-    border-bottom: 0.55em solid transparent;
-    border-left: 0.5em solid var(--togostanza-forward-triangle-color);
-    //margin-left: 0.2em;
+  .node-forward-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 0.6rem;
+
+    & > .node-forward {
+      position: relative;
+      left: -50%;
+      width: 0.5em;
+      height: 0.5em;
+      background-color: var(--togostanza-forward-triangle-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(45deg);
+      // border-top: 0.5em solid transparent;
+      // border-bottom: 0.5em solid transparent;
+      // border-left: 0.5em solid var(--togostanza-forward-triangle-color);
+
+      & > .inner {
+        //position: relative;
+        width: 0.4em;
+        height: 0.4em;
+        //left: -0.3em;
+
+        background-color: var(--togostanza-background-color);
+
+        //transform: rotate(45deg);
+
+        // border-top: 0.4em solid transparent;
+        // border-bottom: 0.4em solid transparent;
+        // border-left: 0.4em solid var(--togostanza-background-color);
+      }
+    }
   }
 }
 
@@ -108,17 +137,12 @@ main {
   font-family: var(--togostanza-label-font-family);
   font-size: 1em;
   color: var(--togostanza-label-font-color);
-  margin-right: 0.1em;
   cursor: pointer;
   transition: all 200ms ease;
 
   &:hover {
     background-color: var(--togostanza-label-background-color-hover);
     color: var(--togostanza-label-font-color-hover);
-  }
-
-  &:first-child {
-    margin-right: 0.4em;
   }
 
   img {
@@ -130,7 +154,8 @@ main {
 .node-dropdown-menu {
   position: fixed;
   z-index: top;
-
+  max-height: 200px;
+  overflow-y: scroll;
   display: block;
   width: 7em;
   background-color: #c5c5c5;

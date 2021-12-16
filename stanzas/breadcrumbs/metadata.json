@@ -125,7 +125,7 @@
     {
       "stanza:key": "--togostanza-forward-triangle-color",
       "stanza:type": "color",
-      "stanza:default": "#000000",
+      "stanza:default": "#999999",
       "stanza:description": "Color of path delimiter triangle"
     },
 
