@@ -1,32 +1,25 @@
 import Stanza from "togostanza/stanza";
 
 import * as d3 from "d3";
-// import { render } from "@vue/runtime-dom";
 
 export default class Heatmap extends Stanza {
   async render() {
-    // if (typeof variants === "object") {
-      const css = (key) => getComputedStyle(this.element).getPropertyValue(key);
-      const chartElement = this.root.querySelector("main");
-      const params = {
-        top: this.params["top"],
-        right: this.params["right"],
-        bottom: this.params["bottom"],
-        left: this.params["left"],
-        width: this.params["width"],
-        height: this.params["height"],
-      };
+    const css = (key) => getComputedStyle(this.element).getPropertyValue(key);
+    const chartElement = this.root.querySelector("main");
+    const params = {
+      top: this.params["top"],
+      right: this.params["right"],
+      bottom: this.params["bottom"],
+      left: this.params["left"],
+      width: this.params["width"],
+      height: this.params["height"],
+    };
     draw(chartElement, css, params);
-    // }
   }
 }
 
 async function draw(el, css, params) {
-  // const css = (key) => getComputedStyle(stanza.element).getPropertyValue(key);
-  // const controlElement = stanza.root.querySelector("#control");
-
   // set the dimensions and margins of the graph
-
   const margin = {
       top: params["top"],
       right: params["right"],
@@ -38,7 +31,7 @@ async function draw(el, css, params) {
 
   // remove svg element when params updated
   d3.select(el).select("svg").remove();
-    
+
   // append the svg object to the body of the page
   const svg = d3
     .select(el)
@@ -95,36 +88,4 @@ async function draw(el, css, params) {
         return myColor(d.value);
       });
   });
-
-  // reRender();
-
-  // function reRender() {
-  //   const myColor = d3
-  //     .scaleLinear()
-  //     .range([
-  //       css("--togostanza-series-0-color"),
-  //       css("--togostanza-series-1-color"),
-  //     ])
-  //     .domain([1, 100]);
-
-  //   dataset.then(function (data) {
-  //     svg
-  //       .selectAll()
-  //       .data(data, function (d) {
-  //         return d.group + ":" + d.variable;
-  //       })
-  //       .join("rect")
-  //       .attr("x", function (d) {
-  //         return x(d.group);
-  //       })
-  //       .attr("y", function (d) {
-  //         return y(d.variable);
-  //       })
-  //       .attr("width", x.bandwidth())
-  //       .attr("height", y.bandwidth())
-  //       .style("fill", function (d) {
-  //         return myColor(d.value);
-  //       });
-  //   });
-  // }
 }
