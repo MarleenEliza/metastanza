@@ -86,6 +86,30 @@
       "stanza:type": "color",
       "stanza:default": "#6590E6",
       "stanza:description": "Depth color 2"
+    },
+    {
+      "stanza:key": "--togostanza-font-family",
+      "stanza:type": "text",
+      "stanza:default": "Helvetica Neue",
+      "stanza:description": "Font family"
+    },
+    {
+      "stanza:key": "--togostanza-title-font-color",
+      "stanza:type": "color",
+      "stanza:default": "#356794",
+      "stanza:description": "Title font color"
+    },
+    {
+      "stanza:key": "--togostanza-title-font-weight",
+      "stanza:type": "string",
+      "stanza:default": "normal",
+      "stanza:description": "Title font weight"
+    },
+    {
+      "stanza:key": "--togostanza-hover-color",
+      "stanza:type": "color",
+      "stanza:default": "#000000",
+      "stanza:description": "Title font color"
     }
   ],
   "stanza:incomingEvent": [],

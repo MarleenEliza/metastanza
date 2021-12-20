@@ -56,6 +56,13 @@ async function draw(el, css, params) {
   const y = d3.scaleBand().range([height, 0]).domain(myVars).padding(0.01);
   svg.append("g").call(d3.axisLeft(y));
 
+  // Set font
+  svg
+    .selectAll("text")
+    .attr("font-family", css("--togostanza-font-family"))
+    .attr("fill", css("--togostanza-title-font-color"))
+    .attr("font-weight", css("--togostanza-title-font-weight"));
+
   // Build color scale
   const myColor = d3
     .scaleLinear()
