@@ -16,10 +16,16 @@
   "stanza:updated": "2021-08-26",
   "stanza:parameter": [
     {
+      "stanza:key": "data-url",
+      "stanza:example": "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv",
+      "stanza:description": "Data source URL",
+      "stanza:required": true
+    },
+    {
       "stanza:key": "data-type",
       "stanza:type": "single-choice",
       "stanza:choice": ["json", "tsv", "csv", "sparql-results-json"],
-      "stanza:example": "json",
+      "stanza:example": "csv",
       "stanza:description": "Data type",
       "stanza:required": true
     },
@@ -96,7 +102,7 @@
     {
       "stanza:key": "--togostanza-title-font-color",
       "stanza:type": "color",
-      "stanza:default": "#356794",
+      "stanza:default": "#000000",
       "stanza:description": "Title font color"
     },
     {

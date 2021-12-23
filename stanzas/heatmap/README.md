@@ -4,7 +4,7 @@
 
 In order to visualise the data, Heatmap stanza should receive:
 
-1. Data with `data-type`.
+1. Data with `data-url` as well as `data-type`.
 
 The data format:
 

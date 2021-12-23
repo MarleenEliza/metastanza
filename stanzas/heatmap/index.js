@@ -1,4 +1,5 @@
 import Stanza from "togostanza/stanza";
+import loadData from "togostanza-utils/load-data";
 
 import * as d3 from "d3";
 
@@ -14,11 +15,15 @@ export default class Heatmap extends Stanza {
       width: this.params["width"],
       height: this.params["height"],
     };
-    draw(chartElement, css, params);
+    const data = await loadData(
+      this.params["data-url"],
+      this.params["data-type"]
+    );
+    draw(chartElement, css, params, data);
   }
 }
 
-async function draw(el, css, params) {
+async function draw(el, css, params, dataset) {
   // set the dimensions and margins of the graph
   const margin = {
       top: params["top"],
@@ -72,27 +77,21 @@ async function draw(el, css, params) {
     ])
     .domain([1, 100]);
 
-  //Read the data
-  const dataset = d3.csv(
-    "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv"
-  );
-  dataset.then(function (data) {
-    svg
-      .selectAll()
-      .data(data, function (d) {
-        return d.group + ":" + d.variable;
-      })
-      .join("rect")
-      .attr("x", function (d) {
-        return x(d.group);
-      })
-      .attr("y", function (d) {
-        return y(d.variable);
-      })
-      .attr("width", x.bandwidth())
-      .attr("height", y.bandwidth())
-      .style("fill", function (d) {
-        return myColor(d.value);
-      });
+  svg
+    .selectAll()
+    .data(dataset, function (d) {
+      return d.group + ":" + d.variable;
+    })
+    .join("rect")
+    .attr("x", function (d) {
+      return x(d.group);
+    })
+    .attr("y", function (d) {
+      return y(d.variable);
+    })
+    .attr("width", x.bandwidth())
+    .attr("height", y.bandwidth())
+    .style("fill", function (d) {
+      return myColor(d.value);
   });
 }
