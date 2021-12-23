@@ -93,5 +93,5 @@ async function draw(el, css, params, dataset) {
     .attr("height", y.bandwidth())
     .style("fill", function (d) {
       return myColor(d.value);
-  });
+    });
 }
