@@ -211,9 +211,7 @@
                     :char-clamp-on="cell.column.charClampOn"
                   />
                 </span>
-                <span
-                  v-else-if="cell.column.lineClamp || cell.column.charClamp"
-                >
+                <span v-else-if="cell.column.lineClamp || cell.column.charClamp">
                   <ClampCell
                     :id="`${cell.column.id}_${row_index}`"
                     :line-clamp="cell.column.lineClamp"
@@ -489,7 +487,7 @@ export default defineComponent({
             column,
             value: column.parseValue(row[column.id]),
             href: column.href ? row[column.href] : null,
-            charClampOn: true,
+            charClampOn: true
           };
         });
       });
