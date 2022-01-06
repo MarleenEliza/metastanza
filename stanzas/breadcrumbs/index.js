@@ -220,20 +220,18 @@ function renderElement(el, data, opts, dispatcher = null) {
       .append("div")
       .classed("node-dropdown-menu-item", true);
 
-    row
-      //.filter((d) => d.children)
-      .on("click", (e, d) => {
-        container.selectAll(".node-dropdown-menu").remove();
-        showingD = null;
-        currentDropdownMenu = null;
-        dispatcher.dispatchEvent(
-          new CustomEvent("selectedDatumChanged", {
-            detail: { id: d.data.data.id },
-          })
-        );
-        currentDataId = d.data.data.id;
-        return update(getCurrentData(d.data.data.id));
-      });
+    row.on("click", (e, d) => {
+      container.selectAll(".node-dropdown-menu").remove();
+      showingD = null;
+      currentDropdownMenu = null;
+      dispatcher.dispatchEvent(
+        new CustomEvent("selectedDatumChanged", {
+          detail: { id: d.data.data.id },
+        })
+      );
+      currentDataId = d.data.data.id;
+      return update(getCurrentData(d.data.data.id));
+    });
 
     row
       .append("span")
