@@ -9670,6 +9670,7 @@ var dependencies = {
 	d3: "^7.0.1",
 	"d3-collection": "^1.0.7",
 	"highlight.js": "^11.2.0",
+	"immutable-ext": "^1.1.5",
 	katex: "^0.13.18",
 	"lit-element": "^3.0.1",
 	"lit-html": "^2.0.1",
@@ -9776,4 +9777,4 @@ script.render = render;
 script.__file = "node_modules/togostanza/src/components/Layout.vue";
 
 export { Fragment as F, createElementBlock as a, renderList as b, createBlock as c, defineComponent as d, createBaseVNode as e, createCommentVNode as f, createApp as g, computed as h, createTextVNode as i, ref as j, octicons as k, watch as l, mergeProps as m, normalizeClass as n, openBlock as o, createVNode as p, normalizeProps as q, resolveComponent as r, script as s, toDisplayString as t, guardReactiveProps as u, resolveDynamicComponent as v, withCtx as w, pushScopeId as x, popScopeId as y, n as z };
-//# sourceMappingURL=Layout-47e7ffc3.js.map
+//# sourceMappingURL=Layout-5a36a5d6.js.map

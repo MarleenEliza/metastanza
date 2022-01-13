@@ -928,6 +928,12 @@ Selection$1.prototype = selection.prototype = {
   [Symbol.iterator]: selection_iterator
 };
 
+function select(selector) {
+  return typeof selector === "string"
+      ? new Selection$1([[document.querySelector(selector)]], [document.documentElement])
+      : new Selection$1([[selector]], root);
+}
+
 var emptyOn = dispatch("start", "end", "cancel", "interrupt");
 var emptyTween = [];
 
@@ -1795,5 +1801,5 @@ function selection_transition(name) {
 selection.prototype.interrupt = selection_interrupt;
 selection.prototype.transition = selection_transition;
 
-export { Selection$1 as S, root as r };
-//# sourceMappingURL=index-4aa3de88.js.map
+export { select as s };
+//# sourceMappingURL=index-aba27c3b.js.map

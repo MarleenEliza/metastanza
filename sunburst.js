@@ -1,11 +1,12 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import './index-4aa3de88.js';
-import { l as loadData } from './load-data-2218b62c.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss, s as select } from './index-f2ea087c.js';
+import { s as select } from './index-aba27c3b.js';
+import { l as loadData } from './load-data-dbcbb851.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss } from './index-28835b24.js';
 import { t as treemapDice, r as roundNode, f as format, o as ordinal, i as interpolate, s as sum } from './ordinal-153cc3a5.js';
 import { s as stratify, h as hierarchy } from './stratify-edf59490.js';
 import './dsv-cd3740c6.js';
+import 'csv-stringify/browser/esm/sync.js';
 
 function max$1(values, valueof) {
   let max;

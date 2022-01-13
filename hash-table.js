@@ -1,9 +1,10 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { l as loadData } from './load-data-2218b62c.js';
-import { b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f2ea087c.js';
-import './index-4aa3de88.js';
+import { l as loadData } from './load-data-dbcbb851.js';
+import { b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-28835b24.js';
+import './index-aba27c3b.js';
 import './dsv-cd3740c6.js';
+import 'csv-stringify/browser/esm/sync.js';
 
 class HashTable extends Stanza {
   menu() {
@@ -19,7 +20,11 @@ class HashTable extends Stanza {
     appendCustomCss(this, this.params["custom-css-url"]);
 
     const dataset = (
-      await loadData(this.params["data-url"], this.params["data-type"])
+      await loadData(
+        this.params["data-url"],
+        this.params["data-type"],
+        this.root.querySelector("main")
+      )
     )[0];
     this._data = [dataset];
 

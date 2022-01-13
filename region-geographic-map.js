@@ -1,9 +1,9 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
 import { e as embed } from './vega-embed.module-ee10f59c.js';
-import { l as loadData } from './load-data-2218b62c.js';
+import { l as loadData } from './load-data-dbcbb851.js';
 import './dsv-cd3740c6.js';
-import './index-4aa3de88.js';
+import './index-aba27c3b.js';
 
 const areas = new Map([
   [

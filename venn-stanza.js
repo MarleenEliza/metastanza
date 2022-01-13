@@ -1,9 +1,10 @@
 import { g as getAugmentedNamespace, c as commonjsGlobal, a as getDefaultExportFromCjs, d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { l as loadData } from './load-data-2218b62c.js';
-import './index-4aa3de88.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss, s as select$1 } from './index-f2ea087c.js';
+import { l as loadData } from './load-data-dbcbb851.js';
+import { s as select$1 } from './index-aba27c3b.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss } from './index-28835b24.js';
 import './dsv-cd3740c6.js';
+import 'csv-stringify/browser/esm/sync.js';
 
 var venn$1 = {exports: {}};
 
