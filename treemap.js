@@ -1,12 +1,11 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { s as select } from './index-aba27c3b.js';
-import { l as loadData } from './load-data-dbcbb851.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss } from './index-28835b24.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-5ca7f2c0.js';
+import { l as loadData } from './load-data-7ac9fe5f.js';
 import { e as exponent, t as treemapDice, r as roundNode, a as interpolateNumber, i as interpolate, b as formatSpecifier, c as formatPrefix, f as format, d as initRange, o as ordinal, s as sum } from './ordinal-153cc3a5.js';
 import { r as required, s as stratify, h as hierarchy } from './stratify-edf59490.js';
-import './dsv-cd3740c6.js';
 import 'csv-stringify/browser/esm/sync.js';
+import './dsv-cd3740c6.js';
 
 function ascending(a, b) {
   return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
@@ -647,8 +646,12 @@ function treemapBinaryLog (parent, x0, y0, x1, y1) {
 class TreeMapStanza extends Stanza {
   menu() {
     return [
-      downloadSvgMenuItem(this, "treeMapstanza"),
-      downloadPngMenuItem(this, "treeMapstanza"),
+      downloadSvgMenuItem(this, "treemap"),
+      downloadPngMenuItem(this, "treemap"),
+      downloadJSONMenuItem(this, "treemap", this._data),
+      downloadCSVMenuItem(this, "treemap", this._data),
+      downloadTSVMenuItem(this, "treemap", this._data),
+      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -671,8 +674,10 @@ class TreeMapStanza extends Stanza {
 
     const data = await loadData(
       this.params["data-url"],
-      this.params["data-type"]
+      this.params["data-type"],
+      this.root.querySelector("main")
     );
+    this._data = data;
 
     this.renderTemplate({ template: "stanza.html.hbs" });
 

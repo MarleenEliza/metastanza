@@ -1,7 +1,6 @@
 import { c as commonjsGlobal, d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { g as appendCustomCss } from './index-28835b24.js';
-import './index-aba27c3b.js';
+import { g as appendCustomCss } from './index-5ca7f2c0.js';
 import 'csv-stringify/browser/esm/sync.js';
 
 function isContainer(node) {

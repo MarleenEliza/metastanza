@@ -1,9 +1,10 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
 import { e as embed } from './vega-embed.module-ee10f59c.js';
-import { l as loadData } from './load-data-dbcbb851.js';
+import { l as loadData } from './load-data-7ac9fe5f.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem } from './index-5ca7f2c0.js';
 import './dsv-cd3740c6.js';
-import './index-aba27c3b.js';
+import 'csv-stringify/browser/esm/sync.js';
 
 const areas = new Map([
   [
@@ -27,11 +28,25 @@ const areas = new Map([
   ],
 ]);
 class regionGeographicMap extends Stanza {
+  menu() {
+    return [
+      downloadSvgMenuItem(this, "region-geographis-map"),
+      downloadPngMenuItem(this, "region-geographis-map"),
+      downloadJSONMenuItem(this, "region-geographis-map", this._data),
+      downloadCSVMenuItem(this, "region-geographis-map", this._data),
+      downloadTSVMenuItem(this, "region-geographis-map", this._data),
+      copyHTMLSnippetToClipboardMenuItem(this),
+    ];
+  }
+
   async render() {
     const values = await loadData(
       this.params["data-url"],
-      this.params["data-type"]
+      this.params["data-type"],
+      this.root.querySelector("main")
     );
+
+    this._data = values;
 
     const valObj = {
       name: "userData",

@@ -1,12 +1,11 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { s as select } from './index-aba27c3b.js';
-import { l as loadData } from './load-data-dbcbb851.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss } from './index-28835b24.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-5ca7f2c0.js';
+import { l as loadData } from './load-data-7ac9fe5f.js';
 import { t as treemapDice, r as roundNode, f as format, o as ordinal, i as interpolate, s as sum } from './ordinal-153cc3a5.js';
 import { s as stratify, h as hierarchy } from './stratify-edf59490.js';
-import './dsv-cd3740c6.js';
 import 'csv-stringify/browser/esm/sync.js';
+import './dsv-cd3740c6.js';
 
 function max$1(values, valueof) {
   let max;
@@ -499,8 +498,12 @@ let path;
 class Sunburst extends Stanza {
   menu() {
     return [
-      downloadSvgMenuItem(this, "sunburstStanza"),
-      downloadPngMenuItem(this, "sunburstStanza"),
+      downloadSvgMenuItem(this, "sunburst"),
+      downloadPngMenuItem(this, "sunburst"),
+      downloadJSONMenuItem(this, "sunburst", this._data),
+      downloadCSVMenuItem(this, "sunburst", this._data),
+      downloadTSVMenuItem(this, "sunburst", this._data),
+      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -538,8 +541,11 @@ class Sunburst extends Stanza {
 
     const data = await loadData(
       this.params["data-url"],
-      this.params["data-type"]
+      this.params["data-type"],
+      this.root.querySelector("main")
     );
+
+    this._data = data;
 
     for (let i = 0; i <= 5; i++) {
       colorScale.push(`--togostanza-series-${i}-color`);

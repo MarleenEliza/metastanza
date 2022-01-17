@@ -1,10 +1,9 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
 import { d as defineComponent, r as reactive, c as createElementBlock, F as Fragment, a as renderList, b as resolveComponent, o as openBlock, n as normalizeClass, e as createBaseVNode, t as toDisplayString, f as createBlock, g as createCommentVNode, h as toRefs, i as ref, w as watchEffect, j as createApp } from './runtime-dom.esm-bundler-437b7ee9.js';
-import { l as loadData } from './load-data-dbcbb851.js';
+import { l as loadData } from './load-data-7ac9fe5f.js';
 import { l as library, f as faChevronRight, F as FontAwesomeIcon } from './index.es-fff28208.js';
-import { g as appendCustomCss } from './index-28835b24.js';
-import './index-aba27c3b.js';
+import { g as appendCustomCss } from './index-5ca7f2c0.js';
 import './dsv-cd3740c6.js';
 import 'csv-stringify/browser/esm/sync.js';
 
@@ -259,7 +258,8 @@ var script = defineComponent({
         state.responseJSON = null;
         state.responseJSON = await loadData(
           params.dataUrl.value,
-          params.dataType.value
+          params.dataType.value,
+          params.main
         );
         state.checkedNodes = new Map();
       },
@@ -345,7 +345,7 @@ class ColumnTree extends Stanza {
       "var(--togostanza-background-color)";
 
     this._app?.unmount();
-    this._app = createApp(script, this.params);
+    this._app = createApp(script, { ...this.params, main });
     this._app.mount(main);
   }
 }

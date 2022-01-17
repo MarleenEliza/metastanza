@@ -1,9 +1,8 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-28835b24.js';
+import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-5ca7f2c0.js';
 import { d as defineComponent, c as createElementBlock, e as createBaseVNode, y as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, v as createVNode, g as createCommentVNode, f as createBlock, x as createTextVNode, b as resolveComponent, r as reactive, p as onMounted, i as ref, z as onRenderTriggered, a as renderList, n as normalizeClass, j as createApp } from './runtime-dom.esm-bundler-437b7ee9.js';
-import { l as loadData } from './load-data-dbcbb851.js';
-import './index-aba27c3b.js';
+import { l as loadData } from './load-data-7ac9fe5f.js';
 import 'csv-stringify/browser/esm/sync.js';
 import './dsv-cd3740c6.js';
 
@@ -324,7 +323,7 @@ var script = defineComponent({
     const state = reactive({
       columns: [],
       allRows: [],
-
+      main: null,
       offset: 0,
 
       isFetching: false,
@@ -341,9 +340,11 @@ var script = defineComponent({
       urlParams = new URLSearchParams(urlParams);
       const { dataUrl } = params;
       const connectCharacter = new URL(dataUrl) ? "&" : "?";
+
       const data = await loadData(
         `${dataUrl}${connectCharacter}${urlParams}`,
-        params.dataType
+        params.dataType,
+        params.main
       );
 
       if (params.columns) {
@@ -540,7 +541,7 @@ class ScrollTable extends Stanza {
     main.parentNode.style.padding = this.params["padding"];
 
     this._app?.unmount();
-    this._app = createApp(script, this.params);
+    this._app = createApp(script, { ...this.params, main });
     this._app.mount(main);
   }
 }

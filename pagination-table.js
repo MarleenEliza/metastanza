@@ -2,9 +2,8 @@ import { c as commonjsGlobal, d as defineStanzaElement } from './stanza-element-
 import { S as Stanza } from './timer-18f52222.js';
 import { h as toRefs, i as ref, k as computed, p as onMounted, q as onUnmounted, m as watch, f as createBlock, s as mergeProps, o as openBlock, d as defineComponent, u as onUpdated, c as createElementBlock, e as createBaseVNode, n as normalizeClass, v as createVNode, F as Fragment, a as renderList, x as createTextVNode, t as toDisplayString, g as createCommentVNode, b as resolveComponent, y as normalizeStyle, r as reactive, z as onRenderTriggered, A as withDirectives, B as vModelText, C as vModelSelect, D as withCtx, T as Transition, E as vModelCheckbox, j as createApp } from './runtime-dom.esm-bundler-437b7ee9.js';
 import { l as library, a as faAngleRight, b as faAngleDoubleRight, c as faAngleLeft, d as faAngleDoubleLeft, F as FontAwesomeIcon, e as faEllipsisH, g as faFilter, h as faSearch, i as faSort, j as faSortUp, k as faSortDown } from './index.es-fff28208.js';
-import { l as loadData } from './load-data-dbcbb851.js';
-import { b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-28835b24.js';
-import './index-aba27c3b.js';
+import { l as loadData } from './load-data-7ac9fe5f.js';
+import { b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-5ca7f2c0.js';
 import './dsv-cd3740c6.js';
 import 'csv-stringify/browser/esm/sync.js';
 
@@ -4374,7 +4373,7 @@ var script = defineComponent({
 
       columns: [],
       allRows: [],
-
+      main: null,
       queryForAllColumns: "",
 
       sorting: {
@@ -4521,7 +4520,7 @@ var script = defineComponent({
     }
 
     async function fetchData() {
-      const data = await loadData(params.dataUrl, params.dataType);
+      const data = await loadData(params.dataUrl, params.dataType, params.main);
       // const data = testData;
 
       state.responseJSON = data;
@@ -5081,7 +5080,7 @@ class PaginationTable extends Stanza {
     main.parentNode.style.padding = this.params["padding"];
 
     this._app?.unmount();
-    this._app = createApp(script, this.params);
+    this._app = createApp(script, { ...this.params, main });
     this._component = this._app.mount(main);
   }
 }

@@ -1,11 +1,10 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { s as select } from './index-aba27c3b.js';
-import { l as loadData } from './load-data-dbcbb851.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, g as appendCustomCss } from './index-28835b24.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-5ca7f2c0.js';
+import { l as loadData } from './load-data-7ac9fe5f.js';
 import { s as stratify, h as hierarchy } from './stratify-edf59490.js';
-import './dsv-cd3740c6.js';
 import 'csv-stringify/browser/esm/sync.js';
+import './dsv-cd3740c6.js';
 
 var homeIcon = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20494.59%20375.12%22%3E%3Cg%20id%3D%22%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC_2%22%20data-name%3D%22%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%202%22%3E%3Cg%20id%3D%22%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC_1-2%22%20data-name%3D%22%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%201%22%3E%3Cpath%20d%3D%22M244.37%2C103.9l-142.57%2C103V360.12a15%2C15%2C0%2C0%2C0%2C15%2C15h77a15%2C15%2C0%2C0%2C0%2C15-15v-92a15%2C15%2C0%2C0%2C1%2C15-15h48a15%2C15%2C0%2C0%2C1%2C15%2C15v92a15%2C15%2C0%2C0%2C0%2C15%2C15h76a15%2C15%2C0%2C0%2C0%2C15-15V206.87l-142.58-103A5%2C5%2C0%2C0%2C0%2C244.37%2C103.9Z%22%2F%3E%3Cpath%20d%3D%22M488%2C162.13%2C392.8%2C93.38V15.12a15%2C15%2C0%2C0%2C0-15-15h-24a15%2C15%2C0%2C0%2C0-15%2C15V54.38L276.63%2C9.48a50.13%2C50.13%2C0%2C0%2C0-58.67%2C0L6.61%2C162.13A15.94%2C15.94%2C0%2C0%2C0%2C3%2C184.39l20.55%2C28.46a16%2C16%2C0%2C0%2C0%2C22.27%2C3.59L238%2C77.69a15.93%2C15.93%2C0%2C0%2C1%2C18.67%2C0L448.75%2C216.44A16%2C16%2C0%2C0%2C0%2C471%2C212.85l20.55-28.46A15.94%2C15.94%2C0%2C0%2C0%2C488%2C162.13Z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E";
 
@@ -44,8 +43,12 @@ let currentDropdownMenu;
 class Breadcrumbs extends Stanza {
   menu() {
     return [
-      downloadSvgMenuItem(this, "tree"),
-      downloadPngMenuItem(this, "tree"),
+      downloadSvgMenuItem(this, "breadcrumbs"),
+      downloadPngMenuItem(this, "breadcrumbs"),
+      downloadJSONMenuItem(this, "breadcrumbs", this._data),
+      downloadCSVMenuItem(this, "breadcrumbs", this._data),
+      downloadTSVMenuItem(this, "breadcrumbs", this._data),
+      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -69,12 +72,15 @@ class Breadcrumbs extends Stanza {
     const width = this.params["width"];
     const height = this.params["height"];
     const showDropdown = this.params["show-dropdown"];
+
     const data = await loadData(
       this.params["data-url"],
-      this.params["data-type"]
+      this.params["data-type"],
+      this.root.querySelector("main")
     );
+    this._data = data;
 
-    if (!currentDataId && this.props["initinal-data-id"]) {
+    if (!currentDataId && this.params["initinal-data-id"]) {
       currentDataId = this.params["initinal-data-id"];
     }
 
@@ -381,7 +387,8 @@ var metadata = {
 		"stanza:key": "initinal-data-id",
 		"stanza:type": "number",
 		"stanza:description": "Initial node id",
-		"stanza:required": false
+		"stanza:example": 6,
+		"stanza:required": true
 	},
 	{
 		"stanza:key": "custom-css-url",
