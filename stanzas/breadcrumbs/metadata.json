@@ -32,8 +32,17 @@
       "stanza:key": "initinal-data-id",
       "stanza:type": "number",
       "stanza:description": "Initial node id",
-      "stanza:required": false
+      "stanza:example": 6,
+      "stanza:required": true
     },
+    {
+      "stanza:key": "home-icon",
+      "stanza:type": "string",
+      "stanza:description": "Root icon",
+      "stanza:example": "Home",
+      "stanza:required": true
+    },
+
     {
       "stanza:key": "custom-css-url",
       "stanza:example": "",
@@ -65,6 +74,12 @@
   "stanza:menu-placement": "bottom-right",
   "stanza:style": [
     {
+      "stanza:key": "--togostanza-home-icon-color",
+      "stanza:type": "color",
+      "stanza:default": "#000000",
+      "stanza:description": "Home icon color"
+    },
+    {
       "stanza:key": "--togostanza-label-font-family",
       "stanza:type": "text",
       "stanza:default": "Helvetica Neue",
@@ -87,6 +102,12 @@
       "stanza:type": "color",
       "stanza:default": "#c5c5c5",
       "stanza:description": "Background color"
+    },
+    {
+      "stanza:key": "--togostanza-background-color-opacity",
+      "stanza:type": "number",
+      "stanza:default": 0,
+      "stanza:description": "Background color opacity"
     },
     {
       "stanza:key": "--togostanza-label-background-color-hover",

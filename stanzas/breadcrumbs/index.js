@@ -1,7 +1,10 @@
 import Stanza from "togostanza/stanza";
 import * as d3 from "d3";
-import homeIcon from "./assets/home.svg";
 import loadData from "togostanza-utils/load-data";
+import * as FAIcons from "@fortawesome/free-solid-svg-icons";
+
+//convert kebab-case into camelCase
+const camelize = (s) => s.replace(/-./g, (x) => x[1].toUpperCase());
 
 import {
   downloadSvgMenuItem,
@@ -44,22 +47,19 @@ export default class Breadcrumbs extends Stanza {
 
     appendCustomCss(this, this.params["custom-css-url"]);
 
-    // const css = (key) => getComputedStyle(this.element).getPropertyValue(key);
-
-    //width
     const width = this.params["width"];
     const height = this.params["height"];
     const showDropdown = this.params["show-dropdown"];
+    const homeIcon = this.params["home-icon"] || "Home";
 
     const data = await loadData(
       this.params["data-url"],
       this.params["data-type"],
       this.root.querySelector("main")
     );
-
     this._data = data;
 
-    if (!currentDataId) {
+    if (!currentDataId && this.params["initinal-data-id"]) {
       currentDataId = this.params["initinal-data-id"];
     }
 
@@ -99,6 +99,7 @@ export default class Breadcrumbs extends Stanza {
       width,
       height,
       showDropdown,
+      homeIcon,
     };
     renderElement(el, filteredData, opts, dispatcher, currentDataId);
   }
@@ -242,7 +243,7 @@ function renderElement(el, data, opts, dispatcher = null) {
       .classed("disabled", (d) => !d.children);
 
     //Separator
-    rowContainer.filter((d, i, nodes) => i < nodes.length - 1).append("hr");
+    rowContainer.filter((_, i, nodes) => i < nodes.length - 1).append("hr");
   }
 
   function update(data) {
@@ -272,29 +273,48 @@ function renderElement(el, data, opts, dispatcher = null) {
         return update(getCurrentData(currentDataId));
       });
 
+    if (opts.showDropdown) {
+      label.on("mouseover", showDropdown);
+      label.on("mouseout", showDropdown);
+    }
+
     label.filter((d) => d.parent).text((d) => d.data.data.label);
+
+    // Add icon from fontawesome as inline SVG
+
+    const camelizedIconName =
+      camelize(`fa-${opts.homeIcon}`) in FAIcons
+        ? camelize(`fa-${opts.homeIcon}`)
+        : "faHome";
 
     label
       .filter((d) => !d.parent)
-      .append("img")
-      .attr("src", homeIcon);
+      .append("svg")
+      .attr(
+        "viewBox",
+        `0 0 ${FAIcons[camelizedIconName].icon[0]} ${FAIcons[camelizedIconName].icon[1]}`
+      )
+      .attr("width", "0.8rem")
+      .append("path")
+      .attr("d", FAIcons[camelizedIconName].icon[4])
+      .attr("class", "home-icon");
 
-    if (opts.showDropdown) {
-      // node dropdown icon
-      breadcrumbNode
-        .append("div")
-        .classed("node-dropdown-container", true)
-        .attr("style", (d) => {
-          if (d.parent && d.parent.children.length > 1) {
-            return null;
-          }
-          return "display:none";
-        })
-        .filter((d) => d.parent && d.parent.children.length > 1)
-        .on("click", showDropdown)
-        .append("div")
-        .classed("node-dropdown", true);
-    }
+    // if (opts.showDropdown) {
+    //   // node dropdown icon
+    //   breadcrumbNode
+    //     .append("div")
+    //     .classed("node-dropdown-container", true)
+    //     .attr("style", (d) => {
+    //       if (d.parent && d.parent.children.length > 1) {
+    //         return null;
+    //       }
+    //       return "display:none";
+    //     })
+    //     .filter((d) => d.parent && d.parent.children.length > 1)
+    //     .on("click", showDropdown)
+    //     .append("div")
+    //     .classed("node-dropdown", true);
+    // }
 
     // node forward icon
     breadcrumbNode
