@@ -6700,6 +6700,9 @@ class Legend extends s {
     this.render();
     const positions = opt.position || ["top", "right"];
 
+    //  name of style property to fadeout. for fill - "opacity", for path's stroke - "stroke-opacity" etc.
+    const fadeProp = opt.fadeProp || "opacity";
+
     // placement
     const legend = this.shadowRoot.querySelector(".legend");
     positions.forEach((position) => (legend.style[position] = 0));
@@ -6717,9 +6720,13 @@ class Legend extends s {
         .forEach((tr) => {
           tr.addEventListener("mouseover", () => {
             const datum = items.find((item) => item.id === tr.dataset.id);
+
             if (datum) {
-              opt.fadeoutNodes.forEach((node) => (node.style.opacity = 0.2));
-              datum.node.style.opacity = "";
+              opt.fadeoutNodes.forEach((node) => {
+                node.style[fadeProp] = 0.2;
+              });
+              datum.node.style[fadeProp] = "";
+
               leader.classList.add("-show");
               const originRect = this.shadowRoot
                 .querySelector(".origin")
@@ -6744,7 +6751,9 @@ class Legend extends s {
             }
           });
           tr.addEventListener("mouseleave", () => {
-            opt.fadeoutNodes.forEach((node) => (node.style.opacity = ""));
+            opt.fadeoutNodes.forEach((node) => {
+              node.style[fadeProp] = "";
+            });
             leader.classList.remove("-show");
           });
         });
