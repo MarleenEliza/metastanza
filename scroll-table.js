@@ -1,9 +1,8 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-5ca7f2c0.js';
-import { d as defineComponent, c as createElementBlock, e as createBaseVNode, y as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, v as createVNode, g as createCommentVNode, f as createBlock, x as createTextVNode, b as resolveComponent, r as reactive, p as onMounted, i as ref, z as onRenderTriggered, a as renderList, n as normalizeClass, j as createApp } from './runtime-dom.esm-bundler-437b7ee9.js';
-import { l as loadData } from './load-data-7ac9fe5f.js';
-import 'csv-stringify/browser/esm/sync.js';
+import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-8e15dd3b.js';
+import { d as defineComponent, c as createElementBlock, b as createBaseVNode, B as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, p as createVNode, e as createCommentVNode, f as createBlock, g as createTextVNode, a as resolveComponent, j as reactive, x as onMounted, i as ref, C as onRenderTriggered, r as renderList, n as normalizeClass, q as createApp } from './runtime-dom.esm-bundler-284285a2.js';
+import { l as loadData } from './load-data-f0e94d84.js';
 import './dsv-cd3740c6.js';
 
 var script$2 = defineComponent({

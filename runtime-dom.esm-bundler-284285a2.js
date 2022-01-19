@@ -6099,6 +6099,48 @@ function getCheckboxValue(el, checked) {
     return key in el ? el[key] : checked;
 }
 
+const vShow = {
+    beforeMount(el, { value }, { transition }) {
+        el._vod = el.style.display === 'none' ? '' : el.style.display;
+        if (transition && value) {
+            transition.beforeEnter(el);
+        }
+        else {
+            setDisplay(el, value);
+        }
+    },
+    mounted(el, { value }, { transition }) {
+        if (transition && value) {
+            transition.enter(el);
+        }
+    },
+    updated(el, { value, oldValue }, { transition }) {
+        if (!value === !oldValue)
+            return;
+        if (transition) {
+            if (value) {
+                transition.beforeEnter(el);
+                setDisplay(el, true);
+                transition.enter(el);
+            }
+            else {
+                transition.leave(el, () => {
+                    setDisplay(el, false);
+                });
+            }
+        }
+        else {
+            setDisplay(el, value);
+        }
+    },
+    beforeUnmount(el, { value }) {
+        setDisplay(el, value);
+    }
+};
+function setDisplay(el, value) {
+    el.style.display = value ? el._vod : 'none';
+}
+
 const rendererOptions = extend({ patchProp }, nodeOps);
 // lazy create the renderer - this makes core renderer logic tree-shakable
 // in case the user only imports reactivity utilities from Vue.
@@ -6141,5 +6183,5 @@ function normalizeContainer(container) {
     return container;
 }
 
-export { withDirectives as A, vModelText as B, vModelSelect as C, withCtx as D, vModelCheckbox as E, Fragment as F, Transition as T, renderList as a, resolveComponent as b, createElementBlock as c, defineComponent as d, createBaseVNode as e, createBlock as f, createCommentVNode as g, toRefs as h, ref as i, createApp as j, computed as k, h as l, watch as m, normalizeClass as n, openBlock as o, onMounted as p, onUnmounted as q, reactive as r, mergeProps as s, toDisplayString as t, onUpdated as u, createVNode as v, watchEffect as w, createTextVNode as x, normalizeStyle as y, onRenderTriggered as z };
-//# sourceMappingURL=runtime-dom.esm-bundler-437b7ee9.js.map
+export { onUpdated as A, normalizeStyle as B, onRenderTriggered as C, vModelSelect as D, withCtx as E, Fragment as F, vModelCheckbox as G, Transition as T, resolveComponent as a, createBaseVNode as b, createElementBlock as c, defineComponent as d, createCommentVNode as e, createBlock as f, createTextVNode as g, toRefs as h, ref as i, reactive as j, watchEffect as k, computed as l, vModelText as m, normalizeClass as n, openBlock as o, createVNode as p, createApp as q, renderList as r, h as s, toDisplayString as t, watch as u, vShow as v, withDirectives as w, onMounted as x, onUnmounted as y, mergeProps as z };
+//# sourceMappingURL=runtime-dom.esm-bundler-284285a2.js.map

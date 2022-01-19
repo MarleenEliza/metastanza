@@ -1,4 +1,4 @@
-import { d as defineComponent, k as computed, l as h, m as watch } from './runtime-dom.esm-bundler-437b7ee9.js';
+import { d as defineComponent, l as computed, s as h, u as watch } from './runtime-dom.esm-bundler-284285a2.js';
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
@@ -1825,6 +1825,11 @@ var faChevronRight = {
   iconName: 'chevron-right',
   icon: [320, 512, [], "f054", "M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"]
 };
+var faClipboard = {
+  prefix: 'fas',
+  iconName: 'clipboard',
+  icon: [384, 512, [], "f328", "M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"]
+};
 var faEllipsisH = {
   prefix: 'fas',
   iconName: 'ellipsis-h',
@@ -1856,5 +1861,5 @@ var faSortUp = {
   icon: [320, 512, [], "f0de", "M279 224H41c-21.4 0-32.1-25.9-17-41L143 64c9.4-9.4 24.6-9.4 33.9 0l119 119c15.2 15.1 4.5 41-16.9 41z"]
 };
 
-export { FontAwesomeIcon as F, faAngleRight as a, faAngleDoubleRight as b, faAngleLeft as c, faAngleDoubleLeft as d, faEllipsisH as e, faChevronRight as f, faFilter as g, faSearch as h, faSort as i, faSortUp as j, faSortDown as k, library as l };
-//# sourceMappingURL=index.es-fff28208.js.map
+export { FontAwesomeIcon as F, faClipboard as a, faAngleRight as b, faAngleDoubleRight as c, faAngleLeft as d, faAngleDoubleLeft as e, faChevronRight as f, faEllipsisH as g, faFilter as h, faSearch as i, faSort as j, faSortUp as k, library as l, faSortDown as m };
+//# sourceMappingURL=index.es-7d7843ab.js.map

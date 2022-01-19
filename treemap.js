@@ -1,10 +1,9 @@
 import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
 import { S as Stanza } from './timer-18f52222.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-5ca7f2c0.js';
-import { l as loadData } from './load-data-7ac9fe5f.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-8e15dd3b.js';
+import { l as loadData } from './load-data-f0e94d84.js';
 import { e as exponent, t as treemapDice, r as roundNode, a as interpolateNumber, i as interpolate, b as formatSpecifier, c as formatPrefix, f as format, d as initRange, o as ordinal, s as sum } from './ordinal-153cc3a5.js';
 import { r as required, s as stratify, h as hierarchy } from './stratify-edf59490.js';
-import 'csv-stringify/browser/esm/sync.js';
 import './dsv-cd3740c6.js';
 
 function ascending(a, b) {
