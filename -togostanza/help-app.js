@@ -1,4 +1,4 @@
-import { d as defineComponent, h as computed, a as createElementBlock, e as createBaseVNode, f as createCommentVNode, i as createTextVNode, t as toDisplayString, F as Fragment, b as renderList, n as normalizeClass, o as openBlock, j as ref, k as octicons, m as mergeProps, l as watch, p as createVNode, c as createBlock, q as normalizeProps, u as guardReactiveProps, v as resolveDynamicComponent, r as resolveComponent, s as script$4, x as pushScopeId, y as popScopeId, w as withCtx, z as n, g as createApp } from './Layout-5a36a5d6.js';
+import { d as defineComponent, h as computed, a as createElementBlock, e as createBaseVNode, f as createCommentVNode, i as createTextVNode, t as toDisplayString, F as Fragment, b as renderList, n as normalizeClass, o as openBlock, j as ref, k as octicons, m as mergeProps, l as watch, p as createVNode, c as createBlock, q as normalizeProps, u as guardReactiveProps, v as resolveDynamicComponent, r as resolveComponent, s as script$4, w as withCtx, x as pushScopeId, y as popScopeId, z as n, g as createApp } from './Layout-9c52c820.js';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -3391,12 +3391,12 @@ function parse(valueStr, type) {
   }
 }
 
-pushScopeId("data-v-0732abc2");
+const _withScopeId = n => (pushScopeId("data-v-0732abc2"),n=n(),popScopeId(),n);
 const _hoisted_1 = { class: "display-4" };
 const _hoisted_2 = { class: "lead" };
 const _hoisted_3 = { class: "row" };
 const _hoisted_4 = { class: "col-lg-6" };
-const _hoisted_5 = /*#__PURE__*/createBaseVNode("nav", {
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("nav", {
   class: "nav nav-tabs",
   role: "tablist"
 }, [
@@ -3418,7 +3418,7 @@ const _hoisted_5 = /*#__PURE__*/createBaseVNode("nav", {
     "data-bs-toggle": "tab",
     role: "tab"
   }, "Event")
-], -1 /* HOISTED */);
+], -1 /* HOISTED */));
 const _hoisted_6 = { class: "tab-content mt-3" };
 const _hoisted_7 = {
   class: "tab-pane active px-lg-5",
@@ -3426,17 +3426,17 @@ const _hoisted_7 = {
   role: "tabpanel"
 };
 const _hoisted_8 = { class: "table table-borderless border mb-1" };
-const _hoisted_9 = /*#__PURE__*/createBaseVNode("th", null, "Author", -1 /* HOISTED */);
+const _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("th", null, "Author", -1 /* HOISTED */));
 const _hoisted_10 = { class: "mb-0" };
-const _hoisted_11 = /*#__PURE__*/createBaseVNode("th", null, "Contributors", -1 /* HOISTED */);
+const _hoisted_11 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("th", null, "Contributors", -1 /* HOISTED */));
 const _hoisted_12 = {
   key: 0,
   class: "list-unstyled mb-0"
 };
 const _hoisted_13 = /*#__PURE__*/createTextVNode(" - ");
-const _hoisted_14 = /*#__PURE__*/createBaseVNode("th", null, "License", -1 /* HOISTED */);
-const _hoisted_15 = /*#__PURE__*/createBaseVNode("th", null, "Created", -1 /* HOISTED */);
-const _hoisted_16 = /*#__PURE__*/createBaseVNode("th", null, "Updated", -1 /* HOISTED */);
+const _hoisted_14 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("th", null, "License", -1 /* HOISTED */));
+const _hoisted_15 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("th", null, "Created", -1 /* HOISTED */));
+const _hoisted_16 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("th", null, "Updated", -1 /* HOISTED */));
 const _hoisted_17 = { class: "text-end" };
 const _hoisted_18 = ["href"];
 const _hoisted_19 = ["innerHTML"];
@@ -3445,11 +3445,11 @@ const _hoisted_20 = {
   id: "customize",
   role: "tabpanel"
 };
-const _hoisted_21 = /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Parameters", -1 /* HOISTED */);
+const _hoisted_21 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Parameters", -1 /* HOISTED */));
 const _hoisted_22 = { class: "row row-cols-1 row-cols-sm-2 row-cols-lg-1 row-cols-xl-2 gx-4 gy-3" };
 const _hoisted_23 = { class: "col" };
-const _hoisted_24 = /*#__PURE__*/createBaseVNode("hr", { class: "mt-4 mb-3" }, null, -1 /* HOISTED */);
-const _hoisted_25 = /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Styles", -1 /* HOISTED */);
+const _hoisted_24 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("hr", { class: "mt-4 mb-3" }, null, -1 /* HOISTED */));
+const _hoisted_25 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Styles", -1 /* HOISTED */));
 const _hoisted_26 = { class: "row row-cols-1 row-cols-sm-2 row-cols-lg-1 row-cols-xl-2 gx-4 gy-3" };
 const _hoisted_27 = {
   key: 0,
@@ -3460,14 +3460,14 @@ const _hoisted_28 = {
   id: "event",
   role: "tabpanel"
 };
-const _hoisted_29 = /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Outgoing Events", -1 /* HOISTED */);
+const _hoisted_29 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Outgoing Events", -1 /* HOISTED */));
 const _hoisted_30 = { class: "row row-cols-2" };
 const _hoisted_31 = { class: "text-muted" };
 const _hoisted_32 = {
   key: 0,
   class: "fst-italic"
 };
-const _hoisted_33 = /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Incoming Events", -1 /* HOISTED */);
+const _hoisted_33 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("h2", { class: "my-3" }, "Incoming Events", -1 /* HOISTED */));
 const _hoisted_34 = { class: "row row-cols-2" };
 const _hoisted_35 = { class: "text-muted" };
 const _hoisted_36 = {
@@ -3475,8 +3475,7 @@ const _hoisted_36 = {
   class: "fst-italic"
 };
 const _hoisted_37 = { class: "col-lg-6" };
-const _hoisted_38 = /*#__PURE__*/createBaseVNode("hr", { class: "d-lg-none mb-4" }, null, -1 /* HOISTED */);
-popScopeId();
+const _hoisted_38 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createBaseVNode("hr", { class: "d-lg-none mb-4" }, null, -1 /* HOISTED */));
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormField = resolveComponent("FormField");

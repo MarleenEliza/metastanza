@@ -1,10 +1,9 @@
-import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
-import { S as Stanza } from './timer-18f52222.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-8e15dd3b.js';
-import { l as loadData } from './load-data-f0e94d84.js';
-import { e as exponent, t as treemapDice, r as roundNode, a as interpolateNumber, i as interpolate, b as formatSpecifier, c as formatPrefix, f as format, d as initRange, o as ordinal, s as sum } from './ordinal-153cc3a5.js';
-import { r as required, s as stratify, h as hierarchy } from './stratify-edf59490.js';
-import './dsv-cd3740c6.js';
+import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
+import { S as Stanza } from './stanza-7a5318fa.js';
+import { i as interpolateNumber, d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-1e0b4ea1.js';
+import { l as loadData } from './load-data-0be92417.js';
+import { e as exponent, t as treemapDice, r as roundNode, i as interpolate, a as formatSpecifier, b as formatPrefix, f as format, c as initRange, o as ordinal, s as sum } from './ordinal-648f1411.js';
+import { r as required, s as stratify, h as hierarchy } from './stratify-8f602319.js';
 
 function ascending(a, b) {
   return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
@@ -15,7 +14,7 @@ function bisector(f) {
   let compare1 = f;
   let compare2 = f;
 
-  if (f.length === 1) {
+  if (f.length !== 2) {
     delta = (d, x) => f(d) - x;
     compare1 = ascending;
     compare2 = (d, x) => ascending(f(d), x);
@@ -115,6 +114,12 @@ function tickStep(start, stop, count) {
   else if (error >= e5) step1 *= 5;
   else if (error >= e2) step1 *= 2;
   return stop < start ? -step1 : step1;
+}
+
+function interpolateRound(a, b) {
+  return a = +a, b = +b, function(t) {
+    return Math.round(a * (1 - t) + b * t);
+  };
 }
 
 function precisionFixed(step) {
@@ -305,12 +310,6 @@ function index() {
   };
 
   return treemap;
-}
-
-function interpolateRound(a, b) {
-  return a = +a, b = +b, function(t) {
-    return Math.round(a * (1 - t) + b * t);
-  };
 }
 
 function constants(x) {

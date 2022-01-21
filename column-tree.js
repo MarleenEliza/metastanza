@@ -1,10 +1,9 @@
-import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
-import { S as Stanza } from './timer-18f52222.js';
-import { d as defineComponent, c as createElementBlock, F as Fragment, r as renderList, a as resolveComponent, o as openBlock, n as normalizeClass, b as createBaseVNode, t as toDisplayString, e as createCommentVNode, f as createBlock, w as withDirectives, v as vShow, g as createTextVNode, h as toRefs, i as ref, j as reactive, k as watchEffect, l as computed, m as vModelText, p as createVNode, q as createApp } from './runtime-dom.esm-bundler-284285a2.js';
-import { l as loadData } from './load-data-f0e94d84.js';
-import { l as library, f as faChevronRight, a as faClipboard, F as FontAwesomeIcon } from './index.es-7d7843ab.js';
-import { g as appendCustomCss } from './index-8e15dd3b.js';
-import './dsv-cd3740c6.js';
+import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
+import { S as Stanza } from './stanza-7a5318fa.js';
+import { d as defineComponent, c as createElementBlock, F as Fragment, r as renderList, a as resolveComponent, o as openBlock, n as normalizeClass, b as createBaseVNode, t as toDisplayString, e as createCommentVNode, f as createBlock, w as withDirectives, v as vShow, g as createTextVNode, h as toRefs, i as ref, j as reactive, k as watchEffect, l as computed, m as vModelText, p as createVNode, q as createApp } from './runtime-dom.esm-bundler-aed7bd28.js';
+import { l as loadData } from './load-data-0be92417.js';
+import { l as library, f as faChevronRight, a as faClipboard, F as FontAwesomeIcon } from './index.es-bb403b6c.js';
+import { g as appendCustomCss } from './index-1e0b4ea1.js';
 
 var metadata = {
 	"@context": {
@@ -630,7 +629,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onMouseleave: _cache[3] || (_cache[3] = $event => (_ctx.state.showSuggestions ? _ctx.toggleSuggestions() : null))
     }, [
       withDirectives(createBaseVNode("input", {
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => (_ctx.state.searchTerm = $event)),
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.state.searchTerm) = $event)),
         type: "text",
         placeholder: "Search for keywords or path*",
         class: "search",

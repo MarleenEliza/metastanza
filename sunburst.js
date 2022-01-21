@@ -1,10 +1,9 @@
-import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
-import { S as Stanza } from './timer-18f52222.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-8e15dd3b.js';
-import { l as loadData } from './load-data-f0e94d84.js';
-import { t as treemapDice, r as roundNode, f as format, o as ordinal, i as interpolate, s as sum } from './ordinal-153cc3a5.js';
-import { s as stratify, h as hierarchy } from './stratify-edf59490.js';
-import './dsv-cd3740c6.js';
+import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
+import { S as Stanza } from './stanza-7a5318fa.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-1e0b4ea1.js';
+import { l as loadData } from './load-data-0be92417.js';
+import { t as treemapDice, r as roundNode, f as format, o as ordinal, i as interpolate, s as sum } from './ordinal-648f1411.js';
+import { s as stratify, h as hierarchy } from './stratify-8f602319.js';
 
 function max$1(values, valueof) {
   let max;
@@ -25,56 +24,6 @@ function max$1(values, valueof) {
     }
   }
   return max;
-}
-
-function partition() {
-  var dx = 1,
-      dy = 1,
-      padding = 0,
-      round = false;
-
-  function partition(root) {
-    var n = root.height + 1;
-    root.x0 =
-    root.y0 = padding;
-    root.x1 = dx;
-    root.y1 = dy / n;
-    root.eachBefore(positionNode(dy, n));
-    if (round) root.eachBefore(roundNode);
-    return root;
-  }
-
-  function positionNode(dy, n) {
-    return function(node) {
-      if (node.children) {
-        treemapDice(node, node.x0, dy * (node.depth + 1) / n, node.x1, dy * (node.depth + 2) / n);
-      }
-      var x0 = node.x0,
-          y0 = node.y0,
-          x1 = node.x1 - padding,
-          y1 = node.y1 - padding;
-      if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
-      if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-      node.x0 = x0;
-      node.y0 = y0;
-      node.x1 = x1;
-      node.y1 = y1;
-    };
-  }
-
-  partition.round = function(x) {
-    return arguments.length ? (round = !!x, partition) : round;
-  };
-
-  partition.size = function(x) {
-    return arguments.length ? (dx = +x[0], dy = +x[1], partition) : [dx, dy];
-  };
-
-  partition.padding = function(x) {
-    return arguments.length ? (padding = +x, partition) : padding;
-  };
-
-  return partition;
 }
 
 const pi$1 = Math.PI,
@@ -206,24 +155,74 @@ Path.prototype = path$1.prototype = {
   }
 };
 
+function partition() {
+  var dx = 1,
+      dy = 1,
+      padding = 0,
+      round = false;
+
+  function partition(root) {
+    var n = root.height + 1;
+    root.x0 =
+    root.y0 = padding;
+    root.x1 = dx;
+    root.y1 = dy / n;
+    root.eachBefore(positionNode(dy, n));
+    if (round) root.eachBefore(roundNode);
+    return root;
+  }
+
+  function positionNode(dy, n) {
+    return function(node) {
+      if (node.children) {
+        treemapDice(node, node.x0, dy * (node.depth + 1) / n, node.x1, dy * (node.depth + 2) / n);
+      }
+      var x0 = node.x0,
+          y0 = node.y0,
+          x1 = node.x1 - padding,
+          y1 = node.y1 - padding;
+      if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
+      if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
+      node.x0 = x0;
+      node.y0 = y0;
+      node.x1 = x1;
+      node.y1 = y1;
+    };
+  }
+
+  partition.round = function(x) {
+    return arguments.length ? (round = !!x, partition) : round;
+  };
+
+  partition.size = function(x) {
+    return arguments.length ? (dx = +x[0], dy = +x[1], partition) : [dx, dy];
+  };
+
+  partition.padding = function(x) {
+    return arguments.length ? (padding = +x, partition) : padding;
+  };
+
+  return partition;
+}
+
 function constant(x) {
   return function constant() {
     return x;
   };
 }
 
-var abs = Math.abs;
-var atan2 = Math.atan2;
-var cos = Math.cos;
-var max = Math.max;
-var min = Math.min;
-var sin = Math.sin;
-var sqrt = Math.sqrt;
+const abs = Math.abs;
+const atan2 = Math.atan2;
+const cos = Math.cos;
+const max = Math.max;
+const min = Math.min;
+const sin = Math.sin;
+const sqrt = Math.sqrt;
 
-var epsilon = 1e-12;
-var pi = Math.PI;
-var halfPi = pi / 2;
-var tau = 2 * pi;
+const epsilon = 1e-12;
+const pi = Math.PI;
+const halfPi = pi / 2;
+const tau = 2 * pi;
 
 function acos(x) {
   return x > 1 ? 0 : x < -1 ? pi : Math.acos(x);

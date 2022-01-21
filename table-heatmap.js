@@ -1,7 +1,6 @@
-import { d as defineStanzaElement } from './stanza-element-b2b9c74e.js';
-import { S as Stanza } from './timer-18f52222.js';
-import { e as embed } from './vega-embed.module-ee10f59c.js';
-import './dsv-cd3740c6.js';
+import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
+import { S as Stanza } from './stanza-7a5318fa.js';
+import { e as embed } from './vega-embed.module-2e167ee9.js';
 
 class tableHeatmap extends Stanza {
   async render() {

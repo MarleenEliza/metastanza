@@ -25,10 +25,6 @@ text {
   opacity: 1;
 }
 
-#euler-diagram .venn-circle > text {
-  fill: var(--togostanza-label-font-color) !important;
-}
-
 #MetaStanzaLegend {
   padding: 3px 9px;
   position: absolute;
