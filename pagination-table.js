@@ -4074,7 +4074,7 @@ var metadata = {
 	"stanza:parameter": [
 	{
 		"stanza:key": "data-url",
-		"stanza:example": "https://sparql-support.dbcls.jp/sparqlist/api/metastanza_table_body?taxonomy=9606&limit=1000&offset=0&count=",
+		"stanza:example": "https://raw.githubusercontent.com/togostanza/togostanza-data/main/samples/json/pagination-table.disease-gwas.json",
 		"stanza:description": "Data source URL",
 		"stanza:required": true
 	},
@@ -4133,7 +4133,7 @@ var metadata = {
 	},
 	{
 		"stanza:key": "columns",
-		"stanza:example": "[{\"id\": \"id\",\"label\": \"Accession\",\"link\": \"uniprot\",\"target\": \"self\"},{\"id\": \"mnemonic\",\"class\": \"mnemonic\",\"label\": \"Mnemonic\"},{\"id\": \"name\",\"label\": \"Proteinname\"},{\"id\": \"mass\",\"label\": \"Mass\",\"type\": \"number\",\"align\": \"right\"},{\"id\": \"location_name\",\"label\": \"Subcellularlocation\",\"link\": \"location_uniprot\",\"type\": \"category\",\"rowspan\": true}]",
+		"stanza:example": "[{\"id\":\"variant_and_risk_allele\",\"label\":\"rs# and risk allele\",\"escape\":false,\"line-clamp\":3},{\"id\":\"raf\",\"label\":\"RAF\",\"line-clamp\":3},{\"id\":\"p_value\",\"label\":\"P-value\",\"line-clamp\":3},{\"id\":\"odds_ratio\",\"label\":\"OR\",\"sprintf\":\"%-9.3e\",\"line-clamp\":3},{\"id\":\"ci_text\",\"label\":\"CI\",\"line-clamp\":3},{\"id\":\"beta\",\"label\":\"Beta\",\"sprintf\":\"%-9.3e\",\"line-clamp\":3},{\"id\":\"beta_unit\",\"label\":\"Beta unit\",\"line-clamp\":3},{\"id\":\"mapped_trait\",\"label\":\"Trait(s)\",\"escape\":false,\"line-clamp\":3},{\"id\":\"pubmed_id\",\"label\":\"PubMed ID\",\"link\":\"pubmed_uri\",\"line-clamp\":3},{\"id\":\"study_detail\",\"label\":\"Study accession\",\"link\":\"study\",\"line-clamp\":3},{\"id\":\"initial_sample_size\",\"label\":\"Discovery sample description\",\"line-clamp\":3},{\"id\":\"replication_sample_size\",\"label\":\"Replication sample description\",\"line-clamp\":3}]",
 		"stanza:description": "Columns' options"
 	}
 ],
@@ -4611,7 +4611,7 @@ function createColumnState(columnDef, values) {
   };
 
   if (columnDef.type === "number") {
-    const nums = values.map(Number);
+    const nums = values.map(Number).filter(value => !Number.isNaN(value));
     const minValue = Math.min(...nums);
     const maxValue = Math.max(...nums) < 1 ? 1 : Math.max(...nums);
     const rangeMin = ref(minValue);
@@ -4645,12 +4645,16 @@ function createColumnState(columnDef, values) {
       isSearchModalShowing: false,
       parseValue(val) {
         if (columnDef["sprintf"]) {
-          val = sprintf.sprintf(columnDef["sprintf"], Number.parseFloat(val));
+          return formattedValue(columnDef["sprintf"], val);
+        } else {
+          return val;
         }
-        return val;
       },
 
       isMatch(val) {
+        if (Number.isNaN(rangeMin.value) || Number.isNaN(rangeMax.value)) {
+          return true;
+        }
         return val >= rangeMin.value && val <= rangeMax.value;
       },
     };
@@ -4682,7 +4686,13 @@ function createColumnState(columnDef, values) {
 
     return {
       ...baseProps,
-      parseValue: String,
+      parseValue(val) {
+        if (columnDef["sprintf"]) {
+          return formattedValue(columnDef["sprintf"], val);
+        } else {
+          return String(val);
+        }
+      },
       query,
       isSearchConditionGiven,
       filters,
@@ -4710,6 +4720,15 @@ function searchByEachColumn(row) {
   return row.every((cell) => {
     return cell.column.isMatch(cell.value);
   });
+}
+
+function formattedValue(format, val) {
+  try {
+    return sprintf.sprintf(format, val);
+  } catch(e) {
+    console.error(e);
+    return val;
+  }
 }
 
 const _hoisted_1 = { class: "tableOptionWrapper" };
