@@ -2446,9 +2446,9 @@ var metadata = {
 	"@context": {
 	stanza: "http://togostanza.org/resource/stanza#"
 },
-	"@id": "venn-stanza",
-	"stanza:label": "Venn stanza",
-	"stanza:definition": "Venn stanza MetaStanza",
+	"@id": "venn-diagram",
+	"stanza:label": "Venn diagram",
+	"stanza:definition": "Venn diagram MetaStanza",
 	"stanza:type": "Stanza",
 	"stanza:display": "Image",
 	"stanza:provider": "TogoStanza",
@@ -2458,7 +2458,7 @@ var metadata = {
 	"stanza:contributor": [
 ],
 	"stanza:created": "2021-08-03",
-	"stanza:updated": "2021-08-03",
+	"stanza:updated": "2022-01-23",
 	"stanza:parameter": [
 	{
 		"stanza:key": "data-url",
@@ -2617,4 +2617,4 @@ var templates = [
 const url = import.meta.url.replace(/\?.*$/, '');
 
 defineStanzaElement({stanzaModule, metadata, templates, url});
-//# sourceMappingURL=venn-stanza.js.map
+//# sourceMappingURL=venn-diagram.js.map
