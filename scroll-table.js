@@ -1,8 +1,9 @@
 import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
 import { S as Stanza } from './stanza-7a5318fa.js';
-import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-1e0b4ea1.js';
+import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f93c5e7f.js';
 import { d as defineComponent, c as createElementBlock, b as createBaseVNode, B as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, p as createVNode, e as createCommentVNode, f as createBlock, g as createTextVNode, a as resolveComponent, j as reactive, x as onMounted, i as ref, C as onRenderTriggered, r as renderList, n as normalizeClass, q as createApp } from './runtime-dom.esm-bundler-aed7bd28.js';
-import { l as loadData } from './load-data-0be92417.js';
+import { l as loadData } from './load-data-492aa036.js';
+import 'csv-stringify/browser/esm/sync.js';
 
 var script$2 = defineComponent({
   props: {

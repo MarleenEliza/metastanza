@@ -1,4 +1,4 @@
-import { h as constant, i as interpolateNumber, j as color, k as interpolateRgb, l as interpolateString } from './index-1e0b4ea1.js';
+import { h as constant, i as interpolateNumber, j as color, k as interpolateRgb, l as interpolateString } from './index-f93c5e7f.js';
 
 class InternMap extends Map {
   constructor(entries, key = keyof) {
@@ -525,4 +525,4 @@ function ordinal() {
 }
 
 export { formatSpecifier as a, formatPrefix as b, initRange as c, exponent as e, format as f, interpolate as i, ordinal as o, roundNode as r, sum as s, treemapDice as t };
-//# sourceMappingURL=ordinal-648f1411.js.map
+//# sourceMappingURL=ordinal-6b6e381b.js.map
