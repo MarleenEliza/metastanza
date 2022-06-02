@@ -1,11 +1,59 @@
-import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
-import { S as Stanza } from './stanza-7a5318fa.js';
-import { e as embed } from './vega-embed.module-2e167ee9.js';
-import { l as loadData } from './load-data-492aa036.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f93c5e7f.js';
-import 'csv-stringify/browser/esm/sync.js';
+import { d as defineStanzaElement } from './stanza-element-f1811bb2.js';
+import { S as Stanza } from './timer-1ca7e150.js';
+import { e as embed } from './vega-embed.module-07804790.js';
+import { l as loadData } from './load-data-03ddc67c.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as appendCustomCss } from './index-d2bbc90f.js';
+import './linear-af9e44cc.js';
+import './ordinal-0cb0fa8d.js';
+import './descending-63ef45b8.js';
+import './dsv-cd3740c6.js';
+import './max-2c042256.js';
+import './min-4a3f8e4e.js';
+import './range-e15c6861.js';
+import './arc-49333d16.js';
+import './constant-c49047a5.js';
+import './path-a78af922.js';
+import './array-89f97098.js';
+import './line-620615aa.js';
+import './basis-0dde91c7.js';
+import './sum-44e7480e.js';
+import './manyBody-15224179.js';
+import './stratify-5205cf04.js';
+import './index-beeea236.js';
+import './partition-2c1b5971.js';
+import './index-847f2a80.js';
+import './dsv-cde6fd06.js';
+
+function applyFilter(data, filter) {
+  return data.filter((record) =>
+    filter.every((filter) => {
+      switch (filter.type) {
+        case "substring":
+          if (filter.target === null) {
+            return Object.values(record).some((value) =>
+              value.toString().includes(filter.value)
+            );
+          } else {
+            return record[filter.target].toString().includes(filter.value);
+          }
+        case "lte":
+          return record[filter.target] <= filter.value;
+        case "gte":
+          return record[filter.target] >= filter.value;
+        default:
+          throw new Error(`unsupported filter type ${filter.type}`);
+      }
+    })
+  );
+}
 
 class ScatterPlot extends Stanza {
+  constructor() {
+    super(...arguments);
+
+    this._filter = [];
+  }
+
   menu() {
     return [
       downloadSvgMenuItem(this, "scatter-plot"),
@@ -13,7 +61,6 @@ class ScatterPlot extends Stanza {
       downloadJSONMenuItem(this, "scatter-plot", this._data),
       downloadCSVMenuItem(this, "scatter-plot", this._data),
       downloadTSVMenuItem(this, "scatter-plot", this._data),
-      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -28,14 +75,18 @@ class ScatterPlot extends Stanza {
 
     const xVariable = this.params["x"];
     const yVariable = this.params["y"];
-    const zVariable = this.params["z"] ? this.params["z"] : "none";
+    const zVariable = this.params["z"] || "none";
 
-    const values = await loadData(
+    const adjustYBottom = this.params["adjust-y-range"];
+    const adjustXLeft = this.params["adjust-x-range"];
+
+
+    const _data = await loadData(
       this.params["data-url"],
       this.params["data-type"],
       this.root.querySelector("main")
     );
-    this._data = values;
+    const values = applyFilter(_data, this._filter);
 
     const data = [
       {
@@ -59,7 +110,7 @@ class ScatterPlot extends Stanza {
         type: "linear",
         round: true,
         nice: true,
-        zero: true,
+        zero: !adjustXLeft,
         domain: { data: "source", field: xVariable },
         range: "width",
       },
@@ -68,7 +119,7 @@ class ScatterPlot extends Stanza {
         type: "linear",
         round: true,
         nice: true,
-        zero: true,
+        zero: !adjustYBottom,
         domain: { data: "source", field: yVariable },
         range: "height",
       },
@@ -97,7 +148,6 @@ class ScatterPlot extends Stanza {
         gridOpacity: css("--togostanza-grid-opacity"),
         gridWidth: css("--togostanza-grid-width"),
         ticks: this.params["xtick"] === "true",
-        // tickCount: params["xtick-count"],
         tickColor: "var(--togostanza-tick-color)",
         tickSize: css("--togostanza-tick-length"),
         tickWidth: css("--togostanza-tick-width"),
@@ -138,7 +188,6 @@ class ScatterPlot extends Stanza {
         gridOpacity: css("--togostanza-grid-opacity"),
         gridWidth: css("--togostanza-grid-width"),
         ticks: this.params["ytick"] === "true",
-        // tickCount: params["ytick-count"],
         tickColor: "var(--togostanza-tick-color)",
         tickSize: css("--togostanza-tick-length"),
         tickWidth: css("--togostanza-tick-width"),
@@ -239,6 +288,13 @@ class ScatterPlot extends Stanza {
     };
     await embed(el, spec, opts);
   }
+
+  handleEvent(event) {
+    if (event.type === "filter") {
+      this._filter = event.detail;
+      this.render();
+    }
+  }
 }
 
 var stanzaModule = /*#__PURE__*/Object.freeze({
@@ -255,7 +311,10 @@ var metadata = {
 	"stanza:definition": "Scatterplot MetaStanza",
 	"stanza:license": "MIT",
 	"stanza:author": "DBCLS",
+	"stanza:address": "https://github.com/togostanza/metastanza",
 	"stanza:contributor": [
+	"PENQE",
+	"Enishi Tech"
 ],
 	"stanza:created": "2020-11-06",
 	"stanza:updated": "2020-11-06",
@@ -367,6 +426,18 @@ var metadata = {
 		],
 		"stanza:example": true,
 		"stanza:description": "Show Y grid"
+	},
+	{
+		"stanza:key": "adjust-x-range",
+		"stanza:type": "boolean",
+		"stanza:example": true,
+		"stanza:description": "Adjust X axis range"
+	},
+	{
+		"stanza:key": "adjust-y-range",
+		"stanza:type": "boolean",
+		"stanza:example": true,
+		"stanza:description": "Adjust Y axis range"
 	},
 	{
 		"stanza:key": "xtick",
@@ -571,6 +642,12 @@ var metadata = {
 		"stanza:type": "color",
 		"stanza:default": "rgba(255,255,255,0)",
 		"stanza:description": "Background color"
+	}
+],
+	"stanza:incomingEvent": [
+	{
+		"stanza:key": "filter",
+		"stanza:description": "filter conditions changed event"
 	}
 ]
 };

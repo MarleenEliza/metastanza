@@ -1,9 +1,28 @@
-import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
-import { S as Stanza } from './stanza-7a5318fa.js';
-import { e as embed } from './vega-embed.module-2e167ee9.js';
-import { l as loadData } from './load-data-492aa036.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f93c5e7f.js';
-import 'csv-stringify/browser/esm/sync.js';
+import { d as defineStanzaElement } from './stanza-element-f1811bb2.js';
+import { S as Stanza } from './timer-1ca7e150.js';
+import { e as embed } from './vega-embed.module-07804790.js';
+import { l as loadData } from './load-data-03ddc67c.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as appendCustomCss } from './index-d2bbc90f.js';
+import './linear-af9e44cc.js';
+import './ordinal-0cb0fa8d.js';
+import './descending-63ef45b8.js';
+import './dsv-cd3740c6.js';
+import './max-2c042256.js';
+import './min-4a3f8e4e.js';
+import './range-e15c6861.js';
+import './arc-49333d16.js';
+import './constant-c49047a5.js';
+import './path-a78af922.js';
+import './array-89f97098.js';
+import './line-620615aa.js';
+import './basis-0dde91c7.js';
+import './sum-44e7480e.js';
+import './manyBody-15224179.js';
+import './stratify-5205cf04.js';
+import './index-beeea236.js';
+import './partition-2c1b5971.js';
+import './index-847f2a80.js';
+import './dsv-cde6fd06.js';
 
 class Barchart extends Stanza {
   menu() {
@@ -13,25 +32,45 @@ class Barchart extends Stanza {
       downloadJSONMenuItem(this, "barchart", this._data),
       downloadCSVMenuItem(this, "barchart", this._data),
       downloadTSVMenuItem(this, "barchart", this._data),
-      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
   async render() {
     appendCustomCss(this, this.params["custom-css-url"]);
 
+    const { default: metadata } = await Promise.resolve().then(function () { return metadata$1; });
+
+    const params = new Map(
+      metadata["stanza:parameter"].map((param) => [
+        param["stanza:key"],
+        {
+          default: param["stanza:example"],
+          required: !!param["stanza:required"],
+        },
+      ])
+    );
+
+    for (const param in this.params) {
+      if (
+        params.get(param).required &&
+        typeof this.params[param] === "undefined"
+      ) {
+        throw new Error(`Required parameter ${param} is not defined`);
+      }
+    }
+
     const css = (key) => getComputedStyle(this.element).getPropertyValue(key);
     const chartType = this.params["chart-type"];
 
     //width,height,padding
-    const width = this.params["width"];
-    const height = this.params["height"];
+    const width = this.params["width"] || params.get("width").default;
+    const height = this.params["height"] || params.get("height").default;
     const padding = this.params["padding"];
 
     //data
     const labelVariable = this.params["category"]; //x
     const valueVariable = this.params["value"]; //y
-    const groupVariable = this.params["group-by"]
+    const groupVariable = this.params["group-by"] //group
       ? this.params["group-by"]
       : "none"; //z
 
@@ -90,7 +129,9 @@ class Barchart extends Stanza {
     const axes = [
       {
         scale: "xscale",
-        orient: this.params["xaxis-placement"],
+        orient:
+          this.params["xaxis-placement"] ||
+          params.get("xaxis-placement").default,
         domainColor: "var(--togostanza-axis-color)",
         domainWidth: css("--togostanza-axis-width"),
         grid: this.params["xgrid"] === "true",
@@ -130,7 +171,9 @@ class Barchart extends Stanza {
       },
       {
         scale: "yscale",
-        orient: this.params["yaxis-placement"],
+        orient:
+          this.params["yaxis-placement"] ||
+          params.get("yaxis-placement").default,
         domainColor: "var(--togostanza-axis-color)",
         domainWidth: css("--togostanza-axis-width"),
         grid: this.params["ygrid"] === "true",
@@ -161,7 +204,9 @@ class Barchart extends Stanza {
           labels: {
             interactive: true,
             update: {
-              angle: { value: this.params["ylabel-angle"] },
+              angle: {
+                value: this.params["ylabel-angle"],
+              },
               fill: { value: "var(--togostanza-label-font-color)" },
               font: {
                 value: css("--togostanza-font-family"),
@@ -289,6 +334,7 @@ class Barchart extends Stanza {
                 {
                   name: "bars",
                   from: { data: "facet" },
+
                   type: "rect",
                   encode: {
                     enter: {
@@ -313,7 +359,12 @@ class Barchart extends Stanza {
               encode: {
                 enter: {
                   x: { scale: "xscale", field: labelVariable },
-                  width: { scale: "xscale", band: this.params["bar-width"] },
+                  width: {
+                    scale: "xscale",
+                    band:
+                      this.params["bar-width"] ||
+                      params.get("bar-width").default,
+                  },
                   y: { scale: "yscale", field: "y0" },
                   y2: { scale: "yscale", field: "y1" },
                   fill: { scale: "color", field: groupVariable },
@@ -366,7 +417,9 @@ var metadata = {
 	"stanza:provider": "TogoStanza",
 	"stanza:license": "MIT",
 	"stanza:author": "DBCLS",
+	"stanza:address": "https://github.com/togostanza/metastanza",
 	"stanza:contributor": [
+	"PENQE"
 ],
 	"stanza:created": "2020-11-06",
 	"stanza:updated": "2020-11-06",
@@ -469,6 +522,7 @@ var metadata = {
 	},
 	{
 		"stanza:key": "padding-outer",
+		"stanza:type": "number",
 		"stanza:example": 0.4,
 		"stanza:description": "Padding outside of bar group (0-1)"
 	},
@@ -548,11 +602,6 @@ var metadata = {
 		"stanza:key": "xlabel-angle",
 		"stanza:example": 0,
 		"stanza:description": "X label angle (in degree)"
-	},
-	{
-		"stanza:key": "ylabel-angle",
-		"stanza:example": 0,
-		"stanza:description": "Y label angle (in degree)"
 	},
 	{
 		"stanza:key": "ylabel-angle",
@@ -781,6 +830,11 @@ var metadata = {
 	}
 ]
 };
+
+var metadata$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  'default': metadata
+});
 
 var templates = [
   ["stanza.html.hbs", {"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {

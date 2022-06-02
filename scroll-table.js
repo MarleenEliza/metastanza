@@ -1,9 +1,11 @@
-import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
-import { S as Stanza } from './stanza-7a5318fa.js';
-import { f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f93c5e7f.js';
-import { d as defineComponent, c as createElementBlock, b as createBaseVNode, B as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, p as createVNode, e as createCommentVNode, f as createBlock, g as createTextVNode, a as resolveComponent, j as reactive, x as onMounted, i as ref, C as onRenderTriggered, r as renderList, n as normalizeClass, q as createApp } from './runtime-dom.esm-bundler-aed7bd28.js';
-import { l as loadData } from './load-data-492aa036.js';
-import 'csv-stringify/browser/esm/sync.js';
+import { d as defineStanzaElement } from './stanza-element-f1811bb2.js';
+import { S as Stanza } from './timer-1ca7e150.js';
+import { f as appendCustomCss } from './index-d2bbc90f.js';
+import { d as defineComponent, c as createElementBlock, b as createBaseVNode, B as normalizeStyle, t as toDisplayString, F as Fragment, o as openBlock, p as createVNode, e as createCommentVNode, f as createBlock, g as createTextVNode, a as resolveComponent, j as reactive, x as onMounted, i as ref, D as onRenderTriggered, r as renderList, n as normalizeClass, q as createApp } from './runtime-dom.esm-bundler-15d38398.js';
+import { l as loadData } from './load-data-03ddc67c.js';
+import './index-847f2a80.js';
+import './dsv-cde6fd06.js';
+import './dsv-cd3740c6.js';
 
 var script$2 = defineComponent({
   props: {
@@ -148,7 +150,10 @@ var metadata = {
 	"stanza:definition": "Scroll table MetaStanza",
 	"stanza:license": "MIT",
 	"stanza:author": "DBCLS",
+	"stanza:address": "https://github.com/togostanza/metastanza",
 	"stanza:contributor": [
+	"PENQE",
+	"Enishi Tech"
 ],
 	"stanza:created": "2020-12-09",
 	"stanza:updated": "2020-12-09",
@@ -332,16 +337,26 @@ var script = defineComponent({
 
     async function fetchData() {
       state.isFetching = true;
-      let urlParams = {
+      const urlParams = {
         limit: params.pageSize,
         offset: state.offset,
       };
-      urlParams = new URLSearchParams(urlParams);
-      const { dataUrl } = params;
-      const connectCharacter = new URL(dataUrl) ? "&" : "?";
+
+      const url = new URL(params.dataUrl);
+      const searchParams = new URLSearchParams(url.search);
+
+      const rightParams = [];
+      searchParams.forEach((param, name) => {
+        if (name !== "limit" && name !== "offset") {
+          rightParams.push([name, param]);
+        }
+      });
+      rightParams.push(...Object.entries(urlParams));
+
+      const rightsearchParams = new URLSearchParams(rightParams);
 
       const data = await loadData(
-        `${dataUrl}${connectCharacter}${urlParams}`,
+        `${url.origin}${url.pathname}?${rightsearchParams.toString()}`,
         params.dataType,
         params.main
       );
@@ -385,8 +400,10 @@ var script = defineComponent({
 
     function handleScroll(e) {
       if (
-        e.path[0].scrollTop ===
-          e.path[0].firstChild.clientHeight - e.path[0].clientHeight &&
+        e.path[0].scrollTop >
+          e.path[0].firstChild.clientHeight - e.path[0].clientHeight - 5 &&
+        e.path[0].scrollTop <
+          e.path[0].firstChild.clientHeight - e.path[0].clientHeight + 5 &&
         !state.isFetching
       ) {
         state.offset = state.offset + params.pageSize;
@@ -527,10 +544,6 @@ script.render = render;
 script.__file = "stanzas/scroll-table/app.vue";
 
 class ScrollTable extends Stanza {
-  menu() {
-    return [copyHTMLSnippetToClipboardMenuItem(this)];
-  }
-
   async render() {
     appendCustomCss(this, this.params["custom-css-url"]);
 

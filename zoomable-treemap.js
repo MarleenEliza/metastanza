@@ -1,4 +1,4 @@
-import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
+import { d as defineStanzaElement } from './stanza-element-f1811bb2.js';
 
 // import * as d3 from "d3";
 // import data from "./countries.json";
@@ -280,9 +280,11 @@ var metadata = {
 	"stanza:display": "Tree",
 	"stanza:provider": "TogoStanza",
 	"stanza:license": "MIT",
-	"stanza:author": "",
-	"stanza:address": "",
+	"stanza:author": "DBCLS",
+	"stanza:address": "https://github.com/togostanza/metastanza",
 	"stanza:contributor": [
+	"PENQE",
+	"Enishi Tech"
 ],
 	"stanza:created": "2021-05-14",
 	"stanza:updated": "2021-05-14",

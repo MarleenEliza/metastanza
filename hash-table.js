@@ -1,8 +1,10 @@
-import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
-import { S as Stanza } from './stanza-7a5318fa.js';
-import { l as loadData } from './load-data-492aa036.js';
-import { b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f93c5e7f.js';
-import 'csv-stringify/browser/esm/sync.js';
+import { d as defineStanzaElement } from './stanza-element-f1811bb2.js';
+import { S as Stanza } from './timer-1ca7e150.js';
+import { l as loadData } from './load-data-03ddc67c.js';
+import { b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as appendCustomCss } from './index-d2bbc90f.js';
+import './index-847f2a80.js';
+import './dsv-cde6fd06.js';
+import './dsv-cd3740c6.js';
 
 class HashTable extends Stanza {
   menu() {
@@ -10,7 +12,6 @@ class HashTable extends Stanza {
       downloadJSONMenuItem(this, "hashtable", this._data),
       downloadCSVMenuItem(this, "hashtable", this._data),
       downloadTSVMenuItem(this, "hashtable", this._data),
-      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -77,7 +78,10 @@ var metadata = {
 	"stanza:definition": "Hash table MetaStanza",
 	"stanza:license": "MIT",
 	"stanza:author": "DBCLS",
+	"stanza:address": "https://github.com/togostanza/metastanza",
 	"stanza:contributor": [
+	"PENQE",
+	"Enishi Tech"
 ],
 	"stanza:created": "2021-03-18",
 	"stanza:updated": "2021-03-18",

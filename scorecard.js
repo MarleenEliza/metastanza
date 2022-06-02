@@ -1,8 +1,10 @@
-import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
-import { S as Stanza } from './stanza-7a5318fa.js';
-import { l as loadData } from './load-data-492aa036.js';
-import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss } from './index-f93c5e7f.js';
-import 'csv-stringify/browser/esm/sync.js';
+import { d as defineStanzaElement } from './stanza-element-f1811bb2.js';
+import { S as Stanza } from './timer-1ca7e150.js';
+import { l as loadData } from './load-data-03ddc67c.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, f as appendCustomCss } from './index-d2bbc90f.js';
+import './index-847f2a80.js';
+import './dsv-cde6fd06.js';
+import './dsv-cd3740c6.js';
 
 class Scorecard extends Stanza {
   menu() {
@@ -10,7 +12,6 @@ class Scorecard extends Stanza {
       downloadSvgMenuItem(this, "scorecard"),
       downloadPngMenuItem(this, "scorecard"),
       downloadJSONMenuItem(this, "scorecard", this._data),
-      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -93,7 +94,10 @@ var metadata = {
 	"stanza:definition": "Scorecard MetaStanza",
 	"stanza:license": "MIT",
 	"stanza:author": "DBCLS",
+	"stanza:address": "https://github.com/togostanza/metastanza",
 	"stanza:contributor": [
+	"PENQE",
+	"Enishi Tech"
 ],
 	"stanza:created": "2020-12-02",
 	"stanza:updated": "2020-12-02",

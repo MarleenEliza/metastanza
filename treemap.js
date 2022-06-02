@@ -1,541 +1,16 @@
-import { d as defineStanzaElement } from './stanza-element-40ac9902.js';
-import { S as Stanza } from './stanza-7a5318fa.js';
-import { i as interpolateNumber, d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as copyHTMLSnippetToClipboardMenuItem, g as appendCustomCss, s as select } from './index-f93c5e7f.js';
-import { l as loadData } from './load-data-492aa036.js';
-import { e as exponent, t as treemapDice, r as roundNode, i as interpolate, a as formatSpecifier, b as formatPrefix, f as format, c as initRange, o as ordinal, s as sum } from './ordinal-6b6e381b.js';
-import { r as required, s as stratify, h as hierarchy } from './stratify-8f602319.js';
-import 'csv-stringify/browser/esm/sync.js';
-
-function ascending(a, b) {
-  return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
-}
-
-function bisector(f) {
-  let delta = f;
-  let compare1 = f;
-  let compare2 = f;
-
-  if (f.length !== 2) {
-    delta = (d, x) => f(d) - x;
-    compare1 = ascending;
-    compare2 = (d, x) => ascending(f(d), x);
-  }
-
-  function left(a, x, lo = 0, hi = a.length) {
-    if (lo < hi) {
-      if (compare1(x, x) !== 0) return hi;
-      do {
-        const mid = (lo + hi) >>> 1;
-        if (compare2(a[mid], x) < 0) lo = mid + 1;
-        else hi = mid;
-      } while (lo < hi);
-    }
-    return lo;
-  }
-
-  function right(a, x, lo = 0, hi = a.length) {
-    if (lo < hi) {
-      if (compare1(x, x) !== 0) return hi;
-      do {
-        const mid = (lo + hi) >>> 1;
-        if (compare2(a[mid], x) <= 0) lo = mid + 1;
-        else hi = mid;
-      } while (lo < hi);
-    }
-    return lo;
-  }
-
-  function center(a, x, lo = 0, hi = a.length) {
-    const i = left(a, x, lo, hi - 1);
-    return i > lo && delta(a[i - 1], x) > -delta(a[i], x) ? i - 1 : i;
-  }
-
-  return {left, center, right};
-}
-
-function number$1(x) {
-  return x === null ? NaN : +x;
-}
-
-const ascendingBisect = bisector(ascending);
-const bisectRight = ascendingBisect.right;
-bisector(number$1).center;
-var bisect = bisectRight;
-
-var e10 = Math.sqrt(50),
-    e5 = Math.sqrt(10),
-    e2 = Math.sqrt(2);
-
-function ticks(start, stop, count) {
-  var reverse,
-      i = -1,
-      n,
-      ticks,
-      step;
-
-  stop = +stop, start = +start, count = +count;
-  if (start === stop && count > 0) return [start];
-  if (reverse = stop < start) n = start, start = stop, stop = n;
-  if ((step = tickIncrement(start, stop, count)) === 0 || !isFinite(step)) return [];
-
-  if (step > 0) {
-    let r0 = Math.round(start / step), r1 = Math.round(stop / step);
-    if (r0 * step < start) ++r0;
-    if (r1 * step > stop) --r1;
-    ticks = new Array(n = r1 - r0 + 1);
-    while (++i < n) ticks[i] = (r0 + i) * step;
-  } else {
-    step = -step;
-    let r0 = Math.round(start * step), r1 = Math.round(stop * step);
-    if (r0 / step < start) ++r0;
-    if (r1 / step > stop) --r1;
-    ticks = new Array(n = r1 - r0 + 1);
-    while (++i < n) ticks[i] = (r0 + i) / step;
-  }
-
-  if (reverse) ticks.reverse();
-
-  return ticks;
-}
-
-function tickIncrement(start, stop, count) {
-  var step = (stop - start) / Math.max(0, count),
-      power = Math.floor(Math.log(step) / Math.LN10),
-      error = step / Math.pow(10, power);
-  return power >= 0
-      ? (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1) * Math.pow(10, power)
-      : -Math.pow(10, -power) / (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1);
-}
-
-function tickStep(start, stop, count) {
-  var step0 = Math.abs(stop - start) / Math.max(0, count),
-      step1 = Math.pow(10, Math.floor(Math.log(step0) / Math.LN10)),
-      error = step0 / step1;
-  if (error >= e10) step1 *= 10;
-  else if (error >= e5) step1 *= 5;
-  else if (error >= e2) step1 *= 2;
-  return stop < start ? -step1 : step1;
-}
-
-function interpolateRound(a, b) {
-  return a = +a, b = +b, function(t) {
-    return Math.round(a * (1 - t) + b * t);
-  };
-}
-
-function precisionFixed(step) {
-  return Math.max(0, -exponent(Math.abs(step)));
-}
-
-function precisionPrefix(step, value) {
-  return Math.max(0, Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3 - exponent(Math.abs(step)));
-}
-
-function precisionRound(step, max) {
-  step = Math.abs(step), max = Math.abs(max) - step;
-  return Math.max(0, exponent(max) - exponent(step)) + 1;
-}
-
-function constantZero() {
-  return 0;
-}
-
-function constant(x) {
-  return function() {
-    return x;
-  };
-}
-
-function treemapSlice(parent, x0, y0, x1, y1) {
-  var nodes = parent.children,
-      node,
-      i = -1,
-      n = nodes.length,
-      k = parent.value && (y1 - y0) / parent.value;
-
-  while (++i < n) {
-    node = nodes[i], node.x0 = x0, node.x1 = x1;
-    node.y0 = y0, node.y1 = y0 += node.value * k;
-  }
-}
-
-var phi = (1 + Math.sqrt(5)) / 2;
-
-function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
-  var rows = [],
-      nodes = parent.children,
-      row,
-      nodeValue,
-      i0 = 0,
-      i1 = 0,
-      n = nodes.length,
-      dx, dy,
-      value = parent.value,
-      sumValue,
-      minValue,
-      maxValue,
-      newRatio,
-      minRatio,
-      alpha,
-      beta;
-
-  while (i0 < n) {
-    dx = x1 - x0, dy = y1 - y0;
-
-    // Find the next non-empty node.
-    do sumValue = nodes[i1++].value; while (!sumValue && i1 < n);
-    minValue = maxValue = sumValue;
-    alpha = Math.max(dy / dx, dx / dy) / (value * ratio);
-    beta = sumValue * sumValue * alpha;
-    minRatio = Math.max(maxValue / beta, beta / minValue);
-
-    // Keep adding nodes while the aspect ratio maintains or improves.
-    for (; i1 < n; ++i1) {
-      sumValue += nodeValue = nodes[i1].value;
-      if (nodeValue < minValue) minValue = nodeValue;
-      if (nodeValue > maxValue) maxValue = nodeValue;
-      beta = sumValue * sumValue * alpha;
-      newRatio = Math.max(maxValue / beta, beta / minValue);
-      if (newRatio > minRatio) { sumValue -= nodeValue; break; }
-      minRatio = newRatio;
-    }
-
-    // Position and record the row orientation.
-    rows.push(row = {value: sumValue, dice: dx < dy, children: nodes.slice(i0, i1)});
-    if (row.dice) treemapDice(row, x0, y0, x1, value ? y0 += dy * sumValue / value : y1);
-    else treemapSlice(row, x0, y0, value ? x0 += dx * sumValue / value : x1, y1);
-    value -= sumValue, i0 = i1;
-  }
-
-  return rows;
-}
-
-var squarify = (function custom(ratio) {
-
-  function squarify(parent, x0, y0, x1, y1) {
-    squarifyRatio(ratio, parent, x0, y0, x1, y1);
-  }
-
-  squarify.ratio = function(x) {
-    return custom((x = +x) > 1 ? x : 1);
-  };
-
-  return squarify;
-})(phi);
-
-function index() {
-  var tile = squarify,
-      round = false,
-      dx = 1,
-      dy = 1,
-      paddingStack = [0],
-      paddingInner = constantZero,
-      paddingTop = constantZero,
-      paddingRight = constantZero,
-      paddingBottom = constantZero,
-      paddingLeft = constantZero;
-
-  function treemap(root) {
-    root.x0 =
-    root.y0 = 0;
-    root.x1 = dx;
-    root.y1 = dy;
-    root.eachBefore(positionNode);
-    paddingStack = [0];
-    if (round) root.eachBefore(roundNode);
-    return root;
-  }
-
-  function positionNode(node) {
-    var p = paddingStack[node.depth],
-        x0 = node.x0 + p,
-        y0 = node.y0 + p,
-        x1 = node.x1 - p,
-        y1 = node.y1 - p;
-    if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
-    if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-    node.x0 = x0;
-    node.y0 = y0;
-    node.x1 = x1;
-    node.y1 = y1;
-    if (node.children) {
-      p = paddingStack[node.depth + 1] = paddingInner(node) / 2;
-      x0 += paddingLeft(node) - p;
-      y0 += paddingTop(node) - p;
-      x1 -= paddingRight(node) - p;
-      y1 -= paddingBottom(node) - p;
-      if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
-      if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-      tile(node, x0, y0, x1, y1);
-    }
-  }
-
-  treemap.round = function(x) {
-    return arguments.length ? (round = !!x, treemap) : round;
-  };
-
-  treemap.size = function(x) {
-    return arguments.length ? (dx = +x[0], dy = +x[1], treemap) : [dx, dy];
-  };
-
-  treemap.tile = function(x) {
-    return arguments.length ? (tile = required(x), treemap) : tile;
-  };
-
-  treemap.padding = function(x) {
-    return arguments.length ? treemap.paddingInner(x).paddingOuter(x) : treemap.paddingInner();
-  };
-
-  treemap.paddingInner = function(x) {
-    return arguments.length ? (paddingInner = typeof x === "function" ? x : constant(+x), treemap) : paddingInner;
-  };
-
-  treemap.paddingOuter = function(x) {
-    return arguments.length ? treemap.paddingTop(x).paddingRight(x).paddingBottom(x).paddingLeft(x) : treemap.paddingTop();
-  };
-
-  treemap.paddingTop = function(x) {
-    return arguments.length ? (paddingTop = typeof x === "function" ? x : constant(+x), treemap) : paddingTop;
-  };
-
-  treemap.paddingRight = function(x) {
-    return arguments.length ? (paddingRight = typeof x === "function" ? x : constant(+x), treemap) : paddingRight;
-  };
-
-  treemap.paddingBottom = function(x) {
-    return arguments.length ? (paddingBottom = typeof x === "function" ? x : constant(+x), treemap) : paddingBottom;
-  };
-
-  treemap.paddingLeft = function(x) {
-    return arguments.length ? (paddingLeft = typeof x === "function" ? x : constant(+x), treemap) : paddingLeft;
-  };
-
-  return treemap;
-}
-
-function constants(x) {
-  return function() {
-    return x;
-  };
-}
-
-function number(x) {
-  return +x;
-}
-
-var unit = [0, 1];
-
-function identity(x) {
-  return x;
-}
-
-function normalize(a, b) {
-  return (b -= (a = +a))
-      ? function(x) { return (x - a) / b; }
-      : constants(isNaN(b) ? NaN : 0.5);
-}
-
-function clamper(a, b) {
-  var t;
-  if (a > b) t = a, a = b, b = t;
-  return function(x) { return Math.max(a, Math.min(b, x)); };
-}
-
-// normalize(a, b)(x) takes a domain value x in [a,b] and returns the corresponding parameter t in [0,1].
-// interpolate(a, b)(t) takes a parameter t in [0,1] and returns the corresponding range value x in [a,b].
-function bimap(domain, range, interpolate) {
-  var d0 = domain[0], d1 = domain[1], r0 = range[0], r1 = range[1];
-  if (d1 < d0) d0 = normalize(d1, d0), r0 = interpolate(r1, r0);
-  else d0 = normalize(d0, d1), r0 = interpolate(r0, r1);
-  return function(x) { return r0(d0(x)); };
-}
-
-function polymap(domain, range, interpolate) {
-  var j = Math.min(domain.length, range.length) - 1,
-      d = new Array(j),
-      r = new Array(j),
-      i = -1;
-
-  // Reverse descending domains.
-  if (domain[j] < domain[0]) {
-    domain = domain.slice().reverse();
-    range = range.slice().reverse();
-  }
-
-  while (++i < j) {
-    d[i] = normalize(domain[i], domain[i + 1]);
-    r[i] = interpolate(range[i], range[i + 1]);
-  }
-
-  return function(x) {
-    var i = bisect(domain, x, 1, j) - 1;
-    return r[i](d[i](x));
-  };
-}
-
-function copy(source, target) {
-  return target
-      .domain(source.domain())
-      .range(source.range())
-      .interpolate(source.interpolate())
-      .clamp(source.clamp())
-      .unknown(source.unknown());
-}
-
-function transformer() {
-  var domain = unit,
-      range = unit,
-      interpolate$1 = interpolate,
-      transform,
-      untransform,
-      unknown,
-      clamp = identity,
-      piecewise,
-      output,
-      input;
-
-  function rescale() {
-    var n = Math.min(domain.length, range.length);
-    if (clamp !== identity) clamp = clamper(domain[0], domain[n - 1]);
-    piecewise = n > 2 ? polymap : bimap;
-    output = input = null;
-    return scale;
-  }
-
-  function scale(x) {
-    return x == null || isNaN(x = +x) ? unknown : (output || (output = piecewise(domain.map(transform), range, interpolate$1)))(transform(clamp(x)));
-  }
-
-  scale.invert = function(y) {
-    return clamp(untransform((input || (input = piecewise(range, domain.map(transform), interpolateNumber)))(y)));
-  };
-
-  scale.domain = function(_) {
-    return arguments.length ? (domain = Array.from(_, number), rescale()) : domain.slice();
-  };
-
-  scale.range = function(_) {
-    return arguments.length ? (range = Array.from(_), rescale()) : range.slice();
-  };
-
-  scale.rangeRound = function(_) {
-    return range = Array.from(_), interpolate$1 = interpolateRound, rescale();
-  };
-
-  scale.clamp = function(_) {
-    return arguments.length ? (clamp = _ ? true : identity, rescale()) : clamp !== identity;
-  };
-
-  scale.interpolate = function(_) {
-    return arguments.length ? (interpolate$1 = _, rescale()) : interpolate$1;
-  };
-
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
-  };
-
-  return function(t, u) {
-    transform = t, untransform = u;
-    return rescale();
-  };
-}
-
-function continuous() {
-  return transformer()(identity, identity);
-}
-
-function tickFormat(start, stop, count, specifier) {
-  var step = tickStep(start, stop, count),
-      precision;
-  specifier = formatSpecifier(specifier == null ? ",f" : specifier);
-  switch (specifier.type) {
-    case "s": {
-      var value = Math.max(Math.abs(start), Math.abs(stop));
-      if (specifier.precision == null && !isNaN(precision = precisionPrefix(step, value))) specifier.precision = precision;
-      return formatPrefix(specifier, value);
-    }
-    case "":
-    case "e":
-    case "g":
-    case "p":
-    case "r": {
-      if (specifier.precision == null && !isNaN(precision = precisionRound(step, Math.max(Math.abs(start), Math.abs(stop))))) specifier.precision = precision - (specifier.type === "e");
-      break;
-    }
-    case "f":
-    case "%": {
-      if (specifier.precision == null && !isNaN(precision = precisionFixed(step))) specifier.precision = precision - (specifier.type === "%") * 2;
-      break;
-    }
-  }
-  return format(specifier);
-}
-
-function linearish(scale) {
-  var domain = scale.domain;
-
-  scale.ticks = function(count) {
-    var d = domain();
-    return ticks(d[0], d[d.length - 1], count == null ? 10 : count);
-  };
-
-  scale.tickFormat = function(count, specifier) {
-    var d = domain();
-    return tickFormat(d[0], d[d.length - 1], count == null ? 10 : count, specifier);
-  };
-
-  scale.nice = function(count) {
-    if (count == null) count = 10;
-
-    var d = domain();
-    var i0 = 0;
-    var i1 = d.length - 1;
-    var start = d[i0];
-    var stop = d[i1];
-    var prestep;
-    var step;
-    var maxIter = 10;
-
-    if (stop < start) {
-      step = start, start = stop, stop = step;
-      step = i0, i0 = i1, i1 = step;
-    }
-    
-    while (maxIter-- > 0) {
-      step = tickIncrement(start, stop, count);
-      if (step === prestep) {
-        d[i0] = start;
-        d[i1] = stop;
-        return domain(d);
-      } else if (step > 0) {
-        start = Math.floor(start / step) * step;
-        stop = Math.ceil(stop / step) * step;
-      } else if (step < 0) {
-        start = Math.ceil(start * step) / step;
-        stop = Math.floor(stop * step) / step;
-      } else {
-        break;
-      }
-      prestep = step;
-    }
-
-    return scale;
-  };
-
-  return scale;
-}
-
-function linear() {
-  var scale = continuous();
-
-  scale.copy = function() {
-    return copy(scale, linear());
-  };
-
-  initRange.apply(scale, arguments);
-
-  return linearish(scale);
-}
+import { d as defineStanzaElement } from './stanza-element-f1811bb2.js';
+import { S as Stanza } from './timer-1ca7e150.js';
+import { s as select } from './index-847f2a80.js';
+import { l as loadData } from './load-data-03ddc67c.js';
+import { d as downloadSvgMenuItem, a as downloadPngMenuItem, b as downloadJSONMenuItem, c as downloadCSVMenuItem, e as downloadTSVMenuItem, f as appendCustomCss } from './index-d2bbc90f.js';
+import { s as stratify, h as hierarchy } from './stratify-5205cf04.js';
+import { l as linear } from './linear-af9e44cc.js';
+import { f as format, o as ordinal, a as interpolate$1 } from './ordinal-0cb0fa8d.js';
+import { b as treemap } from './index-beeea236.js';
+import { s as sum } from './sum-44e7480e.js';
+import './dsv-cde6fd06.js';
+import './dsv-cd3740c6.js';
+import './descending-63ef45b8.js';
 
 var count = 0;
 
@@ -650,7 +125,6 @@ class TreeMapStanza extends Stanza {
       downloadJSONMenuItem(this, "treemap", this._data),
       downloadCSVMenuItem(this, "treemap", this._data),
       downloadTSVMenuItem(this, "treemap", this._data),
-      copyHTMLSnippetToClipboardMenuItem(this),
     ];
   }
 
@@ -686,18 +160,24 @@ class TreeMapStanza extends Stanza {
     );
 
     //Add root element if there are more than one elements without parent. D3 cannot process data with more than one root elements
-    const rootElemIndexes = [];
-    for (let i = 0; i < filteredData.length - 1; i++) {
-      if (!filteredData[i]?.parent) {
-        rootElemIndexes.push(i);
-      }
-    }
-    if (rootElemIndexes.length > 1) {
+    const rootElems = filteredData
+      .map((d, i) => ({
+        d,
+        i,
+      }))
+      .filter((d) => !d.d.parent)
+      .map((d) => d.i);
+
+    if (rootElems.length > 1) {
       filteredData.push({ id: -1, value: "", label: "" });
 
-      rootElemIndexes.forEach((index) => {
+      rootElems.forEach((index) => {
         filteredData[index].parent = -1;
       });
+    }
+
+    if (!filteredData.find((d) => d.id === -1)) {
+      filteredData.push({ id: -1, value: "", label: "" });
     }
 
     const treeMapElement = this.root.querySelector("#treemap");
@@ -778,8 +258,8 @@ function draw(el, dataset, opts) {
     }
   }
 
-  const treemap = (data) =>
-    index().tile(tile)(
+  const treemap$1 = (data) =>
+    treemap().tile(tile)(
       hierarchy(data)
         .sum((d) => d.data.n)
         .sort((a, b) => b.value - a.value)
@@ -796,7 +276,7 @@ function draw(el, dataset, opts) {
     .append("svg")
     .attr("viewBox", [0, 0, width, height]);
 
-  let group = svg.append("g").call(render, treemap(nested), null);
+  let group = svg.append("g").call(render, treemap$1(nested), null);
 
   function render(group, root, zoomInOut) {
     group
@@ -877,7 +357,7 @@ function draw(el, dataset, opts) {
       .append("text")
       .attr("clip-path", (d) => d.clipUid)
       .attr("y", "1.5em")
-      .attr("x", "0.5rem")
+      .attr("x", "1em")
       .text((d) => {
         if (d === root) {
           return name(d);
@@ -885,14 +365,6 @@ function draw(el, dataset, opts) {
           return `${d.data.data.label}`;
         }
       });
-
-    // append expand icon
-    // node
-    //   .filter((d) => d !== root && d.children)
-    //   .append("image")
-    //   .attr("width", 10)
-    //   .attr("height", 10)
-    //   .attr("href", expandSvg);
 
     //adjust rectangles positions
     group.call(position, root, true, zoomInOut);
@@ -960,7 +432,7 @@ function draw(el, dataset, opts) {
             //set tspan to last added tspan and append word that didnt fit
             tspan = text
               .append("tspan")
-              .attr("x", x)
+              .attr("x", "1em")
               .attr("y", y)
               .attr("dy", ++lineNumber * lineHeight + dy + "em")
               .text(word);
@@ -972,7 +444,7 @@ function draw(el, dataset, opts) {
         .append("tspan")
         .attr("class", "number-label")
         .attr("dy", "1.6em")
-        .attr("x", "0.5rem")
+        .attr("x", "1.6em")
         .text((d) => format$1(sum(d, (d) => d?.data?.data?.n || 0)));
     }
   }
@@ -992,32 +464,6 @@ function draw(el, dataset, opts) {
         })`;
       }
     });
-
-    // Placing icons in the middle of nodes
-    // group
-    //   .selectAll("image")
-    //   .attr("x", (d) => {
-    //     if (x(d.x0) === width) {
-    //       return (
-    //         (x(d.x0) + x(d.x1)) / 2 - x(d.x0) - iconWidth / 2 - 2 * borderWidth
-    //       );
-    //     } else {
-    //       return (
-    //         (x(d.x0) + x(d.x1)) / 2 - x(d.x0) - iconWidth / 2 - borderWidth
-    //       );
-    //     }
-    //   })
-    //   .attr("y", (d) => {
-    //     if (y(d.y0) === height) {
-    //       return (
-    //         (y(d.y0) + y(d.y1) - 2 * borderWidth) / 2 - y(d.y0) - iconHeight / 2
-    //       );
-    //     } else {
-    //       return (
-    //         (y(d.y0) + y(d.y1) - borderWidth) / 2 - y(d.y0) - iconHeight / 2
-    //       );
-    //     }
-    //   });
 
     a.select("rect")
       .attr("width", (d) => {
@@ -1073,7 +519,7 @@ function draw(el, dataset, opts) {
       .call((t) =>
         group1
           .transition(t)
-          .attrTween("opacity", () => interpolate(0, 1))
+          .attrTween("opacity", () => interpolate$1(0, 1))
           .call(position, d, false)
       );
   }
@@ -1095,7 +541,7 @@ function draw(el, dataset, opts) {
         group0
           .transition(t)
           .remove()
-          .attrTween("opacity", () => interpolate(1, 0))
+          .attrTween("opacity", () => interpolate$1(1, 0))
           .call(position, d, false)
       )
       .call((t) => group1.transition(t).call(position, d.parent, false));
@@ -1140,9 +586,10 @@ var metadata = {
 	"stanza:display": "Tree",
 	"stanza:provider": "TogoStanza",
 	"stanza:license": "MIT",
-	"stanza:author": "anton",
-	"stanza:address": "anton@penqe.com",
+	"stanza:author": "DBCLS",
+	"stanza:address": "https://github.com/togostanza/metastanza",
 	"stanza:contributor": [
+	"PENQE"
 ],
 	"stanza:created": "2021-10-25",
 	"stanza:updated": "2021-10-25",
